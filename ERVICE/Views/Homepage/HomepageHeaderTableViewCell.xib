@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="KGk-i7-Jjw" customClass="HomepageHeaderTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="02k-jR-na8">
+                        <rect key="frame" x="0.0" y="0.0" width="80" height="79"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="79" id="1eM-fi-YNG"/>
+                        </constraints>
+                        <state key="normal" title="myExclusive" image="myexclusive"/>
+                        <connections>
+                            <action selector="myExclusive:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="V4f-kL-gAB"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9z4-kW-Ms9" userLabel="businessConsult">
+                        <rect key="frame" x="80" y="0.0" width="80" height="79"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="79" id="aVC-Bd-9Iz"/>
+                        </constraints>
+                        <state key="normal" title="Button" image="businessconsult"/>
+                        <connections>
+                            <action selector="businessConsult:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="zy9-kN-Hmq"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUm-1S-CUy">
+                        <rect key="frame" x="160" y="0.0" width="80" height="79"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="79" id="t0F-t1-V3M"/>
+                        </constraints>
+                        <state key="normal" title="specailistConversation" image="specialistconversation"/>
+                        <connections>
+                            <action selector="specailistConversation:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xkO-Iy-tbR"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ua-Qu-qUb" userLabel="famousExample">
+                        <rect key="frame" x="240" y="0.0" width="80" height="79"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="79" id="e1N-SE-jUE"/>
+                        </constraints>
+                        <state key="normal" title="Button" image="famousexample"/>
+                        <connections>
+                            <action selector="famousExample:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="MMq-N8-IDm"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="5ua-Qu-qUb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="90a-nK-1Hc"/>
+                    <constraint firstAttribute="bottom" secondItem="9z4-kW-Ms9" secondAttribute="bottom" id="CbW-Kf-VbV"/>
+                    <constraint firstItem="02k-jR-na8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="FDr-gW-vSv"/>
+                    <constraint firstItem="5ua-Qu-qUb" firstAttribute="width" secondItem="hUm-1S-CUy" secondAttribute="width" id="LKF-TP-wa2"/>
+                    <constraint firstItem="02k-jR-na8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="P5C-SW-21y"/>
+                    <constraint firstAttribute="bottom" secondItem="5ua-Qu-qUb" secondAttribute="bottom" id="PQe-pj-rN6"/>
+                    <constraint firstItem="hUm-1S-CUy" firstAttribute="width" secondItem="9z4-kW-Ms9" secondAttribute="width" id="Suc-SU-mJR"/>
+                    <constraint firstItem="5ua-Qu-qUb" firstAttribute="leading" secondItem="hUm-1S-CUy" secondAttribute="trailing" id="TGI-Cd-NYJ"/>
+                    <constraint firstItem="hUm-1S-CUy" firstAttribute="leading" secondItem="9z4-kW-Ms9" secondAttribute="trailing" id="VYo-2R-Z0Z"/>
+                    <constraint firstItem="hUm-1S-CUy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Xcp-HF-RYM"/>
+                    <constraint firstItem="9z4-kW-Ms9" firstAttribute="leading" secondItem="02k-jR-na8" secondAttribute="trailing" id="dv2-lC-PvX"/>
+                    <constraint firstAttribute="bottom" secondItem="hUm-1S-CUy" secondAttribute="bottom" id="jb1-Ik-cWS"/>
+                    <constraint firstItem="9z4-kW-Ms9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="lCC-xr-uYJ"/>
+                    <constraint firstItem="9z4-kW-Ms9" firstAttribute="width" secondItem="02k-jR-na8" secondAttribute="width" id="oh8-Qt-iRa"/>
+                    <constraint firstAttribute="bottom" secondItem="02k-jR-na8" secondAttribute="bottom" id="sBQ-71-E8N"/>
+                    <constraint firstItem="02k-jR-na8" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.25" id="sJq-Kc-YEF"/>
+                </constraints>
+            </tableViewCellContentView>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="businessconsult" width="93" height="97"/>
+        <image name="famousexample" width="99" height="97"/>
+        <image name="myexclusive" width="95" height="97"/>
+        <image name="specialistconversation" width="87" height="97"/>
+    </resources>
+</document>

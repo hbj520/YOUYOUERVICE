@@ -1,0 +1,35 @@
+{
+    "tabBarMenus":
+    [
+    {
+    "image":"homePage",
+     "select_image":"homePage_select",
+     "title":"首页",
+     "storybordId":"homePageSB"
+    },
+     {
+     "image":"insurance",
+     "select_image":"insurance_select",
+     "title":"保险",
+     "storybordId":"annalyzeSB"
+     },
+     {
+      "image":"selfCenter",
+     "select_image":"selfCenter_select",
+     "title":"个人中心",
+     "storybordId":"activitySB"
+     },
+     {
+     "image":"more",
+     "select_image":"more_select",
+     "title":"更多",
+     "storybordId":"announcementSB"
+     },
+     {
+     "image":"more",
+     "select_image":"more_select",
+     "title":"更多",
+     "storybordId":"personalSB"
+     }
+    ]
+}

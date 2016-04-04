@@ -1,0 +1,35 @@
+{
+    "tabBarMenus":
+    [
+     {
+     "image":"homepagetab",
+     "select_image":"homepagetab_selected",
+     "title":"首页",
+     "storybordId":"homePageSB"
+     },
+     {
+     "image":"annalyzetab",
+     "select_image":"analyzetab_selected",
+     "title":"分析",
+     "storybordId":"annalyzeSB"
+     },
+     {
+     "image":"activitytab",
+     "select_image":"activitytab_selected",
+     "title":"活动",
+     "storybordId":"activitySB"
+     },
+     {
+     "image":"announcementtab",
+     "select_image":"announcementtab_selected",
+     "title":"公告",
+     "storybordId":"announcementSB"
+     },
+     {
+     "image":"personaltab",
+     "select_image":"personaltab_selected",
+     "title":"个人",
+     "storybordId":"personalSB"
+     }
+     ],
+}

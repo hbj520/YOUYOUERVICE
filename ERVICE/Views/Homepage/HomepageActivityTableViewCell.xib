@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="homepageReused2" id="KGk-i7-Jjw" customClass="HomepageActivityTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kOu-Im-0GY">
+                        <rect key="frame" x="0.0" y="0.0" width="80" height="43"/>
+                        <state key="normal" title="newActivity" image="newactivity"/>
+                        <connections>
+                            <action selector="newActivityBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="VSP-7m-jwF"/>
+                        </connections>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8WV-IN-MsX">
+                        <rect key="frame" x="80" y="10" width="2" height="24"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="3qo-ea-gpU"/>
+                            <constraint firstAttribute="width" constant="2" id="d6g-lL-uuc"/>
+                        </constraints>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6kf-bI-UrH">
+                        <rect key="frame" x="90" y="0.0" width="69" height="42"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="69" id="AVr-V5-U63"/>
+                        </constraints>
+                        <state key="normal" title="Button" image="rookieonly"/>
+                        <connections>
+                            <action selector="rookieBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="PjW-kr-0O8"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投资有风险，入市需谨慎" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jGf-YP-6Zm">
+                        <rect key="frame" x="161" y="0.0" width="159" height="42"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="159" id="6TW-Is-cbS"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="jGf-YP-6Zm" firstAttribute="leading" secondItem="6kf-bI-UrH" secondAttribute="trailing" constant="2" id="25V-SN-1RO"/>
+                    <constraint firstItem="6kf-bI-UrH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="8iI-bg-cOm"/>
+                    <constraint firstItem="jGf-YP-6Zm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="COR-zH-qi2"/>
+                    <constraint firstItem="6kf-bI-UrH" firstAttribute="leading" secondItem="8WV-IN-MsX" secondAttribute="trailing" constant="8" id="Gxi-7H-n1S"/>
+                    <constraint firstItem="kOu-Im-0GY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="M3d-lo-fyh"/>
+                    <constraint firstAttribute="bottom" secondItem="jGf-YP-6Zm" secondAttribute="bottom" constant="1" id="NNV-jB-8i4"/>
+                    <constraint firstAttribute="bottom" secondItem="kOu-Im-0GY" secondAttribute="bottom" id="Sjg-Yi-h1L"/>
+                    <constraint firstItem="8WV-IN-MsX" firstAttribute="leading" secondItem="kOu-Im-0GY" secondAttribute="trailing" id="W9A-LQ-7Gq"/>
+                    <constraint firstItem="kOu-Im-0GY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="a6G-mZ-kU1"/>
+                    <constraint firstItem="kOu-Im-0GY" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.25" id="mSd-xl-isR"/>
+                    <constraint firstItem="8WV-IN-MsX" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="nOD-1K-2uX"/>
+                    <constraint firstAttribute="bottom" secondItem="6kf-bI-UrH" secondAttribute="bottom" constant="1" id="yIc-bO-pNw"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="125" y="154"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="newactivity" width="68" height="23"/>
+        <image name="rookieonly" width="66" height="20"/>
+    </resources>
+</document>
