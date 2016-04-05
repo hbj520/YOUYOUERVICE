@@ -66,7 +66,6 @@
     }];
 }
 - (void)loadData{
-    NSString *ktoken = KToken;
     [self showHudInView:self.view hint:@"加载中..."];
     [[MyAPI sharedAPI] getHomepageDataWithResult:^(BOOL success, NSString *msg, NSMutableArray *arrays) {
         if (success) {
@@ -74,7 +73,7 @@
             bannerData = arrays[0];
             exchangeData = arrays[1];
             _collectionLines = [Tools simulateLinesWithArray:exchangeData.count
-                                                    withList:3];
+withList:3];
             //头部滚动视图
             [self configPageViews];
             [self congfigTableView];

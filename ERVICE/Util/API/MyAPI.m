@@ -8,7 +8,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import <AFNetworking/AFURLResponseSerialization.h>
 #import "MyAPI.h"
-#define BaseUrl @"http://36.7.110.253:7777/"
+#define BaseUrl @"http://36.7.110.253:9999/svnupdate/app/"
 //tools
 #import "Config.h"
 
@@ -37,6 +37,8 @@
 - (id)init{
     self = [super init];
     if (self) {
+        AFSecurityPolicy *securityPpolicy = [[AFSecurityPolicy alloc] init];
+        [securityPpolicy setAllowInvalidCertificates:YES];
         self.manager = [[AFHTTPRequestOperationManager alloc]initWithBaseURL:[NSURL URLWithString:BaseUrl]] ;
         self.manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", nil];
         self.manager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -65,7 +67,7 @@
                                 @"phone":phoneNumber,
                                 @"userpwd":password
                                  };
-    [self.manager POST:@"/app/nos_login" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    [self.manager POST:@"nos_login" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         
         NSString *state = responseObject[@"status"];
         NSString *information = responseObject[@"info"];
@@ -86,13 +88,27 @@
     }];
 }
 
+#pragma mark - 退出登录
+- (void)LoginOutWithResult:(StateBlock)result
+               errorResult:(ErrorBlock)errorResult{
+    NSDictionary *parameters = @{
+                                 @"token":KToken
+                                 };
+    [self.manager POST:@"userexit" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        
+        
+        result(nil,nil);
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        errorResult(error);
+    }];
+}
 #pragma mark - 获取首页信息
 - (void)getHomepageDataWithResult:(ArrayBlock)result
                       errorResult:(ErrorBlock)errorResult{
     NSDictionary *parameters = @{
                                  @"token":KToken
                                  };
-    [self.manager POST:@"/app/nos_shouye" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    [self.manager POST:@"nos_shouye" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
          NSString *status = responseObject[@"status"];
             if ([status isEqualToString:@"1"]) {
                 NSDictionary *data = responseObject[@"data"];
@@ -121,7 +137,7 @@
                                 @"exid":exid,
                                 @"token":KToken
                                 };
-    [self.manager POST:@"/app/nos_teachers" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    [self.manager POST:@"nos_teachers" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSString *status = responseObject[@"status"];
         if ([status isEqualToString:@"1"]) {
             NSArray *data = responseObject[@"data"];
@@ -143,7 +159,7 @@
                                  @"tid":lecturerId,
                                  @"token":KToken
                                  };
-    [self.manager POST:@"/app/addAttention" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    [self.manager POST:@"addAttention" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         
         
         NSString *status = responseObject[@"status"];
@@ -167,7 +183,7 @@
                                  @"tid":lecturerId,
                                  @"token":KToken
                                  };
-    [self.manager POST:@"/app/delAttention" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    [self.manager POST:@"delAttention" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSString *status = responseObject[@"status"];
         NSString *info = responseObject[@"info"];
         if ([status isEqualToString:@"1"]) {
@@ -193,7 +209,7 @@
                                  @"page":page,
                                  @"token":KToken
                                  };
-    [self.manager POST:@"/app/nos_teachers_info" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    [self.manager POST:@"nos_teachers_info" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         if ([responseObject[@"status"] isEqualToString:@"1"]) {
             NSDictionary *dic = responseObject[@"data"];
             NSArray *category = dic[@"cat"];
@@ -224,7 +240,7 @@
     NSDictionary *parameters = @{
                                  @"token":KToken
                                  };
-    [self.manager POST:@"/app/nos_fenxi" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    [self.manager POST:@"nos_fenxi" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSString *status = responseObject[@"status"];
         if ([status isEqualToString:@"1"]) {
             NSDictionary *data = responseObject[@"data"];
@@ -257,7 +273,7 @@
                                  @"token":KToken
                                  };
 
-    [self.manager POST:@"/app/notice_banner" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    [self.manager POST:@"notice_banner" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
                 if ([responseObject[@"status"] isEqualToString:@"1"]) {
                     NSArray *data = responseObject[@"data"];
                     NSMutableArray *dataBanner = [[HomepageBannerModel alloc] buildData:data];
@@ -275,7 +291,7 @@
     NSDictionary *parameters = @{
                                  @"token":KToken
                                  };
-    [self.manager POST:@"/app/exchange" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    [self.manager POST:@"exchange" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         if ([responseObject[@"status"] isEqualToString:@"1"]) {
             NSDictionary *data = responseObject[@"data"];
             NSArray *cat = data[@"cat"];
@@ -299,7 +315,7 @@
                                  @"page":page,
                                  @"token":KToken
                                  };
-    [self.manager POST:@"/app/nos_notice" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    [self.manager POST:@"nos_notice" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         if ([responseObject[@"status"] isEqualToString:@"1"]) {
             NSDictionary *data = responseObject[@"data"];
             NSArray *list = data[@"list"];
@@ -319,7 +335,7 @@
     NSDictionary *parameters = @{
                                  @"token":KToken
                                  };
-    [self.manager POST:@"/app/activity_banner" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    [self.manager POST:@"activity_banner" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         
         if ([responseObject[@"status"] isEqualToString:@"1"]) {
             NSArray *data = responseObject[@"data"];
@@ -340,7 +356,7 @@
                                  @"page":page,
                                  @"token":KToken
                                  };
-    [self.manager GET:@"/app/nos_activity" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    [self.manager GET:@"nos_activity" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         
         
         NSString *status = responseObject[@"status"];
@@ -365,7 +381,7 @@
                                  @"page":page,
                                  @"token":KToken
                                  };
-    [self.manager GET:@"/app/my_activity" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    [self.manager GET:@"my_activity" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSString *status = responseObject[@"status"];
         if ([status isEqualToString:@"1"]) {
             NSArray *data = responseObject[@"data"];
@@ -387,7 +403,7 @@
                                  @"aid":activityId,
                                  @"token":KToken
                                  };
-    [self.manager POST:@"/app/nos_activity_info" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    [self.manager POST:@"nos_activity_info" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         if ([responseObject[@"status"] isEqualToString:@"1"]) {
             NSDictionary *data = responseObject[@"data"];
             ActivityDetailModel *actModel = [[ActivityDetailModel alloc] buildWithData:data];
@@ -408,7 +424,7 @@
                                  @"activityid":activityId,
                                  @"token":KToken
                                  };
-    [self.manager POST:@"/app/enroll_activity" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    [self.manager POST:@"enroll_activity" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSString *status = responseObject[@"status"];
         if ([status isEqualToString:@"1"]) {
             result(YES,@"关注成功");
@@ -424,7 +440,7 @@
     NSDictionary *parameters = @{
                                  @"token":KToken
                                  };
-    [self.manager POST:@"/app/user_teacher_info" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    [self.manager POST:@"user_teacher_info" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         
         
                 NSString *status = responseObject[@"status"];

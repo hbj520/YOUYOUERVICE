@@ -52,16 +52,16 @@
 #pragma mark - privateMethod
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
-    
-    if (indexPath.section == 0) {
-        UIImageView *iconImageView = [cell viewWithTag:10];
-        
-    }
-    
-    return cell;
-}
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
+//    
+//    if (indexPath.section == 0) {
+//        UIImageView *iconImageView = [cell viewWithTag:10];
+//        
+//    }
+//    
+//    return cell;
+//}
 
 
 /*

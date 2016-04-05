@@ -26,6 +26,11 @@ typedef void (^ErrorBlock) (NSError *enginerError);
                password:(NSString *)password
                  result:(StateBlock)result
             errorResult:(ErrorBlock)errorResult;
+
+#pragma mark - 退出登录
+- (void)LoginOutWithResult:(StateBlock)result
+               errorResult:(ErrorBlock)errorResult;
+
 #pragma mark - 获取首页信息
 - (void)getHomepageDataWithResult:(ArrayBlock)result
                       errorResult:(ErrorBlock)errorResult;

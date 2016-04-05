@@ -8,6 +8,11 @@
 
 #import "AttentionListTableViewCell.h"
 #import "starView.h"
+
+#import "MyTeacherModel.h"
+
+#import <SDWebImage/UIImageView+WebCache.h>
+
 @interface AttentionListTableViewCell()
 @property (weak, nonatomic) IBOutlet UIImageView *teacherIconImageview;
 @property (weak, nonatomic) IBOutlet UILabel *attentionNumLabel;
@@ -28,6 +33,9 @@
     // Configure the view for the selected state
 }
 - (void)configWithData:(MyTeacherModel *)data{
+    [self.teacherIconImageview sd_setImageWithURL:[NSURL URLWithString:data.techImage] placeholderImage:[UIImage imageNamed:@"attention_icon"]];
+    self.attentionNumLabel.text = [NSString stringWithFormat:@"%ld",data.techFansNum.integerValue];
+    [self.starView configWithStarLevel:data.techStars.floatValue];
     
 }
 @end

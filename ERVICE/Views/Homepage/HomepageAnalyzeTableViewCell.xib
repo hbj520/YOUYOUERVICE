@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -14,13 +14,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homepageannalyze" translatesAutoresizingMaskIntoConstraints="NO" id="Ib0-6h-Rs6">
-                        <rect key="frame" x="0.0" y="0.0" width="80" height="43"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="43" id="V5c-ph-DKF"/>
-                            <constraint firstAttribute="width" constant="80" id="X1F-04-Igs"/>
-                        </constraints>
-                    </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XZU-6R-tI9" userLabel="bgview">
                         <rect key="frame" x="153" y="8" width="134" height="28"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -62,18 +55,18 @@
                             <constraint firstAttribute="height" constant="14" id="ohB-y1-gGP"/>
                         </constraints>
                     </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="homepageannalyze" translatesAutoresizingMaskIntoConstraints="NO" id="Ib0-6h-Rs6">
+                        <rect key="frame" x="0.0" y="8" width="78" height="27"/>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Mjq-pe-4dE" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="23a-yQ-lX1"/>
-                    <constraint firstItem="Ib0-6h-Rs6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="6YF-fe-zXO"/>
                     <constraint firstAttribute="trailing" secondItem="Mjq-pe-4dE" secondAttribute="trailing" id="9yT-DY-akw"/>
                     <constraint firstItem="nEm-gy-UIZ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="G0B-BT-In1"/>
                     <constraint firstItem="Mjq-pe-4dE" firstAttribute="leading" secondItem="nEm-gy-UIZ" secondAttribute="trailing" constant="14" id="VND-Qc-K09"/>
                     <constraint firstItem="XZU-6R-tI9" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Xld-Pl-SgV"/>
-                    <constraint firstItem="Ib0-6h-Rs6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="bhm-CJ-TPh"/>
                     <constraint firstItem="TQP-2c-NTC" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="cPr-5O-AtD"/>
                     <constraint firstAttribute="trailing" secondItem="XZU-6R-tI9" secondAttribute="trailing" id="f5F-Re-3gp"/>
-                    <constraint firstAttribute="bottom" secondItem="Ib0-6h-Rs6" secondAttribute="bottom" id="wdz-wL-cx8"/>
                     <constraint firstItem="TQP-2c-NTC" firstAttribute="leading" secondItem="nEm-gy-UIZ" secondAttribute="trailing" constant="1" id="zVx-Pm-1x4"/>
                 </constraints>
             </tableViewCellContentView>

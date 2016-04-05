@@ -8,6 +8,7 @@
 
 #import "PersonalTableViewController.h"
 #import "SettingViewController.h"
+#import "ActivityContanierViewController.h"
 
 #import "Config.h"
 
@@ -68,8 +69,14 @@
     return 10;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 1 && indexPath.row == 1) {
-        [self performSegueWithIdentifier:@"AttentionTeacherListSegue" sender:nil];
+    if (indexPath.section == 1 ) {
+        if (indexPath.row == 1) {
+            [self performSegueWithIdentifier:@"AttentionTeacherListSegue" sender:nil];
+        }else if (indexPath.row == 2){
+         ActivityContanierViewController *activityVC = self.tabBarController.viewControllers[2];
+           // activityVC.segmentedControl.selectedSegmentIndex = 0;
+            self.tabBarController.selectedIndex = 2;
+        }
     }
     if (indexPath.section == 2) {
         [self performSegueWithIdentifier:@"SettingSegue" sender:nil];
