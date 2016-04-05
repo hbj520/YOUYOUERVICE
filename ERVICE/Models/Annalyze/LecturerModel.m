@@ -15,7 +15,8 @@
                     star:(NSString *)star
                   exname:(NSString *)exname
                      num:(NSString *)num
-             lectureIcon:(NSString *)lectureIcon{
+             lectureIcon:(NSString *)lectureIcon
+             isAttention:(BOOL)isAttention{
     LecturerModel *model = [[LecturerModel alloc] init];
     model.userid = userid;
     model.username = userName;
@@ -24,6 +25,7 @@
     model.exname = exname;
     model.num = num;
     model.lecturerIcon = lectureIcon;
+    model.isAttention = isAttention;
     return model;
 }
 - (NSMutableArray *)buildWithData:(NSArray *)data{
@@ -37,7 +39,9 @@
         NSNumber *num = dic[@"num"];
         NSString *numCount = [NSString stringWithFormat:@"%ld",num.integerValue];
         NSString *exname = dic[@"ex_name"];
-        LecturerModel *lecModel = [[LecturerModel alloc] initWithParameters:username lecDes:des userid:userid star:starLevel exname:exname num:numCount lectureIcon:image];
+        NSNumber *isAttention = dic[@"ifattention"];
+        BOOL isAtten = isAttention.boolValue;
+        LecturerModel *lecModel = [[LecturerModel alloc] initWithParameters:username lecDes:des userid:userid star:starLevel exname:exname num:numCount lectureIcon:image isAttention:isAtten];
         [modelArray addObject:lecModel];
     }
    return modelArray;

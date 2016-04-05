@@ -84,4 +84,6 @@ typedef void (^ErrorBlock) (NSError *enginerError);
 - (void)apartActivityWithActivityId:(NSString *)activityId
                              result:(StateBlock)result
                         errorResult:(ErrorBlock)errorResult;
+#pragma mark - 我的老师
+- (void)myTeacherWithResult:(ArrayBlock)result errorResult:(ErrorBlock)errorResult;
 @end

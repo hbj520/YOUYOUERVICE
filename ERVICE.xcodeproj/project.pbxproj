@@ -141,6 +141,10 @@
 		18F1CFDE1CAD06DE00939D89 /* FinanceItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1CFDD1CAD06DE00939D89 /* FinanceItemModel.m */; };
 		18F1CFE11CAD0A0800939D89 /* FinanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1CFE01CAD0A0800939D89 /* FinanceModel.m */; };
 		5557FEB67523DEDF90D0187C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC48EF8878E2FBC29EBE3835 /* libPods.a */; };
+		C4D013881CB3529900A08903 /* MyTeacherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D013871CB3529900A08903 /* MyTeacherModel.m */; };
+		C4D0138B1CB367EB00A08903 /* AttentionTeacherListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D0138A1CB367EB00A08903 /* AttentionTeacherListViewController.m */; };
+		C4D0138F1CB3693900A08903 /* AttentionListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D0138D1CB3693900A08903 /* AttentionListTableViewCell.m */; };
+		C4D013901CB3693900A08903 /* AttentionListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4D0138E1CB3693900A08903 /* AttentionListTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -394,6 +398,13 @@
 		18F1CFE01CAD0A0800939D89 /* FinanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinanceModel.m; sourceTree = "<group>"; };
 		20556FAF41FF49EE1A9F29CB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		BC48EF8878E2FBC29EBE3835 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4D013861CB3529900A08903 /* MyTeacherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTeacherModel.h; sourceTree = "<group>"; };
+		C4D013871CB3529900A08903 /* MyTeacherModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTeacherModel.m; sourceTree = "<group>"; };
+		C4D013891CB367EB00A08903 /* AttentionTeacherListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttentionTeacherListViewController.h; sourceTree = "<group>"; };
+		C4D0138A1CB367EB00A08903 /* AttentionTeacherListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttentionTeacherListViewController.m; sourceTree = "<group>"; };
+		C4D0138C1CB3693900A08903 /* AttentionListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttentionListTableViewCell.h; sourceTree = "<group>"; };
+		C4D0138D1CB3693900A08903 /* AttentionListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttentionListTableViewCell.m; sourceTree = "<group>"; };
+		C4D0138E1CB3693900A08903 /* AttentionListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AttentionListTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -647,6 +658,8 @@
 				18B18DC31CAE23D500501D3C /* SettingViewController.m */,
 				18B18DC51CAE796A00501D3C /* AttentionTeacherTableViewController.h */,
 				18B18DC61CAE796A00501D3C /* AttentionTeacherTableViewController.m */,
+				C4D013891CB367EB00A08903 /* AttentionTeacherListViewController.h */,
+				C4D0138A1CB367EB00A08903 /* AttentionTeacherListViewController.m */,
 			);
 			path = Personal;
 			sourceTree = "<group>";
@@ -712,6 +725,8 @@
 			children = (
 				18B9DDD61CA8C42B00ACBE94 /* UserInfoModel.h */,
 				18B9DDD71CA8C42B00ACBE94 /* UserInfoModel.m */,
+				C4D013861CB3529900A08903 /* MyTeacherModel.h */,
+				C4D013871CB3529900A08903 /* MyTeacherModel.m */,
 			);
 			path = Personal;
 			sourceTree = "<group>";
@@ -815,6 +830,9 @@
 		18AFC7C41C9699B8001E582F /* Personal */ = {
 			isa = PBXGroup;
 			children = (
+				C4D0138C1CB3693900A08903 /* AttentionListTableViewCell.h */,
+				C4D0138D1CB3693900A08903 /* AttentionListTableViewCell.m */,
+				C4D0138E1CB3693900A08903 /* AttentionListTableViewCell.xib */,
 			);
 			path = Personal;
 			sourceTree = "<group>";
@@ -1161,6 +1179,7 @@
 				18B8F5CA1C97F45D00FB975F /* HomepageHeaderTableViewCell.xib in Resources */,
 				18AFC7AD1C968F75001E582F /* Announcement.storyboard in Resources */,
 				18AFC7B11C9693A4001E582F /* HomeTabbars.json in Resources */,
+				C4D013901CB3693900A08903 /* AttentionListTableViewCell.xib in Resources */,
 				18AFC7A91C968F3C001E582F /* Activity.storyboard in Resources */,
 				18B8F5CF1C98124A00FB975F /* HomepageActivityTableViewCell.xib in Resources */,
 				18E646491CA3BBD200FD30B9 /* PushConfig.plist in Resources */,
@@ -1262,6 +1281,7 @@
 				18E471BF1CA524B10061B0E3 /* NSString+MD5.m in Sources */,
 				18F01B861CA96EA400CEE170 /* ActivityModel.m in Sources */,
 				18E6ABE51CA2D825000CBC67 /* ApplyExitTableViewCell.m in Sources */,
+				C4D0138F1CB3693900A08903 /* AttentionListTableViewCell.m in Sources */,
 				18E6ABEF1CA2D8DA000CBC67 /* ApplyCodeTableViewCell.m in Sources */,
 				18D983111CAE1BE900163532 /* AnnouncementDetaiViewController.m in Sources */,
 				1890BE951CA0D716003435C2 /* ActivityHeaderTableViewCell.m in Sources */,
@@ -1314,7 +1334,9 @@
 				18F1CFE11CAD0A0800939D89 /* FinanceModel.m in Sources */,
 				18EDA71B1C9FDE52002A2697 /* SelectImageView.m in Sources */,
 				18EDA7141C9F95D6002A2697 /* AnnalyzeTableViewCell.m in Sources */,
+				C4D0138B1CB367EB00A08903 /* AttentionTeacherListViewController.m in Sources */,
 				18E1645C1C96867C0013E21B /* AppDelegate.m in Sources */,
+				C4D013881CB3529900A08903 /* MyTeacherModel.m in Sources */,
 				18E4719E1CA4DD8E0061B0E3 /* MyAPI.m in Sources */,
 				18EDA70F1C9F90EC002A2697 /* AnnalyzeTitleTableViewCell.m in Sources */,
 				18B18DC71CAE796A00501D3C /* AttentionTeacherTableViewController.m in Sources */,
@@ -1482,7 +1504,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PREFIX_HEADER = "/Users/apple/Desktop/WORK/youyouWork/ERVICE/ERVICE/CRM-Prefix.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/ERVICE/CRM-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -1500,7 +1522,9 @@
 					"\"${PODS_ROOT}/Headers/Public/TPKeyboardAvoiding\"",
 					"\"${PODS_ROOT}/Headers/Public/TSMessages\"",
 					"\"${PODS_ROOT}/Headers/Public/TTTAttributedLabel\"",
-					"/Users/apple/Desktop/WORK/youyouWork/ERVICE/ERVICE/Vendor/lib\n\n/Users/apple/Desktop/WORK/youyouWork/ERVICE/ERVICE/Vendor/lib\n/Users/apple/Desktop/WORK/youyouWork/ERVICE/ERVICE/Vendor/lib",
+					/Users/apple/Desktop/WORK/youyouWork/ERVICE/ERVICE/Vendor/lib,
+					/Users/apple/Desktop/WORK/youyouWork/ERVICE/ERVICE/Vendor/lib,
+					/Users/apple/Desktop/WORK/youyouWork/ERVICE/ERVICE/Vendor/lib,
 				);
 				INFOPLIST_FILE = ERVICE/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
@@ -1523,7 +1547,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PREFIX_HEADER = "/Users/apple/Desktop/WORK/youyouWork/ERVICE/ERVICE/CRM-Prefix.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/ERVICE/CRM-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -1541,7 +1565,9 @@
 					"\"${PODS_ROOT}/Headers/Public/TPKeyboardAvoiding\"",
 					"\"${PODS_ROOT}/Headers/Public/TSMessages\"",
 					"\"${PODS_ROOT}/Headers/Public/TTTAttributedLabel\"",
-					"/Users/apple/Desktop/WORK/youyouWork/ERVICE/ERVICE/Vendor/lib\n\n/Users/apple/Desktop/WORK/youyouWork/ERVICE/ERVICE/Vendor/lib\n/Users/apple/Desktop/WORK/youyouWork/ERVICE/ERVICE/Vendor/lib",
+					/Users/apple/Desktop/WORK/youyouWork/ERVICE/ERVICE/Vendor/lib,
+					/Users/apple/Desktop/WORK/youyouWork/ERVICE/ERVICE/Vendor/lib,
+					/Users/apple/Desktop/WORK/youyouWork/ERVICE/ERVICE/Vendor/lib,
 				);
 				INFOPLIST_FILE = ERVICE/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;

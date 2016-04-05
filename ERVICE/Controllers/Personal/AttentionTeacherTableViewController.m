@@ -9,6 +9,9 @@
 #import "AttentionTeacherTableViewController.h"
 #import "starView.h"
 @interface AttentionTeacherTableViewController ()
+{
+    NSMutableArray *dataSource;
+}
 - (IBAction)backBtn:(UIBarButtonItem *)sender;
 @property (weak, nonatomic) IBOutlet starView *starView;
 
@@ -46,16 +49,20 @@
     }
     return 0;
 }
+#pragma mark - privateMethod
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
     
-    // Configure the cell...
+    if (indexPath.section == 0) {
+        UIImageView *iconImageView = [cell viewWithTag:10];
+        
+    }
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.

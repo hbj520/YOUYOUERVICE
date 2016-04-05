@@ -69,7 +69,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 1 && indexPath.row == 1) {
-        [self performSegueWithIdentifier:@"AttentionTeacherSegue" sender:nil];
+        [self performSegueWithIdentifier:@"AttentionTeacherListSegue" sender:nil];
     }
     if (indexPath.section == 2) {
         [self performSegueWithIdentifier:@"SettingSegue" sender:nil];

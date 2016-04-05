@@ -35,11 +35,7 @@
     if (self.attentionClickBlock) {
         self.attentionClickBlock(self.attentionBtn.selected);
     }
-    if (self.attentionBtn.selected) {
-        [self.attentionBtn setImage:[UIImage imageNamed:@"notattention"] forState:UIControlStateNormal];
-    }else{
-        [self.attentionBtn setImage:[UIImage imageNamed:@"attention"] forState:UIControlStateNormal];
-    }
+
 }
 - (void)configWithData:(LecturerModel *)model{
     [self.lecturerIcon sd_setImageWithURL:[NSURL URLWithString:model.lecturerIcon] placeholderImage:[UIImage imageNamed:@"financeicon"]];
@@ -47,5 +43,11 @@
     self.lecturerDes.text = model.lecDescription;
     self.attentionCount.text = model.num;
     [self.starView configWithStarLevel:model.star.floatValue/2];
+    self.attentionBtn.selected = model.isAttention;
+    if (model.isAttention) {
+        [self.attentionBtn setImage:[UIImage imageNamed:@"notattention"] forState:UIControlStateNormal];
+    }else{
+         [self.attentionBtn setImage:[UIImage imageNamed:@"attention"] forState:UIControlStateNormal];
+    }
 }
 @end

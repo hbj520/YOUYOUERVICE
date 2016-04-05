@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="99" id="Tiu-vE-4Nh" customClass="AttentionListTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tiu-vE-4Nh" id="HtV-5b-xhg">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="98"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" tag="10" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="attention_icon" translatesAutoresizingMaskIntoConstraints="NO" id="fCm-Dy-9Je">
+                        <rect key="frame" x="15" y="22" width="55" height="55"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="25"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="financeicon" translatesAutoresizingMaskIntoConstraints="NO" id="Y83-Cl-Izt">
+                        <rect key="frame" x="80" y="23" width="15" height="15"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="00G-pj-3xE">
+                        <rect key="frame" x="99" y="23" width="30" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="1" green="0.31372549020000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="人关注" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="96M-Yo-laZ">
+                        <rect key="frame" x="132" y="22" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view tag="12" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VUg-gh-pZa" customClass="starView">
+                        <rect key="frame" x="80" y="46" width="73" height="17"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WY3-25-wrp">
+                        <rect key="frame" x="219" y="30" width="81" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="28" id="IPI-Uc-Tap"/>
+                            <constraint firstAttribute="width" constant="81" id="J9Y-1r-Njd"/>
+                        </constraints>
+                        <state key="normal" image="attention"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="WY3-25-wrp" firstAttribute="top" secondItem="HtV-5b-xhg" secondAttribute="top" constant="30" id="F9p-9u-3Pq"/>
+                    <constraint firstAttribute="trailing" secondItem="WY3-25-wrp" secondAttribute="trailing" constant="20" id="yYJ-Dy-B7k"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="attentionBtn" destination="WY3-25-wrp" id="UoK-uC-TXS"/>
+                <outlet property="attentionNumLabel" destination="00G-pj-3xE" id="sMd-c9-ZsR"/>
+                <outlet property="starView" destination="VUg-gh-pZa" id="uzE-dR-pdl"/>
+                <outlet property="teacherIconImageview" destination="fCm-Dy-9Je" id="0Co-qf-xTO"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="attention" width="173" height="60"/>
+        <image name="attention_icon" width="112" height="110"/>
+        <image name="financeicon" width="28" height="28"/>
+    </resources>
+</document>

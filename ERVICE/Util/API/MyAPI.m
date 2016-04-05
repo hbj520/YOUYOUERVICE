@@ -27,6 +27,7 @@
 #import "TeacherCatigoryModel.h"
 #import "TeacherAnnalyzeModel.h"
 #import "TeacherItemModel.h"
+#import "MyTeacherModel.h"
 
 @interface MyAPI()
 @property NSString *mBaseUrl;
@@ -143,6 +144,8 @@
                                  @"token":KToken
                                  };
     [self.manager POST:@"/app/addAttention" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        
+        
         NSString *status = responseObject[@"status"];
         NSString *info = responseObject[@"info"];
         if ([status isEqualToString:@"1"]) {
@@ -151,6 +154,7 @@
             result(NO,info);
         }
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        
         errorResult(error);
     }];
 }
@@ -337,6 +341,8 @@
                                  @"token":KToken
                                  };
     [self.manager GET:@"/app/nos_activity" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        
+        
         NSString *status = responseObject[@"status"];
         if ([status isEqualToString:@"1"]) {
             NSArray *data = responseObject[@"data"];
@@ -408,6 +414,27 @@
             result(YES,@"关注成功");
         }else {
             result(NO,@"关注失败");
+        }
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        errorResult(error);
+    }];
+}
+#pragma mark - 我的老师
+- (void)myTeacherWithResult:(ArrayBlock)result errorResult:(ErrorBlock)errorResult{
+    NSDictionary *parameters = @{
+                                 @"token":KToken
+                                 };
+    [self.manager POST:@"/app/user_teacher_info" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        
+        
+                NSString *status = responseObject[@"status"];
+        if ([status isEqualToString:@"1"]) {
+            NSDictionary *data = responseObject[@"data"];
+            NSArray *list = data[@"list"];
+          NSMutableArray *techArray = [[MyTeacherModel alloc] buildWithData:list];
+            result(YES,@"下载成功",techArray);
+        }else{
+            result(NO,@"下载失败",nil);
         }
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         errorResult(error);

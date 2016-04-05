@@ -61,10 +61,13 @@ static NSString *reuseId = @"annalyzeId";
     cell.attentionClickBlock = ^(BOOL isAttention){
         //点击关注
         if (!isAttention) {
+            
             [weakself showHudInView:self.view hint:@"关注中..."];
-            [[MyAPI sharedAPI] attentionTapWithLecturerId:model.userid result:^(BOOL sucess, NSString *msg) {
+            [[MyAPI sharedAPI] attentionTapWithLecturerId:model.userid
+                                                   result:^(BOOL sucess, NSString *msg) {
                 if (sucess) {
-                    mCell.attentionBtn.selected = !mCell.attentionBtn.selected;
+                        [mCell.attentionBtn setImage:[UIImage imageNamed:@"notattention"] forState:UIControlStateNormal];
+                    mCell.attentionBtn.selected = YES;
                     [self hideHud];
                     [self showHint:@"关注成功"];
                 }else{
@@ -72,11 +75,23 @@ static NSString *reuseId = @"annalyzeId";
                     [self showHint:msg];
                 }
             } errorResult:^(NSError *enginerError) {
+                [self hideHud];
                 [self showHint:@"关注出错!!!"];
             }];
         }else{//取消关注
           [weakself showHudInView:self.view hint:@"取消关注中..."];
-        
+          [[MyAPI sharedAPI] noAttentionWithLecturerId:model.userid result:^(BOOL sucess, NSString *msg) {
+              if (sucess) {
+                  
+                  [mCell.attentionBtn setImage:[UIImage imageNamed:@"attention"] forState:UIControlStateNormal];
+                  mCell.attentionBtn.selected = NO;
+                  [self hideHud];
+                  [self showHint:@"取消关注成功!!!"];
+              }
+          } errorResult:^(NSError *enginerError) {
+              [self hideHud];
+              [self showHint:@"取消关注出错!!!"];
+          }];
         }
     };
     return cell;

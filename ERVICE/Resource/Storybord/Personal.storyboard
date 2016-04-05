@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="B9x-gn-oru">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="B9x-gn-oru">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -196,7 +196,7 @@
                         <outlet property="nameLabel" destination="dco-dV-qZf" id="Muj-yx-aYu"/>
                         <segue destination="XOq-An-QL6" kind="push" identifier="LoginSegue" id="yHU-ek-aLY"/>
                         <segue destination="yL9-qu-IXB" kind="push" identifier="SettingSegue" id="gk4-yo-3St"/>
-                        <segue destination="5Qe-bS-M9w" kind="push" identifier="AttentionTeacherSegue" id="mef-dk-3AO"/>
+                        <segue destination="3Fw-wU-fnu" kind="push" identifier="AttentionTeacherListSegue" id="bSj-NU-zSN"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dar-6g-FYO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -377,6 +377,41 @@
             </objects>
             <point key="canvasLocation" x="818" y="283"/>
         </scene>
+        <!--Attention Teacher List View Controller-->
+        <scene sceneID="Jlc-dr-Nud">
+            <objects>
+                <viewController id="3Fw-wU-fnu" customClass="AttentionTeacherListViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="56p-uN-7J4"/>
+                        <viewControllerLayoutGuide type="bottom" id="APv-hK-oP4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="itY-0s-uO3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gaM-i7-3Ce">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="APv-hK-oP4" firstAttribute="top" secondItem="gaM-i7-3Ce" secondAttribute="bottom" id="2fZ-bN-DWA"/>
+                            <constraint firstItem="gaM-i7-3Ce" firstAttribute="top" secondItem="itY-0s-uO3" secondAttribute="top" id="Nja-xd-Uw8"/>
+                            <constraint firstItem="gaM-i7-3Ce" firstAttribute="leading" secondItem="itY-0s-uO3" secondAttribute="leading" id="dFj-Qe-AAf"/>
+                            <constraint firstAttribute="trailing" secondItem="gaM-i7-3Ce" secondAttribute="trailing" id="xfi-4w-HTe"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="oOS-ek-C5R"/>
+                    <connections>
+                        <outlet property="tableView" destination="gaM-i7-3Ce" id="BWS-NZ-LWh"/>
+                        <segue destination="5Qe-bS-M9w" kind="push" identifier="AttentionTeacherSegue" id="uUO-4L-KHu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E2s-Dx-GHc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="818" y="1553"/>
+        </scene>
         <!--Attention Teacher Table View Controller-->
         <scene sceneID="kZH-v2-btD">
             <objects>
@@ -395,7 +430,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="98"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="attention_icon" translatesAutoresizingMaskIntoConstraints="NO" id="shl-rb-hVg">
+                                                <imageView userInteractionEnabled="NO" tag="10" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="attention_icon" translatesAutoresizingMaskIntoConstraints="NO" id="shl-rb-hVg">
                                                     <rect key="frame" x="15" y="22" width="55" height="55"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -406,7 +441,7 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="financeicon" translatesAutoresizingMaskIntoConstraints="NO" id="P9D-mu-ejo">
                                                     <rect key="frame" x="80" y="23" width="15" height="15"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rTG-Q5-5IR">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rTG-Q5-5IR">
                                                     <rect key="frame" x="99" y="23" width="30" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="1" green="0.31372549020000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -418,11 +453,11 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uVZ-1H-n2u" customClass="starView">
+                                                <view tag="12" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uVZ-1H-n2u" customClass="starView">
                                                     <rect key="frame" x="80" y="46" width="73" height="17"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xLM-cM-7Cz">
+                                                <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xLM-cM-7Cz">
                                                     <rect key="frame" x="219" y="30" width="81" height="28"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="28" id="Wqd-Gt-POv"/>
@@ -448,7 +483,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名：李小龙" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vou-6m-fYz">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名：李小龙" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vou-6m-fYz">
                                                     <rect key="frame" x="30" y="11" width="276" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="276" id="Bcz-X0-ofx"/>
@@ -473,7 +508,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="毕业院校：北京大学" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rU4-Ub-arL">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="毕业院校：北京大学" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rU4-Ub-arL">
                                                     <rect key="frame" x="30" y="11" width="271" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="271" id="IXv-h7-Lf6"/>
@@ -498,7 +533,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所在位置：安徽合肥" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ED-6S-VPl">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所在位置：安徽合肥" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ED-6S-VPl">
                                                     <rect key="frame" x="30" y="10" width="268" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="268" id="BGe-QJ-xSW"/>
@@ -523,7 +558,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="发表文章：关于石油投资" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wmq-4Y-nae">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="发表文章：关于石油投资" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wmq-4Y-nae">
                                                     <rect key="frame" x="30" y="11" width="274" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="ELI-hw-Fma"/>
@@ -562,7 +597,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qgO-SF-rOV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="818" y="1577"/>
+            <point key="canvasLocation" x="1254" y="1553"/>
         </scene>
         <!--设置-->
         <scene sceneID="lvf-pg-MQi">

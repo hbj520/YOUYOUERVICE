@@ -39,7 +39,7 @@
         CGFloat pointX = index * (GridWidth + PaddingX) + PaddingX;;
         //计算每个格子的Y坐标
         CGFloat pointY =  PaddingY;
-        NSLog(@"with %f height %f",GridWidth,GridHeight);
+      //  NSLog(@"with %f height %f",GridWidth,GridHeight);
         [self setFrame:CGRectMake(pointX, pointY, frame.size.width, frame.size.height)];
     //    self.backgroundColor = [UIColor redColor];
         UIImageView *imageView = [[UIImageView alloc] init];
