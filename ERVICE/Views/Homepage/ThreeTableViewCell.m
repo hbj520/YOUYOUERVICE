@@ -25,7 +25,6 @@ static NSString *cellReuseId = @"cellId";
     }
     return self;
 }
-
 - (void)awakeFromNib {
     // Initialization code
 }
@@ -43,7 +42,7 @@ static NSString *cellReuseId = @"cellId";
     _flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
     _flowLayout.minimumInteritemSpacing = 0;
     _flowLayout.minimumLineSpacing = 0;
-    _flowLayout.itemSize = CGSizeMake((ScreenWidth - 50)/3, 130);
+    _flowLayout.itemSize = CGSizeMake(96, 120);
     _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 130) collectionViewLayout:_flowLayout];
     //注册cell
@@ -56,6 +55,7 @@ static NSString *cellReuseId = @"cellId";
     _collectionView.bounces = NO;
     _collectionView.scrollEnabled = YES;
     _collectionView.showsVerticalScrollIndicator = NO; //指士条
+    _collectionView.showsHorizontalScrollIndicator = NO;
     _collectionView.backgroundColor = [UIColor whiteColor];
     [self addSubview:_collectionView];
     

@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *teacherIconImageview;
 @property (weak, nonatomic) IBOutlet UILabel *attentionNumLabel;
 @property (weak, nonatomic) IBOutlet starView *starView;
-@property (weak, nonatomic) IBOutlet UIButton *attentionBtn;
+@property (weak, nonatomic) IBOutlet UILabel *techName;
 
 @end
 @implementation AttentionListTableViewCell
@@ -35,7 +35,8 @@
 - (void)configWithData:(MyTeacherModel *)data{
     [self.teacherIconImageview sd_setImageWithURL:[NSURL URLWithString:data.techImage] placeholderImage:[UIImage imageNamed:@"attention_icon"]];
     self.attentionNumLabel.text = [NSString stringWithFormat:@"%ld",data.techFansNum.integerValue];
-    [self.starView configWithStarLevel:data.techStars.floatValue];
+    self.techName.text = data.techName;
+    [self.starView configWithStarLevel:data.techStars.floatValue/2];
     
 }
 @end

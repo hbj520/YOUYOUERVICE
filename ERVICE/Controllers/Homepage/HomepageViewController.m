@@ -7,6 +7,8 @@
 //
 
 #import "HomepageViewController.h"
+#import "AttentionTeacherListViewController.h"
+
 #import "SDCycleScrollView.h"
 #import "HomepageHeaderTableViewCell.h"
 #import "HomepageActivityTableViewCell.h"
@@ -78,11 +80,8 @@ withList:3];
             [self configPageViews];
             [self congfigTableView];
             [self.tableView reloadData];
-
             [self hideHud];
-
         }else{
-            [self showHint:@"下载出错！！"];
             [self hideHud];
         }
         [self.tableView.mj_header endRefreshing];
@@ -112,10 +111,28 @@ withList:3];
     
 }
 - (void)setNavTitle{
-    NSString *navTitle = @"蜜蜂金服";
+    NSString *navTitle = @"V家金服";
     NSDictionary *attributeDict = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:16.0],NSFontAttributeName,[UIColor darkGrayColor],NSForegroundColorAttributeName, nil];
     self.navigationController.navigationBar.titleTextAttributes = attributeDict;
     self.navigationItem.title = navTitle;
+    
+}
+//点击我的专属
+- (void)clickMyExculsive{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Personal" bundle:nil];
+    AttentionTeacherListViewController *teacherListVC = (AttentionTeacherListViewController *)[storyboard instantiateViewControllerWithIdentifier:@"attentionTeachListId"];
+    [self.navigationController pushViewController:teacherListVC animated:YES];
+}
+//点击业务咨询
+- (void)clickBusiness{
+    
+}
+//点击专家会诊
+- (void)clickSpecail{
+    
+}
+//点击名人榜单
+- (void)clickFamous{
     
 }
 #pragma mark - UITableViewDelegate
@@ -132,18 +149,18 @@ withList:3];
     if (indexPath.section == 0) {
         HomepageHeaderTableViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"HomepageHeaderTableViewCell" owner:self options:nil]lastObject];
         //我的专属，业务咨询，名人榜单，专家会诊
+        __weak HomepageViewController *weakself = self;
         cell.myExculsiveBlock = ^(){
-            
-            
+            [weakself clickMyExculsive];
         };
         cell.businessBlock = ^(){
-            
+            [weakself clickBusiness];
         };
         cell.specialistBlock = ^(){
-            
+            [weakself clickSpecail];
         };
         cell.famousBolck = ^(){
-            
+            [weakself clickFamous];
         };
         return cell;
     }else if (indexPath.section == 1){
@@ -164,13 +181,6 @@ withList:3];
         }
         
         
-    }else{
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseId2"];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"reuseId2"];
-            cell.textLabel.text = @"jklsdjfidjsifjio";
-        }
-        return cell;
     }
     return nil;
 }

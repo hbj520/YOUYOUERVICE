@@ -23,7 +23,7 @@
 - (NSMutableArray *)buildWithData:(NSArray *)data{
     NSMutableArray *financeArray = [NSMutableArray array];
     for (NSDictionary *dic in data) {
-        NSString *exname = dic[@"exchange"];
+        NSString *exname = dic[@"ex_name"];
         NSString *exid = dic[@"id"];
         NSString *exInfo = dic[@"exc_information"];
         NSString *exImage = dic[@"excimg"];

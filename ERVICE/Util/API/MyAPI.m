@@ -37,8 +37,7 @@
 - (id)init{
     self = [super init];
     if (self) {
-        AFSecurityPolicy *securityPpolicy = [[AFSecurityPolicy alloc] init];
-        [securityPpolicy setAllowInvalidCertificates:YES];
+
         self.manager = [[AFHTTPRequestOperationManager alloc]initWithBaseURL:[NSURL URLWithString:BaseUrl]] ;
         self.manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", nil];
         self.manager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -95,9 +94,13 @@
                                  @"token":KToken
                                  };
     [self.manager POST:@"userexit" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *info = responseObject[@"info"];
+        if ([responseObject[@"status"] isEqualToString:@"1"]) {
+            result(YES,info);
+        }else{
+            result(NO,info);
+        }
         
-        
-        result(nil,nil);
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         errorResult(error);
     }];
@@ -442,8 +445,7 @@
                                  };
     [self.manager POST:@"user_teacher_info" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         
-        
-                NSString *status = responseObject[@"status"];
+          NSString *status = responseObject[@"status"];
         if ([status isEqualToString:@"1"]) {
             NSDictionary *data = responseObject[@"data"];
             NSArray *list = data[@"list"];

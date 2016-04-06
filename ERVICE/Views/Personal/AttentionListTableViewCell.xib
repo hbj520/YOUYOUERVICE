@@ -34,37 +34,38 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="人关注" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="96M-Yo-laZ">
                         <rect key="frame" x="132" y="22" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view tag="12" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VUg-gh-pZa" customClass="starView">
-                        <rect key="frame" x="80" y="46" width="73" height="17"/>
+                    <view tag="12" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VUg-gh-pZa" customClass="starView">
+                        <rect key="frame" x="228" y="41" width="73" height="17"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WY3-25-wrp">
-                        <rect key="frame" x="219" y="30" width="81" height="28"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="28" id="IPI-Uc-Tap"/>
-                            <constraint firstAttribute="width" constant="81" id="J9Y-1r-Njd"/>
+                            <constraint firstAttribute="height" constant="17" id="6pG-VL-LoR"/>
+                            <constraint firstAttribute="width" constant="73" id="fSs-95-cZc"/>
                         </constraints>
-                        <state key="normal" image="attention"/>
-                    </button>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQk-bL-MHb">
+                        <rect key="frame" x="80" y="56" width="81" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="WY3-25-wrp" firstAttribute="top" secondItem="HtV-5b-xhg" secondAttribute="top" constant="30" id="F9p-9u-3Pq"/>
-                    <constraint firstAttribute="trailing" secondItem="WY3-25-wrp" secondAttribute="trailing" constant="20" id="yYJ-Dy-B7k"/>
+                    <constraint firstAttribute="trailing" secondItem="VUg-gh-pZa" secondAttribute="trailing" constant="19" id="DRc-eR-Ye8"/>
+                    <constraint firstItem="VUg-gh-pZa" firstAttribute="centerY" secondItem="HtV-5b-xhg" secondAttribute="centerY" id="ljf-Bn-Rgn"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="attentionBtn" destination="WY3-25-wrp" id="UoK-uC-TXS"/>
                 <outlet property="attentionNumLabel" destination="00G-pj-3xE" id="sMd-c9-ZsR"/>
                 <outlet property="starView" destination="VUg-gh-pZa" id="uzE-dR-pdl"/>
                 <outlet property="teacherIconImageview" destination="fCm-Dy-9Je" id="0Co-qf-xTO"/>
+                <outlet property="techName" destination="QQk-bL-MHb" id="7mn-7K-zPJ"/>
             </connections>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="attention" width="173" height="60"/>
         <image name="attention_icon" width="112" height="110"/>
         <image name="financeicon" width="28" height="28"/>
     </resources>

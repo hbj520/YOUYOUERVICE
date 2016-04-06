@@ -7,6 +7,7 @@
 //
 
 #import "SettingViewController.h"
+#import "AppDelegate.h"
 
 @interface SettingViewController ()
 - (IBAction)backBtn:(UIBarButtonItem *)sender;
@@ -46,11 +47,20 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 2) {
         [[MyAPI sharedAPI] LoginOutWithResult:^(BOOL sucess, NSString *msg) {
-            
+            if (sucess) {
+                //退出成功处理
+                [self loginOutConfig];
+            }
         } errorResult:^(NSError *enginerError) {
             
         }];
     }
+}
+#pragma mark - PrivateMethod
+- (void)loginOutConfig{
+    [[Config Instance] logOut];
+    ApplicationDelegate.mStorybord = [UIStoryboard storyboardWithName:@"Personal" bundle:nil];
+    ApplicationDelegate.window.rootViewController = [ApplicationDelegate.mStorybord instantiateViewControllerWithIdentifier:@"PersonalStoryId"];
 }
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

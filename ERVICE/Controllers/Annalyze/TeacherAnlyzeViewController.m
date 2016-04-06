@@ -104,7 +104,6 @@
         cell.mScrollView.showsVerticalScrollIndicator = NO;
         cell.clickItemBlock = ^(NSInteger index){
             [annalyzeModel.categoryArray objectAtIndex:index];
-            
             NSLog(@"点击头部%ld按钮",index);
         };
         return cell;
@@ -118,8 +117,6 @@
         TeacherItemModel *itemModel = [annalyzeModel.articleArray objectAtIndex:indexPath.row];
         [contentCell configWithdata:itemModel];
         return contentCell;
-    }else{
-        
     }
     return nil;
 }

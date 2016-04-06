@@ -69,6 +69,9 @@
     return 10;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (!KToken) {//未登录状态不能查看资料
+        return;
+    }
     if (indexPath.section == 1 ) {
         if (indexPath.row == 1) {
             [self performSegueWithIdentifier:@"AttentionTeacherListSegue" sender:nil];

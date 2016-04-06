@@ -43,7 +43,6 @@
     [self loadData];
         //添加刷新
     [self addRefresh];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recieveSelectImageAct:) name:@"isSelectednotice" object:nil];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[FinanceAnnalyzeTableViewCell class] forCellReuseIdentifier:@"FinanceAnnalyzeId"];
@@ -67,8 +66,7 @@
     FinanceItemModel *finaItem = [financeDataSource.exchanges objectAtIndex:indexPath.row];
     FinanceAnnalyzeTableViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"FinanceAnnalyzeTableViewCell" owner:self options:nil] lastObject];
     [cell configWithData:finaItem];
-    SelectImageView *selectImageView = [cell viewWithTag:10];
-    [selectImageView sd_setImageWithURL:[NSURL URLWithString:finaItem.image] placeholderImage:[UIImage imageNamed:@"default"]];
+
     return cell;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -121,19 +119,6 @@
     NSDictionary *attributeDict = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:16.0],NSFontAttributeName,[UIColor darkGrayColor],NSForegroundColorAttributeName, nil];
     self.navigationController.navigationBar.titleTextAttributes = attributeDict;
     self.navigationItem.title = navTitle;
-}
-- (void)recieveSelectImageAct:(NSNotification *)noti{
-    FinanceAnnalyzeTableViewCell *cell = (FinanceAnnalyzeTableViewCell *)noti.userInfo[@"financeCell"];
-    SelectImageView *selectImageView = [cell viewWithTag:10];
-    UIView *bgView = [cell viewWithTag:11];
-    if (selectImageView.isSelected) {
-        bgView.hidden = NO;
-    }else{
-        bgView.hidden = YES;
-    }
-}
-- (void)dealloc{
-    [self removeObserver:self forKeyPath:@"isSelectednotice"];
 }
 
 #pragma mark - Navigation

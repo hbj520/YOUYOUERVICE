@@ -98,11 +98,11 @@ static NSString *reuseContentId = @"contentId";
     return nil;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 5;
+    return 10;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        return 35;
+        return 40;
     }else if (indexPath.section == 1){
         return 80;
     }
@@ -124,7 +124,7 @@ static NSString *reuseContentId = @"contentId";
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        return 160;
+        return 116;
     }
     return 0;
 }

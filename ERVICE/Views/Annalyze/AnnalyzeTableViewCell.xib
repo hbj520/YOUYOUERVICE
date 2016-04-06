@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -24,8 +24,8 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标题标题标题标题标题标题标题标题标题" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SE9-qb-xB5">
                         <rect key="frame" x="153" y="11" width="185" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="185" id="WFm-h0-8Sa"/>
-                            <constraint firstAttribute="height" constant="21" id="gQR-Nl-ts5"/>
+                            <constraint firstAttribute="height" constant="21" id="4rA-Zo-mCM"/>
+                            <constraint firstAttribute="width" constant="185" id="EUg-Qc-nvB"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -41,8 +41,8 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="大家好，我叫王尼玛，今年24岁，未婚，爱好女，性别男，来自深圳哪个大拉回，每周五更新暴走大事件" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SgT-Lj-Y1S">
                         <rect key="frame" x="153" y="40" width="223" height="51"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="223" id="1cv-wd-LlP"/>
-                            <constraint firstAttribute="height" constant="51" id="4gd-eU-es8"/>
+                            <constraint firstAttribute="width" constant="223" id="Hmz-jX-yJo"/>
+                            <constraint firstAttribute="height" constant="51" id="sHU-Cj-0Xr"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -51,14 +51,14 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="cgi-G4-djD" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="DgS-iC-mhp"/>
-                    <constraint firstItem="Luy-bT-uCH" firstAttribute="leading" secondItem="SE9-qb-xB5" secondAttribute="trailing" constant="23" id="Vsf-So-QWU"/>
-                    <constraint firstItem="SE9-qb-xB5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="WF3-YR-sjh"/>
+                    <constraint firstItem="SE9-qb-xB5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="Rub-Nw-cL9"/>
                     <constraint firstItem="cgi-G4-djD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="WGW-fR-fE1"/>
-                    <constraint firstAttribute="trailing" secondItem="SgT-Lj-Y1S" secondAttribute="trailing" constant="24" id="bCd-bT-Y2H"/>
+                    <constraint firstItem="SgT-Lj-Y1S" firstAttribute="top" secondItem="Luy-bT-uCH" secondAttribute="bottom" constant="8" id="Z7B-bw-TeR"/>
                     <constraint firstAttribute="trailing" secondItem="Luy-bT-uCH" secondAttribute="trailing" constant="10" id="bHz-JS-Nbs"/>
+                    <constraint firstItem="SE9-qb-xB5" firstAttribute="leading" secondItem="cgi-G4-djD" secondAttribute="trailing" constant="34" id="bnC-Fw-Ohz"/>
                     <constraint firstItem="Luy-bT-uCH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="17" id="kn8-Z8-pZ8"/>
+                    <constraint firstItem="SgT-Lj-Y1S" firstAttribute="leading" secondItem="cgi-G4-djD" secondAttribute="trailing" constant="34" id="vUL-1e-uTT"/>
                     <constraint firstItem="cgi-G4-djD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="yfn-mu-jIB"/>
-                    <constraint firstItem="SgT-Lj-Y1S" firstAttribute="top" secondItem="Luy-bT-uCH" secondAttribute="bottom" constant="8" id="zBn-zf-NCa"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

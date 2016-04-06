@@ -45,16 +45,15 @@ static NSString *reuseId = @"annalyzeId";
 }
 #pragma mark - TableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.dataSource.count;
+    return 1;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+    return self.dataSource.count;;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
    AttentionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseId];
-    
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"AttentionTableViewCell" owner:self options:nil] lastObject];
-    LecturerModel *model = [self.dataSource objectAtIndex:indexPath.row];
+    cell = [[[NSBundle mainBundle] loadNibNamed:@"AttentionTableViewCell" owner:self options:nil] lastObject];
+    LecturerModel *model = [self.dataSource objectAtIndex:indexPath.section];
     [cell configWithData:model];
     __weak AttentionTableViewCell *mCell = cell;
     __weak UIViewController *weakself = self;
@@ -82,7 +81,6 @@ static NSString *reuseId = @"annalyzeId";
           [weakself showHudInView:self.view hint:@"取消关注中..."];
           [[MyAPI sharedAPI] noAttentionWithLecturerId:model.userid result:^(BOOL sucess, NSString *msg) {
               if (sucess) {
-                  
                   [mCell.attentionBtn setImage:[UIImage imageNamed:@"attention"] forState:UIControlStateNormal];
                   mCell.attentionBtn.selected = NO;
                   [self hideHud];
@@ -113,7 +111,6 @@ static NSString *reuseId = @"annalyzeId";
     [[MyAPI sharedAPI] getLecturerListWithExId:self.exid result:^(BOOL success, NSString *msg, NSMutableArray *arrays) {
         if (success) {
             self.dataSource = arrays;
-            [self showHint:@"加载完成!!"];
             [self.tableView reloadData];
             [self hideHud];
         }else{
