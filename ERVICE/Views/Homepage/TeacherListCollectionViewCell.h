@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class FamousTechListModel;
 @interface TeacherListCollectionViewCell : UICollectionViewCell
-
+- (void)configWithData:(FamousTechListModel *)model;
 @end

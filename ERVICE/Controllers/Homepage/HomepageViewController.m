@@ -8,6 +8,8 @@
 
 #import "HomepageViewController.h"
 #import "AttentionTeacherListViewController.h"
+#import "FamousListViewController.h"
+
 
 #import "SDCycleScrollView.h"
 #import "HomepageHeaderTableViewCell.h"
@@ -133,7 +135,7 @@ withList:3];
 }
 //点击名人榜单
 - (void)clickFamous{
-    
+    [self performSegueWithIdentifier:@"FamousListSegue" sender:nil];
 }
 #pragma mark - UITableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

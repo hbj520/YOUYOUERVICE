@@ -130,7 +130,34 @@
     }];
 
 }
-
+#pragma mark - 获取名人榜单前几名
+- (void)famousTopThreeWithResult:(ArrayBlock)result
+                     errorResult:(ErrorBlock)errorResult{
+    NSDictionary *paramters = @{
+                                @"token":KToken
+                                };
+    [self.manager POST:@"nos_topteacher" parameters:paramters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        
+        
+        result(nil,nil,nil);
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        errorResult(error);
+    }];
+}
+#pragma mark - 获取名人榜列表
+- (void)famousListWithPage:(NSString *)page result:(ArrayBlock)result errorResult:(ErrorBlock)errorResult{
+    NSDictionary *parameters = @{
+                                 @"page":page
+                                 ,@"token":KToken
+                                 };
+    [self.manager POST:@"nos_starteacher" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        
+        
+        result(nil,nil,nil);
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        errorResult(error);
+    }];
+}
 #pragma mark - 交易所下讲师列表
 //exid --交易所id
 - (void)getLecturerListWithExId:(NSString *)exid

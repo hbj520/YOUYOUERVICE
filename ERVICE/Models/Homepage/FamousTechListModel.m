@@ -14,7 +14,9 @@
                 techId:(NSString *)techId
              techStars:(NSString *)techStars
             techExName:(NSString *)techExName
-             techImage:(NSString *)techImage{
+             techImage:(NSString *)techImage
+               fansNum:(NSString *)fansNum
+           isAttention:(BOOL )isAttention{
     FamousTechListModel *model = [[FamousTechListModel alloc] init];
     model.techName = techName;
     model.techDes = techDes;
@@ -22,6 +24,8 @@
     model.techStars = techStars;
     model.techExName = techExName;
     model.techImage = techImage;
+    model.fansNum = fansNum;
+    model.istechAttention = isAttention;
     return model;
 }
 
@@ -33,13 +37,14 @@
         NSString *techId = dic[@"tid"];
         NSString *techStars = dic[@"star"];
         NSString *techExName = dic[@"ex_name"];
-        NSNumber *fansNum = dic[@"num"];
-        NSString *fansNumbers = [NSString stringWithFormat:@"%ld",fansNum.integerValue];
+        //NSNumber *fansNum = dic[@"num"];
+        NSString *fansNumbers = dic[@"num"];
         NSString *image = dic[@"imgthumb"];
         NSNumber *isattention = dic[@"ifattention"];
         BOOL isAttenTech = isattention.boolValue;
-        FamousTechListModel *model = [[FamousTechListModel alloc] initWithTechName:techName techDes:techDes techId:techId techStars:techStars techExName:techExName techImage:image];
+        FamousTechListModel *model = [[FamousTechListModel alloc] initWithTechName:techName techDes:techDes techId:techId techStars:techStars techExName:techExName techImage:image fansNum:fansNumbers isAttention:isAttenTech];
+        [modelArray addObject:model];
     }
-    return nil;
+    return modelArray;
 }
 @end

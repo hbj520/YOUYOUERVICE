@@ -16,7 +16,7 @@
                   exname:(NSString *)exname
                      num:(NSString *)num
              lectureIcon:(NSString *)lectureIcon
-             isAttention:(BOOL)isAttention{
+             isAttention:(BOOL *)isAttention{
     LecturerModel *model = [[LecturerModel alloc] init];
     model.userid = userid;
     model.username = userName;

@@ -836,16 +836,16 @@
 				187433071C985A590057282B /* HomepageAnalyzeTableViewCell.h */,
 				187433081C985A590057282B /* HomepageAnalyzeTableViewCell.m */,
 				187433091C985A590057282B /* HomepageAnalyzeTableViewCell.xib */,
-				AB55971A1CB4C8EA004A5C1B /* TeacherListCollectionViewCell.h */,
-				AB55971B1CB4C8EA004A5C1B /* TeacherListCollectionViewCell.m */,
-				AB55971C1CB4C8EA004A5C1B /* TeacherListCollectionViewCell.xib */,
-				AB5597221CB4DEF7004A5C1B /* HorizontalTableViewCell.h */,
-				AB5597231CB4DEF7004A5C1B /* HorizontalTableViewCell.m */,
 				1874330C1C9864880057282B /* ThreeCollectionViewCell.h */,
 				1874330D1C9864880057282B /* ThreeCollectionViewCell.m */,
 				1874330E1C9864880057282B /* ThreeCollectionViewCell.xib */,
 				187433111C9866A00057282B /* ThreeTableViewCell.h */,
 				187433121C9866A00057282B /* ThreeTableViewCell.m */,
+				AB55971A1CB4C8EA004A5C1B /* TeacherListCollectionViewCell.h */,
+				AB55971B1CB4C8EA004A5C1B /* TeacherListCollectionViewCell.m */,
+				AB55971C1CB4C8EA004A5C1B /* TeacherListCollectionViewCell.xib */,
+				AB5597221CB4DEF7004A5C1B /* HorizontalTableViewCell.h */,
+				AB5597231CB4DEF7004A5C1B /* HorizontalTableViewCell.m */,
 			);
 			path = Homepage;
 			sourceTree = "<group>";

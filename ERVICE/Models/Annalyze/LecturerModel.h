@@ -16,7 +16,7 @@
 @property (nonatomic,strong) NSString *exname;//交易所名称
 @property (nonatomic,strong) NSString *num;//粉丝数量
 @property (nonatomic,strong) NSString *lecturerIcon;//讲师头像
-@property (nonatomic,assign) BOOL isAttention;
+@property (nonatomic,assign) BOOL *isAttention;
 - (id)initWithParameters:(NSString *)userName
                   lecDes:(NSString *)lecDes
                   userid:(NSString *)userid
@@ -24,7 +24,7 @@
                   exname:(NSString *)exname
                      num:(NSString *)num
              lectureIcon:(NSString *)lectureIcon
-             isAttention:(BOOL)isAttention;
+             isAttention:(BOOL *)isAttention;
 - (NSMutableArray *)buildWithData:(NSArray *)data;
 
 @end

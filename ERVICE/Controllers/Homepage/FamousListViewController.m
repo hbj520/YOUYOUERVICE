@@ -9,6 +9,7 @@
 #import "FamousListViewController.h"
 
 @interface FamousListViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -17,6 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //下载数据前几名
+    [self loadData];
+    //下载前几页
+    [self loadDataWithPage:0];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,5 +38,24 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+#pragma mark - PrivateMethod
+- (void)loadData{
+    //下载排名前几名老师
+    [[MyAPI sharedAPI] famousTopThreeWithResult:^(BOOL success, NSString *msg, NSMutableArray *arrays) {
+        
+    } errorResult:^(NSError *enginerError) {
+        
+    }];
+   
+}
+- (void)loadDataWithPage:(NSInteger)page{
+    NSString *pageNum = [NSString stringWithFormat:@"%ld",page];
+    //下载名师列表
+    [[MyAPI sharedAPI] famousListWithPage:pageNum result:^(BOOL success, NSString *msg, NSMutableArray *arrays) {
+        
+        
+    } errorResult:^(NSError *enginerError) {
+        
+    }];
+}
 @end

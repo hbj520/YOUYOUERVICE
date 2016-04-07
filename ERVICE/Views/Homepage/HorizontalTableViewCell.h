@@ -8,11 +8,17 @@
 
 #import <UIKit/UIKit.h>
 @class FamousTechListModel;
-//@protocol H <NSObject>
-//
-//<#methods#>
-//
-//@end
-@interface HorizontalTableViewCell : UITableViewCell
+@protocol HorizontalTableViewCellDelegate <NSObject>
+- (void)TapColletionViewCellDelegate:(FamousTechListModel *)famousListModel indexPath:(NSIndexPath *)indexPath;
+- (void)TapCollectionViewCellAttentionBtnDelegate:(FamousTechListModel *)famousListModel indexPath:(NSIndexPath *)indexPath;
+
+@end
+@interface HorizontalTableViewCell : UITableViewCell<
+                                                     UICollectionViewDelegate,
+                                                     UICollectionViewDataSource,
+                                                     UICollectionViewDelegateFlowLayout
+                                                    >
+@property (nonatomic,strong) NSArray *modelsArray;
+@property (nonatomic,assign) id<HorizontalTableViewCellDelegate> delegate;
 
 @end

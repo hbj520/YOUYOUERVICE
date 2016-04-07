@@ -18,7 +18,7 @@
                         <rect key="frame" x="15" y="22" width="55" height="55"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="25"/>
+                                <integer key="value" value="27"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>

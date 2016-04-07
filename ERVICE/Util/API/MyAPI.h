@@ -31,9 +31,16 @@ typedef void (^ErrorBlock) (NSError *enginerError);
 - (void)LoginOutWithResult:(StateBlock)result
                errorResult:(ErrorBlock)errorResult;
 
+#pragma mark -首页
 #pragma mark - 获取首页信息
 - (void)getHomepageDataWithResult:(ArrayBlock)result
                       errorResult:(ErrorBlock)errorResult;
+#pragma mark - 获取名人榜单前几名
+- (void)famousTopThreeWithResult:(ArrayBlock)result
+                         errorResult:(ErrorBlock)errorResult;
+#pragma mark - 获取名人榜列表
+- (void)famousListWithPage:(NSString *)page result:(ArrayBlock)result errorResult:(ErrorBlock)errorResult;
+#pragma mark - 分析
 #pragma mark - 交易所下讲师列表
 //exid --交易所id
 - (void)getLecturerListWithExId:(NSString *)exid

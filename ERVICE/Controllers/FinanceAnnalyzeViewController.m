@@ -60,7 +60,7 @@
     return 1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 110;
+    return 100;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     FinanceItemModel *finaItem = [financeDataSource.exchanges objectAtIndex:indexPath.row];
@@ -76,7 +76,7 @@
     return nil;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 160;
+    return 115;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     FinanceItemModel *model = [financeDataSource.exchanges objectAtIndex:indexPath.row];

@@ -44,7 +44,7 @@ static NSString *cellReuseId = @"cellId";
     _flowLayout.minimumLineSpacing = 0;
     _flowLayout.itemSize = CGSizeMake(96, 120);
     _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 130) collectionViewLayout:_flowLayout];
+    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 120) collectionViewLayout:_flowLayout];
     //注册cell
     UINib *cellNib = [UINib nibWithNibName:@"ThreeCollectionViewCell" bundle:[NSBundle mainBundle]];
     [_collectionView registerNib:cellNib forCellWithReuseIdentifier:cellReuseId];
@@ -58,6 +58,7 @@ static NSString *cellReuseId = @"cellId";
     _collectionView.showsHorizontalScrollIndicator = NO;
     _collectionView.backgroundColor = [UIColor whiteColor];
     [self addSubview:_collectionView];
+    
     
 }
 
