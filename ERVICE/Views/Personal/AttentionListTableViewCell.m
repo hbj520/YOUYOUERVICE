@@ -34,6 +34,7 @@
 }
 - (void)configWithData:(MyTeacherModel *)data{
     [self.teacherIconImageview sd_setImageWithURL:[NSURL URLWithString:data.techImage] placeholderImage:[UIImage imageNamed:@"attention_icon"]];
+    self.teacherIconImageview.layer.masksToBounds = YES;
     self.attentionNumLabel.text = [NSString stringWithFormat:@"%ld",data.techFansNum.integerValue];
     self.techName.text = data.techName;
     [self.starView configWithStarLevel:data.techStars.floatValue/2];

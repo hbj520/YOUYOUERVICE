@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef void (^AttentionBtnBlock)(id);
 @class FamousTechListModel;
 @interface TeacherListCollectionViewCell : UICollectionViewCell
+@property (nonatomic,copy) AttentionBtnBlock attentionBlock;
 - (void)configWithData:(FamousTechListModel *)model;
 @end

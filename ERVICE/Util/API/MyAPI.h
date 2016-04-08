@@ -39,7 +39,16 @@ typedef void (^ErrorBlock) (NSError *enginerError);
 - (void)famousTopThreeWithResult:(ArrayBlock)result
                          errorResult:(ErrorBlock)errorResult;
 #pragma mark - 获取名人榜列表
-- (void)famousListWithPage:(NSString *)page result:(ArrayBlock)result errorResult:(ErrorBlock)errorResult;
+- (void)famousListWithPage:(NSString *)page
+                    result:(ArrayBlock)result
+               errorResult:(ErrorBlock)errorResult;
+
+#pragma mark - 获取客服列表
+- (void)customerServiceListWithPage:(NSString *)page
+                             result:(ArrayBlock)result
+                        errorResult:(ErrorBlock)errorResult;
+
+
 #pragma mark - 分析
 #pragma mark - 交易所下讲师列表
 //exid --交易所id
@@ -64,7 +73,8 @@ typedef void (^ErrorBlock) (NSError *enginerError);
 
 
 #pragma mark - 财经分析
-- (void)FinanceAnnalyzeListResult:(ModelBlock)result errorResult:(ErrorBlock)errorResult;
+- (void)FinanceAnnalyzeListResult:(ModelBlock)result
+                      errorResult:(ErrorBlock)errorResult;
 #pragma mark - 公告banner
 - (void)AnnouncementBannerWithResult:(ArrayBlock)result
                          errorResult:(ErrorBlock)errorResult;
@@ -97,5 +107,6 @@ typedef void (^ErrorBlock) (NSError *enginerError);
                              result:(StateBlock)result
                         errorResult:(ErrorBlock)errorResult;
 #pragma mark - 我的老师
-- (void)myTeacherWithResult:(ArrayBlock)result errorResult:(ErrorBlock)errorResult;
+- (void)myTeacherWithResult:(ArrayBlock)result
+                errorResult:(ErrorBlock)errorResult;
 @end

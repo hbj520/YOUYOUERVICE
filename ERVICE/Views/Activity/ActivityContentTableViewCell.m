@@ -9,12 +9,13 @@
 #import "ActivityContentTableViewCell.h"
 #import "ActivityModel.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+
+#import "LabelHelper.h"
 @interface ActivityContentTableViewCell()
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 //参加人数
-@property (weak, nonatomic) IBOutlet UILabel *attenNum;
 @property (weak, nonatomic) IBOutlet UIImageView *isHotImage;
 
 @end
@@ -34,6 +35,9 @@
     [self.image sd_setImageWithURL:[NSURL URLWithString:model.image] placeholderImage:[UIImage imageNamed:@"default"]];
     self.titleLabel.text = model.title;
     self.contentLabel.text = model.content;
-    self.attenNum.text = model.num;
+    UILabel *attentionLabel = [[LabelHelper alloc] buildAttentionLabelWithNumString:model.num regularString:@" 人参加"];
+    [attentionLabel setFrame:CGRectMake(135, 58, attentionLabel.frame.size.width, attentionLabel.frame.size.height)];
+    [self.contentView addSubview:attentionLabel];
+    
 }
 @end

@@ -35,7 +35,8 @@
         NSString *userId = dic[@"userid"];
         NSString *img = dic[@"imgthumb"];
         NSString *star = dic[@"star"];
-        NSString *fansnum = dic[@"num"];
+        NSNumber *num = dic[@"num"];
+        NSString *fansnum = [NSString stringWithFormat:@"%ld",num.integerValue];
         NSString *school = dic[@"school"];
         NSString *article = dic[@"article"];
         NSString *articleId = dic[@"articleid"];

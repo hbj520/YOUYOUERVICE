@@ -9,7 +9,7 @@
 #import "HomepageViewController.h"
 #import "AttentionTeacherListViewController.h"
 #import "FamousListViewController.h"
-
+#import "CustomerServiceViewController.h"
 
 #import "SDCycleScrollView.h"
 #import "HomepageHeaderTableViewCell.h"
@@ -127,7 +127,7 @@ withList:3];
 }
 //点击业务咨询
 - (void)clickBusiness{
-    
+    [self performSegueWithIdentifier:@"CustomerServiceSegue" sender:nil];
 }
 //点击专家会诊
 - (void)clickSpecail{

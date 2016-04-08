@@ -36,8 +36,6 @@ static NSString *detailWebViewId = @"detailWebViewId";
     [super viewDidLoad];
     //下载数据
     [self loadData];
-    [self setupTableView];
-    [self creatApartBtn];
     // Do any additional setup after loading the view.
 }
 
@@ -116,11 +114,11 @@ static NSString *detailWebViewId = @"detailWebViewId";
     [[MyAPI sharedAPI] loadActivityDetailWithActivityId:self.activityId result:^(BOOL success, NSString *msg, id object) {
         if (success) {
             self.activityDataSourece = (ActivityDetailModel *)object;
+            [self setupTableView];
             [self.tableView reloadData];
-            [self showHint:@"加载完成！！"];
+            [self creatApartBtn];
             [self hideHud];
         }else{
-            [self showHint:@"加载失败！！"];
             [self hideHud];
         }
     } errorResult:^(NSError *enginerError) {
@@ -128,13 +126,16 @@ static NSString *detailWebViewId = @"detailWebViewId";
         [self hideHud];
     }];
 }
+
 - (void)creatApartBtn{
-//    self.tabBarController.tabBar.hidden = YES;
-//    self.tabBarController.tabBar.alpha = 0;
     apartBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [apartBtn setTitle:@"我要参加活动" forState:UIControlStateNormal];
-    //    apartBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 200, ScreenWidth, 64)];
-    [apartBtn setBackgroundColor:[UIColor colorWithHexString:@"ff5000"]];
+    if (![self.activityDataSourece.mystatus isEqualToString:@"1"]) {
+        [apartBtn setBackgroundColor:[UIColor colorWithHexString:@"ff5000"]];
+    }else{
+        [apartBtn setBackgroundColor:[UIColor lightGrayColor]];
+        apartBtn.enabled = NO;
+    }
     apartBtn.tintColor = [UIColor whiteColor];
     apartBtn.titleLabel.font = [UIFont systemFontOfSize:16];
     apartBtn.frame = CGRectMake(0, ScreenHeight-128, ScreenWidth, 64);
@@ -146,10 +147,13 @@ static NSString *detailWebViewId = @"detailWebViewId";
     [self showHudInView:self.view hint:@"报名参加..."];
     [[MyAPI sharedAPI] apartActivityWithActivityId:self.activityId result:^(BOOL sucess, NSString *msg) {
         if (sucess) {
-            [self showHint:@"报名成功！！"];
+            //报名成功
+            [apartBtn setBackgroundColor:[UIColor lightGrayColor]];
+            apartBtn.enabled = NO;
+            [self showHint:msg];
             [self hideHud];
         }else{
-            [self showHint:@"报名失败!!"];
+            [self showHint:msg];
             [self hideHud];
         }
     } errorResult:^(NSError *enginerError) {

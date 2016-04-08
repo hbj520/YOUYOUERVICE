@@ -51,11 +51,53 @@
                     <connections>
                         <outlet property="tableView" destination="Mz7-yK-Yjx" id="1go-bk-7Lz"/>
                         <segue destination="lrB-xO-n0N" kind="push" identifier="FamousListSegue" id="zi4-Vu-fZD"/>
+                        <segue destination="6zS-Wq-V0y" kind="push" identifier="CustomerServiceSegue" id="CDn-A7-LG7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rfs-9x-FSt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-486" y="176"/>
+        </scene>
+        <!--Customer Service View Controller-->
+        <scene sceneID="h0D-LD-Bi0">
+            <objects>
+                <viewController id="6zS-Wq-V0y" customClass="CustomerServiceViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Pqq-TD-aMS"/>
+                        <viewControllerLayoutGuide type="bottom" id="kyp-jh-ato"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qvV-aL-abQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="x6e-Cf-zru">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="x6e-Cf-zru" firstAttribute="leading" secondItem="qvV-aL-abQ" secondAttribute="leading" id="6jt-Qn-2mg"/>
+                            <constraint firstItem="kyp-jh-ato" firstAttribute="top" secondItem="x6e-Cf-zru" secondAttribute="bottom" id="IIg-aU-wiE"/>
+                            <constraint firstAttribute="trailing" secondItem="x6e-Cf-zru" secondAttribute="trailing" id="ObL-Yl-wvN"/>
+                            <constraint firstItem="x6e-Cf-zru" firstAttribute="top" secondItem="qvV-aL-abQ" secondAttribute="top" id="gZR-hs-se8"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ubk-Pn-aMy">
+                        <barButtonItem key="leftBarButtonItem" image="back" id="bmf-pu-AxI">
+                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backBtn:" destination="6zS-Wq-V0y" id="r12-ob-t2x"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="x6e-Cf-zru" id="wa7-J7-d27"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3aR-sI-Sv3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-24" y="459"/>
         </scene>
         <!--Famous List View Controller-->
         <scene sceneID="5VM-75-uO2">
@@ -82,7 +124,14 @@
                             <constraint firstItem="BIP-nj-xTx" firstAttribute="top" secondItem="dpm-LL-G6W" secondAttribute="bottom" id="Slc-9g-8gR"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Hfg-dy-Ex4"/>
+                    <navigationItem key="navigationItem" id="Hfg-dy-Ex4">
+                        <barButtonItem key="leftBarButtonItem" image="back" id="IfT-8x-k6P">
+                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backBtn:" destination="lrB-xO-n0N" id="lbK-IR-c0d"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="dpm-LL-G6W" id="x6j-3d-HxD"/>
                     </connections>
@@ -92,4 +141,7 @@
             <point key="canvasLocation" x="-24" y="-174"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="back" width="12" height="17"/>
+    </resources>
 </document>

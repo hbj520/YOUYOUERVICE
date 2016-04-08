@@ -69,7 +69,7 @@
 
 +(CGSize)stringToAttributeSize:(NSMutableAttributedString *)str
 {
-    UIFont *font = [UIFont fontWithName:@"Arial" size:14];
+    UIFont *font = [UIFont fontWithName:@"Arial" size:13];
     NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
     NSDictionary * attributes = @{

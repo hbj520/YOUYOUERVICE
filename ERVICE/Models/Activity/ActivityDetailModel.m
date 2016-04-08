@@ -9,7 +9,14 @@
 #import "ActivityDetailModel.h"
 
 @implementation ActivityDetailModel
-- (id)initWithTitle:(NSString *)title image:(NSString *)imageurl num:(NSString *)num innum:(NSString *)innum starttime:(NSString *)starttime endtime:(NSString *)endtime content:(NSString *)content {
+- (id)initWithTitle:(NSString *)title
+              image:(NSString *)imageurl
+                num:(NSString *)num
+              innum:(NSString *)innum
+          starttime:(NSString *)starttime
+            endtime:(NSString *)endtime
+            content:(NSString *)content
+           mystatus:(NSString *)mystatus{
     ActivityDetailModel *model = [[ActivityDetailModel alloc] init];
     model.title = title;
     model.imageUrl = imageurl;
@@ -18,6 +25,7 @@
     model.endtime = endtime;
     model.num = num;
     model.innum = innum;
+    model.mystatus = mystatus;
     return model;
 }
 - (ActivityDetailModel *)buildWithData:(NSDictionary *)data{
@@ -29,7 +37,16 @@
     NSNumber *num = data[@"num"];
     NSString *numString = [NSString stringWithFormat:@"%ld",num.integerValue];
     NSString *endtime = data[@"endtime"];
-    ActivityDetailModel *model = [[ActivityDetailModel alloc] initWithTitle:title image:imageurl num:numString innum:innum starttime:starttime endtime:endtime content:content];
+    NSNumber *mystatus = data[@"mystatus"];
+    NSString *status = [NSString stringWithFormat:@"%ld",mystatus.integerValue];
+    ActivityDetailModel *model = [[ActivityDetailModel alloc] initWithTitle:title
+                                                                      image:imageurl
+                                                                        num:numString
+                                                                      innum:innum
+                                                                  starttime:starttime
+                                                                    endtime:endtime
+                                                                    content:content
+                                                                   mystatus:status];
     return model;
 }
 @end

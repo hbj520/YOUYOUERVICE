@@ -73,12 +73,14 @@
     NSString *phoneNum = self.numberInput.text;
     NSString *password = self.passwordInput.text;
     [self showHudInView:self.view hint:@"登录中..."];
-   NSString *securityString = [Tools loginPasswordSecurityLock:password];
-    [[MyAPI sharedAPI] LoginWithNumber:phoneNum password:securityString result:^(BOOL sucess, NSString *msg) {
+    NSString *securityString = [Tools loginPasswordSecurityLock:password];
+    
+    [[MyAPI sharedAPI] LoginWithNumber:phoneNum
+                              password:securityString
+                                result:^(BOOL sucess, NSString *msg) {
         if (sucess) {
             [self showHint:@"登录成功！"];
             [self LoginSuccess];
-            
         }else{
             [self showHint:msg];
         }

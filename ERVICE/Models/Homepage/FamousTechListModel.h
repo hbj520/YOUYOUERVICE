@@ -16,7 +16,7 @@
 @property (nonatomic,strong) NSString *techExName;
 @property (nonatomic,strong) NSString *techImage;
 @property (nonatomic,strong) NSString *fansNum;
-@property (assign,nonatomic) BOOL *istechAttention;
+@property (assign,nonatomic) BOOL istechAttention;
 - (id)initWithTechName:(NSString *)techName
                techDes:(NSString *)techDes
                 techId:(NSString *)techId

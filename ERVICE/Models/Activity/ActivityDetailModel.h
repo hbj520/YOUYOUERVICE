@@ -17,6 +17,13 @@
 @property (nonatomic,strong) NSString *num;//活动参与人数
 @property (nonatomic,strong) NSString *endtime;
 @property (nonatomic,strong) NSString *mystatus;//参与状态
-- (id)initWithTitle:(NSString *)title image:(NSString *)imageurl num:(NSString *)num innum:(NSString *)innum starttime:(NSString *)starttime endtime:(NSString *)endtime content:(NSString *)content ;
+- (id)initWithTitle:(NSString *)title
+              image:(NSString *)imageurl
+                num:(NSString *)num
+              innum:(NSString *)innum
+          starttime:(NSString *)starttime
+            endtime:(NSString *)endtime
+            content:(NSString *)content
+           mystatus:(NSString *)mystatus;
 - (ActivityDetailModel *)buildWithData:(NSDictionary *)data;
 @end

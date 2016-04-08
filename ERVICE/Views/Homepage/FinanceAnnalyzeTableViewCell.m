@@ -11,11 +11,13 @@
 
 #import "SelectImageView.h"
 #import "FinanceItemModel.h"
+
+#import "LabelHelper.h"
+
 @interface FinanceAnnalyzeTableViewCell()
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *apartNum;
 @property (strong, nonatomic) IBOutlet UIImageView *exchangeImage;
 
 @end
@@ -38,6 +40,8 @@
     }];
 
     self.titleLabel.text = data.exname;
-    self.apartNum.text = data.num;
+    UILabel *attentionLabel = [[LabelHelper alloc] buildApartLabelWithNumString:data.num regularString:@" 人参加"];
+    [attentionLabel setFrame:CGRectMake(128, 61, attentionLabel.frame.size.width, attentionLabel.frame.size.height)];
+    [self.contentView addSubview:attentionLabel];
 }
 @end

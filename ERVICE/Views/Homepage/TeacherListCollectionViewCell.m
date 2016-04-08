@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet starView *starView;
 @property (weak, nonatomic) IBOutlet UILabel *teachNameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *attentionBtn;
+- (IBAction)attentionBtn:(UIButton *)sender;
 
 @end
 @implementation TeacherListCollectionViewCell
@@ -26,8 +27,17 @@
     // Initialization code
 }
 - (void)configWithData:(FamousTechListModel *)model{
-[self.teachIconImageView sd_setImageWithURL:[NSURL URLWithString:model.techImage] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [self.teachIconImageView sd_setImageWithURL:[NSURL URLWithString:model.techImage] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
     
-}];
+    }];
+    self.teachIconImageView.layer.masksToBounds = YES;
+    [self.starView configWithStarLevel:model.techStars.integerValue/2];
+    self.teachNameLabel.text = model.techName;
+    
+}
+- (IBAction)attentionBtn:(UIButton *)sender {
+    if (self.attentionBlock) {
+        self.attentionBlock(sender);
+    }
 }
 @end

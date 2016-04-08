@@ -42,7 +42,14 @@
         NSString *image = dic[@"imgthumb"];
         NSNumber *isattention = dic[@"ifattention"];
         BOOL isAttenTech = isattention.boolValue;
-        FamousTechListModel *model = [[FamousTechListModel alloc] initWithTechName:techName techDes:techDes techId:techId techStars:techStars techExName:techExName techImage:image fansNum:fansNumbers isAttention:isAttenTech];
+        FamousTechListModel *model = [[FamousTechListModel alloc] initWithTechName:techName
+                                                                           techDes:techDes
+                                                                            techId:techId
+                                                                         techStars:techStars
+                                                                        techExName:techExName
+                                                                         techImage:image
+                                                                           fansNum:fansNumbers
+                                                                       isAttention:isAttenTech];
         [modelArray addObject:model];
     }
     return modelArray;

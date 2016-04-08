@@ -39,6 +39,7 @@
 }
 - (void)configWithData:(LecturerModel *)model{
     [self.lecturerIcon sd_setImageWithURL:[NSURL URLWithString:model.lecturerIcon] placeholderImage:[UIImage imageNamed:@"financeicon"]];
+    self.lecturerIcon.layer.masksToBounds = YES;
     self.lecturerName.text = model.username;
     self.lecturerDes.text = model.lecDescription;
     self.attentionCount.text = model.num;

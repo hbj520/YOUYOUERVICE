@@ -10,7 +10,7 @@
 @class FamousTechListModel;
 @protocol HorizontalTableViewCellDelegate <NSObject>
 - (void)TapColletionViewCellDelegate:(FamousTechListModel *)famousListModel indexPath:(NSIndexPath *)indexPath;
-- (void)TapCollectionViewCellAttentionBtnDelegate:(FamousTechListModel *)famousListModel indexPath:(NSIndexPath *)indexPath;
+- (void)TapCollectionViewCellAttentionBtnDelegate:(UIButton *)attentionBtn indexPath:(NSIndexPath *)indexPath;
 
 @end
 @interface HorizontalTableViewCell : UITableViewCell<

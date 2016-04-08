@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -51,23 +51,8 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="activityDetailMancount" translatesAutoresizingMaskIntoConstraints="NO" id="jOL-Kk-Kha">
                         <rect key="frame" x="11" y="209" width="18" height="18"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="9999" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LiB-Ik-LLa">
-                        <rect key="frame" x="37" y="207" width="36" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.066474313909999999" green="0.6144249125842105" blue="0.30392243318421014" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="人已报名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q39-97-qR0">
-                        <rect key="frame" x="75" y="207" width="48" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="activityEyes" translatesAutoresizingMaskIntoConstraints="NO" id="JBZ-R7-Pyc">
                         <rect key="frame" x="141" y="208" width="18" height="18"/>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="star_bg" translatesAutoresizingMaskIntoConstraints="NO" id="hWa-9u-EAw">
-                        <rect key="frame" x="170" y="210" width="74" height="13"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Ed-hd-3Td">
                         <rect key="frame" x="0.0" y="110" width="375" height="40"/>
@@ -79,6 +64,10 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3oe-v4-Jkq" customClass="starView">
+                        <rect key="frame" x="170" y="210" width="70" height="12"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="OHl-EC-pRO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="0Qb-Gl-w28"/>
@@ -94,8 +83,8 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="apartNum" destination="LiB-Ik-LLa" id="zNd-53-U9R"/>
                 <outlet property="headerImageView" destination="LtK-jO-oeU" id="11S-Ow-HW3"/>
+                <outlet property="starView" destination="3oe-v4-Jkq" id="Gvu-8J-8fH"/>
                 <outlet property="timeLabel" destination="vSn-GC-yiV" id="L9u-g8-7G6"/>
                 <outlet property="titleLabel" destination="Uet-kd-T3c" id="zGH-6V-Y64"/>
             </connections>
@@ -107,6 +96,5 @@
         <image name="activityDetailMancount" width="35" height="32"/>
         <image name="activityEyes" width="32" height="32"/>
         <image name="saparateline" width="738" height="13"/>
-        <image name="star_bg" width="107" height="20"/>
     </resources>
 </document>

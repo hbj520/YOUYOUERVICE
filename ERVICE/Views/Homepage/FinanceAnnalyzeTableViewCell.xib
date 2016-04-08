@@ -57,12 +57,6 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="financeicon" translatesAutoresizingMaskIntoConstraints="NO" id="tjb-Lh-H6d">
                         <rect key="frame" x="111" y="57" width="12" height="14"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10t-HU-C9C">
-                        <rect key="frame" x="128" y="61" width="68" height="13"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" red="0.066474313909999999" green="0.5245297646" blue="0.32504702200000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <view alpha="0.29999999999999999" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hax-hS-b7b" userLabel="imgebaview">
                         <rect key="frame" x="14" y="8" width="75" height="75"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -90,7 +84,6 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="apartNum" destination="10t-HU-C9C" id="Mbn-fH-d23"/>
                 <outlet property="exchangeImage" destination="x72-Jq-VOT" id="5c2-Q4-yCa"/>
                 <outlet property="imageView" destination="x72-Jq-VOT" id="idH-Lu-sIj"/>
                 <outlet property="timeLabel" destination="XdC-UC-dow" id="4Gm-fe-shK"/>

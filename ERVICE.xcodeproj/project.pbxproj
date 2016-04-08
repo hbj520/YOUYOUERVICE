@@ -141,6 +141,14 @@
 		18F1CFDE1CAD06DE00939D89 /* FinanceItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1CFDD1CAD06DE00939D89 /* FinanceItemModel.m */; };
 		18F1CFE11CAD0A0800939D89 /* FinanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1CFE01CAD0A0800939D89 /* FinanceModel.m */; };
 		5557FEB67523DEDF90D0187C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC48EF8878E2FBC29EBE3835 /* libPods.a */; };
+		AB3CA08F1CB604860004C659 /* FamousListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3CA08D1CB604860004C659 /* FamousListTableViewCell.m */; };
+		AB3CA0901CB604860004C659 /* FamousListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB3CA08E1CB604860004C659 /* FamousListTableViewCell.xib */; };
+		AB3CA0941CB62D2C0004C659 /* CustomerServiceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3CA0921CB62D2C0004C659 /* CustomerServiceTableViewCell.m */; };
+		AB3CA0951CB62D2C0004C659 /* CustomerServiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB3CA0931CB62D2C0004C659 /* CustomerServiceTableViewCell.xib */; };
+		AB3CA0981CB62DD20004C659 /* CustomerServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3CA0971CB62DD20004C659 /* CustomerServiceViewController.m */; };
+		AB3CA09B1CB6339A0004C659 /* CustomerServiceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3CA09A1CB6339A0004C659 /* CustomerServiceModel.m */; };
+		AB3E315A1CB7579E00E58AC7 /* LabelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3E31591CB7579E00E58AC7 /* LabelHelper.m */; };
+		AB3E315D1CB7896800E58AC7 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3E315C1CB7896800E58AC7 /* NSDate+Utilities.m */; };
 		AB5597191CB4BF34004A5C1B /* FamousListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5597181CB4BF34004A5C1B /* FamousListViewController.m */; };
 		AB55971D1CB4C8EA004A5C1B /* TeacherListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB55971B1CB4C8EA004A5C1B /* TeacherListCollectionViewCell.m */; };
 		AB55971E1CB4C8EA004A5C1B /* TeacherListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB55971C1CB4C8EA004A5C1B /* TeacherListCollectionViewCell.xib */; };
@@ -402,6 +410,20 @@
 		18F1CFDF1CAD0A0800939D89 /* FinanceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinanceModel.h; sourceTree = "<group>"; };
 		18F1CFE01CAD0A0800939D89 /* FinanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinanceModel.m; sourceTree = "<group>"; };
 		20556FAF41FF49EE1A9F29CB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		AB3CA08C1CB604860004C659 /* FamousListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FamousListTableViewCell.h; sourceTree = "<group>"; };
+		AB3CA08D1CB604860004C659 /* FamousListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FamousListTableViewCell.m; sourceTree = "<group>"; };
+		AB3CA08E1CB604860004C659 /* FamousListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FamousListTableViewCell.xib; sourceTree = "<group>"; };
+		AB3CA0911CB62D2C0004C659 /* CustomerServiceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerServiceTableViewCell.h; sourceTree = "<group>"; };
+		AB3CA0921CB62D2C0004C659 /* CustomerServiceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerServiceTableViewCell.m; sourceTree = "<group>"; };
+		AB3CA0931CB62D2C0004C659 /* CustomerServiceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomerServiceTableViewCell.xib; sourceTree = "<group>"; };
+		AB3CA0961CB62DD20004C659 /* CustomerServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerServiceViewController.h; sourceTree = "<group>"; };
+		AB3CA0971CB62DD20004C659 /* CustomerServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerServiceViewController.m; sourceTree = "<group>"; };
+		AB3CA0991CB6339A0004C659 /* CustomerServiceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerServiceModel.h; sourceTree = "<group>"; };
+		AB3CA09A1CB6339A0004C659 /* CustomerServiceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerServiceModel.m; sourceTree = "<group>"; };
+		AB3E31581CB7579E00E58AC7 /* LabelHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelHelper.h; sourceTree = "<group>"; };
+		AB3E31591CB7579E00E58AC7 /* LabelHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelHelper.m; sourceTree = "<group>"; };
+		AB3E315B1CB7896800E58AC7 /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
+		AB3E315C1CB7896800E58AC7 /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
 		AB5597171CB4BF34004A5C1B /* FamousListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FamousListViewController.h; sourceTree = "<group>"; };
 		AB5597181CB4BF34004A5C1B /* FamousListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FamousListViewController.m; sourceTree = "<group>"; };
 		AB55971A1CB4C8EA004A5C1B /* TeacherListCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeacherListCollectionViewCell.h; sourceTree = "<group>"; };
@@ -484,10 +506,14 @@
 		187AD43D1C97B63400AF57C9 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				AB3E315B1CB7896800E58AC7 /* NSDate+Utilities.h */,
+				AB3E315C1CB7896800E58AC7 /* NSDate+Utilities.m */,
 				187AD43E1C97B64400AF57C9 /* Tools.h */,
 				187AD43F1C97B64400AF57C9 /* Tools.m */,
 				18F1CFD61CACECF600939D89 /* Config.h */,
 				18F1CFD71CACECF600939D89 /* Config.m */,
+				AB3E31581CB7579E00E58AC7 /* LabelHelper.h */,
+				AB3E31591CB7579E00E58AC7 /* LabelHelper.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -659,6 +685,8 @@
 				18152D281C96C1A3002CAB05 /* HomepageViewController.m */,
 				AB5597171CB4BF34004A5C1B /* FamousListViewController.h */,
 				AB5597181CB4BF34004A5C1B /* FamousListViewController.m */,
+				AB3CA0961CB62DD20004C659 /* CustomerServiceViewController.h */,
+				AB3CA0971CB62DD20004C659 /* CustomerServiceViewController.m */,
 			);
 			path = Homepage;
 			sourceTree = "<group>";
@@ -734,6 +762,8 @@
 				186884291C99624A00C040D9 /* FinanceAnnalyzeModel.m */,
 				AB55971F1CB4CF5A004A5C1B /* FamousTechListModel.h */,
 				AB5597201CB4CF5A004A5C1B /* FamousTechListModel.m */,
+				AB3CA0991CB6339A0004C659 /* CustomerServiceModel.h */,
+				AB3CA09A1CB6339A0004C659 /* CustomerServiceModel.m */,
 			);
 			path = Homepage;
 			sourceTree = "<group>";
@@ -846,6 +876,12 @@
 				AB55971C1CB4C8EA004A5C1B /* TeacherListCollectionViewCell.xib */,
 				AB5597221CB4DEF7004A5C1B /* HorizontalTableViewCell.h */,
 				AB5597231CB4DEF7004A5C1B /* HorizontalTableViewCell.m */,
+				AB3CA08C1CB604860004C659 /* FamousListTableViewCell.h */,
+				AB3CA08D1CB604860004C659 /* FamousListTableViewCell.m */,
+				AB3CA08E1CB604860004C659 /* FamousListTableViewCell.xib */,
+				AB3CA0911CB62D2C0004C659 /* CustomerServiceTableViewCell.h */,
+				AB3CA0921CB62D2C0004C659 /* CustomerServiceTableViewCell.m */,
+				AB3CA0931CB62D2C0004C659 /* CustomerServiceTableViewCell.xib */,
 			);
 			path = Homepage;
 			sourceTree = "<group>";
@@ -1198,6 +1234,7 @@
 				AB55971E1CB4C8EA004A5C1B /* TeacherListCollectionViewCell.xib in Resources */,
 				18152D261C96A639002CAB05 /* HomeTabBar2.json in Resources */,
 				18E6ABF01CA2D8DA000CBC67 /* ApplyCodeTableViewCell.xib in Resources */,
+				AB3CA0901CB604860004C659 /* FamousListTableViewCell.xib in Resources */,
 				186884321C9A492B00C040D9 /* AttentionTableViewCell.xib in Resources */,
 				18E6ABE61CA2D825000CBC67 /* ApplyExitTableViewCell.xib in Resources */,
 				18B8F5CA1C97F45D00FB975F /* HomepageHeaderTableViewCell.xib in Resources */,
@@ -1208,6 +1245,7 @@
 				18B8F5CF1C98124A00FB975F /* HomepageActivityTableViewCell.xib in Resources */,
 				18E646491CA3BBD200FD30B9 /* PushConfig.plist in Resources */,
 				18EDA7151C9F95D6002A2697 /* AnnalyzeTableViewCell.xib in Resources */,
+				AB3CA0951CB62D2C0004C659 /* CustomerServiceTableViewCell.xib in Resources */,
 				18E6ABF51CA2D93E000CBC67 /* ApplyActivityBtnTableViewCell.xib in Resources */,
 				18ED7B211CA28CD800454F58 /* ActivityDetailSmailTableViewCell.xib in Resources */,
 				187433101C9864880057282B /* ThreeCollectionViewCell.xib in Resources */,
@@ -1297,7 +1335,9 @@
 			files = (
 				187433161C98E8CA0057282B /* HomepageAnalyzeModel.m in Sources */,
 				18E5D4621CA17D9200D99A86 /* XLButtonBarSwipeContainerController.m in Sources */,
+				AB3CA0981CB62DD20004C659 /* CustomerServiceViewController.m in Sources */,
 				18B8F5CE1C98124A00FB975F /* HomepageActivityTableViewCell.m in Sources */,
+				AB3E315D1CB7896800E58AC7 /* NSDate+Utilities.m in Sources */,
 				18E471CB1CA540770061B0E3 /* LoginViewController.m in Sources */,
 				1868842A1C99624A00C040D9 /* FinanceAnnalyzeModel.m in Sources */,
 				18C2F5321C9C0513004D8967 /* MoveScrollView.m in Sources */,
@@ -1351,12 +1391,15 @@
 				1874331E1C993C850057282B /* FinanceAnnalyzeViewController.m in Sources */,
 				187433131C9866A00057282B /* ThreeTableViewCell.m in Sources */,
 				18B9DDDC1CA8DC1000ACBE94 /* UIViewController+HUD.m in Sources */,
+				AB3CA09B1CB6339A0004C659 /* CustomerServiceModel.m in Sources */,
 				18E5D45F1CA17D9200D99A86 /* XLSwipeButtonBarView.m in Sources */,
 				1890BE9F1CA11D04003435C2 /* MyActivityHeaderTableViewCell.m in Sources */,
 				1890BE9A1CA0E202003435C2 /* ActivityContentTableViewCell.m in Sources */,
 				18E5D4601CA17D9200D99A86 /* XLSwipeButtonBarViewCell.m in Sources */,
 				18E5D4631CA17D9200D99A86 /* XLSegmentedSwipeContainerController.m in Sources */,
 				18E5D4671CA17FAC00D99A86 /* ActivityContanierViewController.m in Sources */,
+				AB3E315A1CB7579E00E58AC7 /* LabelHelper.m in Sources */,
+				AB3CA08F1CB604860004C659 /* FamousListTableViewCell.m in Sources */,
 				18C2F5311C9C0513004D8967 /* CustomGrid.m in Sources */,
 				18F1CFE11CAD0A0800939D89 /* FinanceModel.m in Sources */,
 				18EDA71B1C9FDE52002A2697 /* SelectImageView.m in Sources */,
@@ -1388,6 +1431,7 @@
 				18E471C71CA525D10061B0E3 /* NSString+URLEncoding.m in Sources */,
 				18F1CFDE1CAD06DE00939D89 /* FinanceItemModel.m in Sources */,
 				18E13AE31CABAD61007ACE91 /* TeacherAnnalyzeModel.m in Sources */,
+				AB3CA0941CB62D2C0004C659 /* CustomerServiceTableViewCell.m in Sources */,
 				187AD4581C97E1C400AF57C9 /* SDCollectionViewCell.m in Sources */,
 				1868842D1C9A3E6100C040D9 /* AttentionViewController.m in Sources */,
 			);

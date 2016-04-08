@@ -23,6 +23,8 @@
 #import "FinanceModel.h"
 #import "AnnounceExchangeModel.h"
 #import "AnnoucementModel.h"
+#import "FamousTechListModel.h"
+#import "CustomerServiceModel.h"
 
 #import "TeacherCatigoryModel.h"
 #import "TeacherAnnalyzeModel.h"
@@ -137,9 +139,14 @@
                                 @"token":KToken
                                 };
     [self.manager POST:@"nos_topteacher" parameters:paramters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        if ([responseObject[@"status"] isEqualToString:@"1"]) {
+            NSArray *data = responseObject[@"data"];
+            NSMutableArray *modelArray = [[FamousTechListModel alloc] buildData:data];
+            result(YES,@"下载完成",modelArray);
+        }else{
+            result(NO,@"下载失败",nil);
+        }
         
-        
-        result(nil,nil,nil);
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         errorResult(error);
     }];
@@ -151,13 +158,43 @@
                                  ,@"token":KToken
                                  };
     [self.manager POST:@"nos_starteacher" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        if ([responseObject[@"status"] isEqualToString:@"1"]) {
+            NSArray *data = responseObject[@"data"];
+            NSMutableArray *modelArray = [[FamousTechListModel alloc] buildData:data];
+            result(YES,@"下载完成",modelArray);
+        }else{
+            result(NO,@"下载失败",nil);
+        }
         
-        
-        result(nil,nil,nil);
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         errorResult(error);
     }];
 }
+
+#pragma mark - 获取客服列表
+- (void)customerServiceListWithPage:(NSString *)page
+                             result:(ArrayBlock)result
+                        errorResult:(ErrorBlock)errorResult{
+    NSDictionary *parameters = @{
+                                 @"page":page,
+                                 @"token":KToken
+                                 };
+    [self.manager POST:@"nos_getserver" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *status = responseObject[@"status"];
+        NSString *info = responseObject[@"info"];
+        if ([status isEqualToString:@"1"]) {
+            NSArray *data = responseObject[@"data"];
+            NSMutableArray *modelArray =  [[CustomerServiceModel alloc] buildWithData:data];
+            result(YES,@"下载完成",modelArray);
+        }else{
+            result(NO,info,nil);
+        }
+        
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        errorResult(error);
+    }];
+}
+
 #pragma mark - 交易所下讲师列表
 //exid --交易所id
 - (void)getLecturerListWithExId:(NSString *)exid
@@ -222,7 +259,7 @@
             result(NO,info);
         }
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-        
+        errorResult(error);
     }];
 }
 
@@ -456,10 +493,11 @@
                                  };
     [self.manager POST:@"enroll_activity" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSString *status = responseObject[@"status"];
+        NSString *info = responseObject[@"info"];
         if ([status isEqualToString:@"1"]) {
-            result(YES,@"关注成功");
+            result(YES,info);
         }else {
-            result(NO,@"关注失败");
+            result(NO,info);
         }
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         errorResult(error);

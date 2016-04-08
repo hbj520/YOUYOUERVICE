@@ -423,7 +423,7 @@
         <!--Attention Teacher Table View Controller-->
         <scene sceneID="kZH-v2-btD">
             <objects>
-                <tableViewController id="5Qe-bS-M9w" customClass="AttentionTeacherTableViewController" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="5Qe-bS-M9w" customClass="AttentionTeacherTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="dVL-5h-d7S">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -581,6 +581,36 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="7ha-y0-ltQ">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="al2-ll-Ojp">
+                                        <rect key="frame" x="0.0" y="414" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="al2-ll-Ojp" id="gVz-wB-8AY">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xkb-eU-eHT">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <state key="normal" title="取消关注">
+                                                        <color key="titleColor" red="1" green="0.31372549020000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="attentionBtn:" destination="5Qe-bS-M9w" eventType="touchUpInside" id="sDg-bg-aaI"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="xkb-eU-eHT" firstAttribute="leading" secondItem="gVz-wB-8AY" secondAttribute="leading" id="JD6-MC-wkB"/>
+                                                <constraint firstItem="xkb-eU-eHT" firstAttribute="top" secondItem="gVz-wB-8AY" secondAttribute="top" id="ZrM-d4-jKP"/>
+                                                <constraint firstAttribute="bottom" secondItem="xkb-eU-eHT" secondAttribute="bottom" id="a6b-uo-I2o"/>
+                                                <constraint firstAttribute="trailing" secondItem="xkb-eU-eHT" secondAttribute="trailing" id="l8n-UO-Uvd"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="5Qe-bS-M9w" id="U8b-xz-8rr"/>
@@ -596,6 +626,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="attentionBtn" destination="xkb-eU-eHT" id="0BJ-yb-wUB"/>
+                        <outlet property="attentionLabel" destination="rTG-Q5-5IR" id="KAX-h1-Q2L"/>
+                        <outlet property="gradutedSchoolLabel" destination="rU4-Ub-arL" id="zJF-yX-s3X"/>
+                        <outlet property="locationLabel" destination="2ED-6S-VPl" id="z6p-h7-goW"/>
+                        <outlet property="myTechIconImageView" destination="shl-rb-hVg" id="VcZ-WU-Vhe"/>
+                        <outlet property="nameLabel" destination="vou-6m-fYz" id="7Bp-2C-kHI"/>
+                        <outlet property="publilshArticleLabel" destination="Wmq-4Y-nae" id="15z-kC-9E6"/>
                         <outlet property="starView" destination="uVZ-1H-n2u" id="I4r-Eb-w7e"/>
                     </connections>
                 </tableViewController>

@@ -7,6 +7,7 @@
 //
 
 #import "AttentionTeacherListViewController.h"
+#import "AttentionTeacherTableViewController.h"
 
 #import "MyTeacherModel.h"
 
@@ -33,6 +34,8 @@ static NSString *reuserId = @"attentionListId";
     
     //注册tableviewcell
     [self registerTableViewCell];
+    //注册通知
+    [self noattentionSuccessNotice];
     // Do any additional setup after loading the view.
 }
 
@@ -41,12 +44,21 @@ static NSString *reuserId = @"attentionListId";
     // Dispose of any resources that can be recreated.
 }
 #pragma  mark - PrivateMethod
+- (void)noattentionSuccessNotice{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(noAttetionAct:) name:@"noattentionsuccess" object:nil];
+}
+- (void)noAttetionAct:(id)sender{
+    [self loadData];
+}
 - (void)registerTableViewCell{
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[AttentionListTableViewCell class] forCellReuseIdentifier:reuserId];
 }
 - (void)loadData{
+    if (dataSource.count > 0) {
+        [dataSource removeAllObjects];
+    }
     [[MyAPI sharedAPI] myTeacherWithResult:^(BOOL success, NSString *msg, NSMutableArray *arrays) {
         
         if (success) {
@@ -78,17 +90,21 @@ static NSString *reuserId = @"attentionListId";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.selected = NO;
-    [self performSegueWithIdentifier:@"AttentionTeacherSegue" sender:nil];
+     MyTeacherModel *model = [dataSource objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:@"AttentionTeacherSegue" sender:model];
 }
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    MyTeacherModel *model = (MyTeacherModel *)sender;
+    AttentionTeacherTableViewController *myTeacherVC = segue.destinationViewController;
+    myTeacherVC.myTech = model;
 }
-*/
+
 
 - (IBAction)backBtn:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:YES];

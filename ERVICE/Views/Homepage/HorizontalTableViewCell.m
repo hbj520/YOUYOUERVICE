@@ -51,7 +51,7 @@ static NSString *techListReuseId = @"techlistId";
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     _collectionView.scrollEnabled = YES;
-    
+    _collectionView.backgroundColor = [UIColor whiteColor];
     _collectionView.showsVerticalScrollIndicator = NO; //指士条
     _collectionView.showsHorizontalScrollIndicator = NO;
     [self addSubview:_collectionView];
@@ -59,7 +59,14 @@ static NSString *techListReuseId = @"techlistId";
 #pragma mark - UICollectionViewCellDelegate
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     TeacherListCollectionViewCell *cell = [_collectionView dequeueReusableCellWithReuseIdentifier:techListReuseId forIndexPath:indexPath];
-    
+    FamousTechListModel *model = [self.modelsArray objectAtIndex:indexPath.row];
+    [cell configWithData:model];
+    cell.attentionBlock = ^(id sender){
+        UIButton *attentionBtn = (UIButton *)sender;
+        if (self.delegate) {
+            [self.delegate TapCollectionViewCellAttentionBtnDelegate:attentionBtn indexPath:indexPath];
+        }
+    };
     return cell;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -67,5 +74,11 @@ static NSString *techListReuseId = @"techlistId";
 }
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
+}
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.delegate) {
+        FamousTechListModel *model = [self.modelsArray objectAtIndex:indexPath.row];
+        [self.delegate TapColletionViewCellDelegate:model indexPath:indexPath];
+    }
 }
 @end

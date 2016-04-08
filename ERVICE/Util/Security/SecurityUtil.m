@@ -15,10 +15,12 @@
 @implementation SecurityUtil
 
 #pragma mark - base64
-+ (NSString*)encodeBase64String:(NSString * )input { 
++ (NSString*)encodeBase64String:(NSString * )input {
+    
     NSData *data = [input dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES]; 
     data = [GTMBase64 encodeData:data]; 
-    NSString *base64String = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]; 
+    NSString *base64String = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+    
 	return base64String;
 }
 
@@ -69,6 +71,10 @@
  *	@return	md5加密后的字符串
  */
 + (NSString*)encryptMD5String:(NSString*)string {
+    
+    
+    
+    
     return [string md5Encrypt];
 }
 

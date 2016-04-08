@@ -163,7 +163,6 @@ static NSString *reuseContentId = @"contentId";
     [[MyAPI sharedAPI] loadAllActivityWithPage:pageString result:^(BOOL success, NSString *msg, NSMutableArray *arrays) {
         if (success) {
             dataSource = arrays;
-            [self showHint:@"加载完成!!"];
             [self configPageViews];
             [self.allActivityTableView reloadData];
             [self hideHud];

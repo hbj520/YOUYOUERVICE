@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class MyTeacherModel;
 @interface AttentionTeacherTableViewController : UITableViewController
-
+@property (nonatomic,strong) MyTeacherModel *myTech;
 @end
