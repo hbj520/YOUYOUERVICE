@@ -37,6 +37,9 @@ static NSString *reuseContentId = @"contentId";
     // Do any additional setup after loading the view.
     //下载数据
     _page = 1;
+    if (!dataSource) {
+        dataSource = [NSMutableArray array];
+    }
     [self loadBannersData];
     [self loadDataWithPage:_page];
     [self configTableView];
@@ -63,12 +66,13 @@ static NSString *reuseContentId = @"contentId";
 - (void)addRefresh{
     __weak AllActivityViewController *weakself = self;
     self.allActivityTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [weakself loadBannersData];
-        [weakself loadDataWithPage:0];
         _page = 1;
-        if (dataSource) {
+        if (dataSource.count > 0) {
             [dataSource removeAllObjects];
         }
+        [weakself loadBannersData];
+        [weakself loadDataWithPage:_page];
+       
     }];
     self.allActivityTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         _page++;
@@ -101,8 +105,10 @@ static NSString *reuseContentId = @"contentId";
         return cell;
     }else if (indexPath.section == 1){
         ActivityContentTableViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"ActivityContentTableViewCell" owner:self options:nil] lastObject];
-        ActivityModel *model = [dataSource objectAtIndex:indexPath.row];
-        [cell configWithData:model];
+        if (dataSource.count >= indexPath.row) {
+            ActivityModel *model = [dataSource objectAtIndex:indexPath.row];
+            [cell configWithData:model];
+        }
         return cell;
     }
     return nil;
@@ -183,9 +189,7 @@ static NSString *reuseContentId = @"contentId";
             [self timeOutAction];
         }
         if (success) {
-            if (!dataSource) {
-                dataSource = [NSMutableArray array];
-            }
+ 
             [dataSource addObjectsFromArray:arrays];
             [self configPageViews];
             [self.allActivityTableView reloadData];

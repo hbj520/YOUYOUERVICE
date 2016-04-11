@@ -14,13 +14,7 @@
 
 @end
 @implementation LoginHelper
-- (id)init{
-    self = [super init];
-    if (self) {
 
-    }
-    return self;
-}
 //登录超时处理
 + (void)loginTimeoutAction{
     [[Config Instance] logOut];

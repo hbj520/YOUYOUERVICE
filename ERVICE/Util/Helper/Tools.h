@@ -54,6 +54,7 @@
 //图片处理，按比例压缩
 +(UIImage *) imageCompressForSize:(UIImage *)sourceImage targetSize:(CGSize)size;
 
-
+//选择控制器
++ (void)chooseRootController;
 
 @end

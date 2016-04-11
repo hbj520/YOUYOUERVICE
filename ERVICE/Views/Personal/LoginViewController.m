@@ -59,9 +59,10 @@
     }
 }
 - (void)LoginSuccess{
-    ApplicationDelegate.mStorybord = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    
-    ApplicationDelegate.window.rootViewController = [ApplicationDelegate.mStorybord instantiateViewControllerWithIdentifier:@"HomeTabBarVC"];
+//    ApplicationDelegate.mStorybord = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    
+//    ApplicationDelegate.window.rootViewController = [ApplicationDelegate.mStorybord instantiateViewControllerWithIdentifier:@"HomeTabBarVC"];
+    [Tools chooseRootController];
 }
 - (IBAction)exitBtn:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:NO];

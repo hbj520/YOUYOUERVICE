@@ -155,6 +155,7 @@
 		AB55971E1CB4C8EA004A5C1B /* TeacherListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB55971C1CB4C8EA004A5C1B /* TeacherListCollectionViewCell.xib */; };
 		AB5597211CB4CF5A004A5C1B /* FamousTechListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5597201CB4CF5A004A5C1B /* FamousTechListModel.m */; };
 		AB5597241CB4DEF7004A5C1B /* HorizontalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5597231CB4DEF7004A5C1B /* HorizontalTableViewCell.m */; };
+		ABB155871CBB84F7000AF953 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB155861CBB84F7000AF953 /* GuideViewController.m */; };
 		C4D013881CB3529900A08903 /* MyTeacherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D013871CB3529900A08903 /* MyTeacherModel.m */; };
 		C4D0138B1CB367EB00A08903 /* AttentionTeacherListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D0138A1CB367EB00A08903 /* AttentionTeacherListViewController.m */; };
 		C4D0138F1CB3693900A08903 /* AttentionListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D0138D1CB3693900A08903 /* AttentionListTableViewCell.m */; };
@@ -436,6 +437,8 @@
 		AB5597201CB4CF5A004A5C1B /* FamousTechListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FamousTechListModel.m; sourceTree = "<group>"; };
 		AB5597221CB4DEF7004A5C1B /* HorizontalTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizontalTableViewCell.h; sourceTree = "<group>"; };
 		AB5597231CB4DEF7004A5C1B /* HorizontalTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalTableViewCell.m; sourceTree = "<group>"; };
+		ABB155851CBB84F7000AF953 /* GuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideViewController.h; sourceTree = "<group>"; };
+		ABB155861CBB84F7000AF953 /* GuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideViewController.m; sourceTree = "<group>"; };
 		BC48EF8878E2FBC29EBE3835 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4D013861CB3529900A08903 /* MyTeacherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTeacherModel.h; sourceTree = "<group>"; };
 		C4D013871CB3529900A08903 /* MyTeacherModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTeacherModel.m; sourceTree = "<group>"; };
@@ -634,6 +637,8 @@
 		18AFC7B21C9697FD001E582F /* HomeTabbarController */ = {
 			isa = PBXGroup;
 			children = (
+				ABB155851CBB84F7000AF953 /* GuideViewController.h */,
+				ABB155861CBB84F7000AF953 /* GuideViewController.m */,
 				18AFC7B31C969838001E582F /* HomeTabbarViewController.h */,
 				18AFC7B41C969838001E582F /* HomeTabbarViewController.m */,
 			);
@@ -1407,6 +1412,7 @@
 				AB3E315A1CB7579E00E58AC7 /* LabelHelper.m in Sources */,
 				AB3CA08F1CB604860004C659 /* FamousListTableViewCell.m in Sources */,
 				18C2F5311C9C0513004D8967 /* CustomGrid.m in Sources */,
+				ABB155871CBB84F7000AF953 /* GuideViewController.m in Sources */,
 				18F1CFE11CAD0A0800939D89 /* FinanceModel.m in Sources */,
 				18EDA71B1C9FDE52002A2697 /* SelectImageView.m in Sources */,
 				18EDA7141C9F95D6002A2697 /* AnnalyzeTableViewCell.m in Sources */,
@@ -1605,7 +1611,7 @@
 					/Users/apple/Desktop/WORK/youyouWork/ERVICE/ERVICE/Vendor/lib,
 				);
 				INFOPLIST_FILE = ERVICE/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1648,7 +1654,7 @@
 					/Users/apple/Desktop/WORK/youyouWork/ERVICE/ERVICE/Vendor/lib,
 				);
 				INFOPLIST_FILE = ERVICE/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

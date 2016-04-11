@@ -20,7 +20,7 @@
     [super viewDidLoad];
     self.navigationItem.hidesBackButton = YES;
     // Do any additional setup after loading the view.
-    NSString *urlString = [NSString stringWithFormat:@"http://36.7.110.253:7777/app/nos_notice_info/%@",self.articleId];
+    NSString *urlString = [NSString stringWithFormat:@"http://36.7.110.253:9999/svnupdate/app/nos_notice_info/%@/%@",self.articleId,KToken];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [self.webView loadRequest:request];
 }

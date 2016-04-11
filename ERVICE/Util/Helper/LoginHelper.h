@@ -9,9 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface LoginHelper : NSObject
-{
-    UIAlertView *alertView;
-}
+
 + (void)loginTimeoutAction;//登录超时处理
 
 @end

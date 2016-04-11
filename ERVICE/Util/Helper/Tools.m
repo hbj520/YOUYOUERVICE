@@ -8,6 +8,9 @@
 
 #import "Tools.h"
 #import "SecurityUtil.h"
+#import "AppDelegate.h"
+
+#import "GuideViewController.h"
 @implementation Tools
 
 + (void)hideKeyBoard{
@@ -215,5 +218,30 @@
     
     UIGraphicsEndImageContext();
     return newImage;
+}
+
+//选择控制器
++ (void)chooseRootController
+{
+    NSString *key = @"CFBundleVersion";
+    // 取出沙盒中存储的上次使用软件的版本号
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *lastVersion = [defaults stringForKey:key];
+    
+    // 获得当前软件的版本号
+    NSString *currentVersion = [NSBundle mainBundle].infoDictionary[key];
+    if ([currentVersion isEqualToString:lastVersion]) {
+//        self.mStorybord = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//        self.window.rootViewController = [self.mStorybord instantiateViewControllerWithIdentifier:@"HomeTabBarVC"];
+//        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//        UIViewController *nav = [mainSB instantiateViewControllerWithIdentifier:@"HomeTabBarVC"];
+//        [UIApplication sharedApplication].keyWindow.rootViewController = nav;
+        [ApplicationDelegate changeToMain];
+    } else { // 新版本
+        [UIApplication sharedApplication].keyWindow.rootViewController = [[GuideViewController alloc] init];
+        // 存储新版本
+        [defaults setObject:currentVersion forKey:key];
+        [defaults synchronize];
+    }
 }
 @end

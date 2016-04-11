@@ -15,6 +15,6 @@ static BOOL isProduction = NO;
 @property (strong, nonatomic) UIWindow *window;
 @property (strong,nonatomic) UIStoryboard *mStorybord;
 @property (strong,nonatomic) UIStoryboard *annalyzeStorybord;
-
+- (void)changeToMain;
 @end
 

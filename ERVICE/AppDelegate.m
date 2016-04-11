@@ -21,11 +21,9 @@
     // Override point for customization after application launch.
     self.annalyzeStorybord = [UIStoryboard storyboardWithName:@"Annalyze" bundle:nil];
     if ([[Config Instance] getToken]) {//已经登录状态
-        self.mStorybord = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        
-        self.window.rootViewController = [self.mStorybord instantiateViewControllerWithIdentifier:@"HomeTabBarVC"];
+       // [self changeToMain];
+        [Tools chooseRootController];
     }else{//未登录状态
-        
         self.mStorybord = [UIStoryboard storyboardWithName:@"Personal" bundle:nil];
         self.window.rootViewController = [self.mStorybord instantiateViewControllerWithIdentifier:@"LoginStorybordId"];
     }
@@ -75,10 +73,13 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+    
     [JPUSHService handleRemoteNotification:userInfo];
+    
     NSLog(@"收到通知");
 }
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+    
     [JPUSHService handleRemoteNotification:userInfo];
 }
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
@@ -126,5 +127,10 @@
     
     NSLog(@"%@",[NSString stringWithFormat:@"收到消息\ndate:%@\ntitle:%@\ncontent:%@", [dateFormatter stringFromDate:[NSDate date]],title,content]);
     
+}
+#pragma mark -PrivateMethod
+- (void)changeToMain{
+    self.mStorybord = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    self.window.rootViewController = [self.mStorybord instantiateViewControllerWithIdentifier:@"HomeTabBarVC"];
 }
 @end

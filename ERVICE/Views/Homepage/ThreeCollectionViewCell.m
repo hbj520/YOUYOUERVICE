@@ -16,7 +16,7 @@
 }
 - (void)configWithData:(HomepageExchangeModel *)exchangeModel{
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:exchangeModel.exchangeImageurl] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        UIImage *img = [Tools imageCompressForSize:image targetSize:CGSizeMake(66, 90)];
+        UIImage *img = [Tools imageCompressForSize:image targetSize:CGSizeMake(66, 66)];
         self.imageView.image = img;
     }];
 
