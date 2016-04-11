@@ -7,7 +7,13 @@
 //
 
 #import "AnnounceTitleView.h"
+#import "AnnounceExchangeModel.h"
+@interface AnnounceTitleView()
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
+
+
+@end
 @implementation AnnounceTitleView
 
 /*
@@ -17,5 +23,8 @@
     // Drawing code
 }
 */
+- (void)configWithData:(AnnounceExchangeModel *)data{
+    self.titleLabel.text = data.exchangName;
+}
 
 @end

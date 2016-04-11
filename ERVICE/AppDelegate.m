@@ -27,7 +27,7 @@
     }else{//未登录状态
         
         self.mStorybord = [UIStoryboard storyboardWithName:@"Personal" bundle:nil];
-        self.window.rootViewController = [self.mStorybord instantiateViewControllerWithIdentifier:@"PersonalStoryId"];
+        self.window.rootViewController = [self.mStorybord instantiateViewControllerWithIdentifier:@"LoginStorybordId"];
     }
 
     //Jpush

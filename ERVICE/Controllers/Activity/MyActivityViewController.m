@@ -131,9 +131,9 @@ static NSString *reuseContentId = @"myActivityContenId";
     NSString *pageString = [NSString stringWithFormat:@"%ld",page];
     [[MyAPI sharedAPI] loadMyActivityWithPage:pageString result:^(BOOL success, NSString *msg, NSMutableArray *arrays) {
         //登录超时处理
-        if ([msg isEqualToString:@"登录超时"]) {
-            [self timeOutAction];
-        }
+//        if ([msg isEqualToString:@"登录超时"]) {
+//            [self timeOutAction];
+//        }
         if (success) {
             dataSource = arrays;
             [self showHint:@"加载完成!!"];

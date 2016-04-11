@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class AnnounceExchangeModel;
 @interface AnnounceTitleView : UIView
-
+- (void)configWithData:(AnnounceExchangeModel *)data;
 @end

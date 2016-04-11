@@ -45,6 +45,7 @@ static NSString *announceContentId = @"announceContentId";
     // Do any additional setup after loading the view.
     //下载数据
     _page = 1;
+    nowExchangeIndex = 0;
     [self loadData];
     [self setupTableView];
     [self setNavTitle];
@@ -194,6 +195,11 @@ static NSString *announceContentId = @"announceContentId";
     }
     if (section == 2) {
         AnnounceTitleView *headerView = [[[NSBundle mainBundle] loadNibNamed:@"AnnounceTitleView" owner:self options:nil] lastObject];
+        if (exchangeDataSource.count > 0) {
+            AnnounceExchangeModel *model = [exchangeDataSource objectAtIndex:nowExchangeIndex];
+            [headerView configWithData:model];
+        }
+
         return headerView;
     }
     return nil;
@@ -225,7 +231,13 @@ static NSString *announceContentId = @"announceContentId";
 
         [scrollCell configWithNormalImgArr:category[0] showGridArr:category[1] isShowTitles:YES];
         scrollCell.mScrollView.gridClickBlock = ^(CustomGrid *grid){
-            NSLog(@"点击头部按钮");
+            nowExchangeIndex = grid.gridIndex;//目前选中的index
+            AnnounceExchangeModel *exchangeModel = [exchangeDataSource objectAtIndex:grid.gridIndex];
+            _page = 1;
+            if (articleDataSource) {
+                [articleDataSource removeAllObjects];
+            }
+            [self loadListDataWithPage:_page withExchangeId:exchangeModel.exchangeId];
         };
         return scrollCell;
     }else if (indexPath.section  == 2){
@@ -270,5 +282,7 @@ static NSString *announceContentId = @"announceContentId";
     }
     
 }
-
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key{
+    
+}
 @end
