@@ -14,7 +14,10 @@
 #import "AttentionListTableViewCell.h"
 
 static NSString *reuserId = @"attentionListId";
-@interface AttentionTeacherListViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface AttentionTeacherListViewController ()<
+UITableViewDelegate,
+UITableViewDataSource,
+UIAlertViewDelegate>
 {
     NSMutableArray *dataSource;
 }
@@ -44,6 +47,10 @@ static NSString *reuserId = @"attentionListId";
     // Dispose of any resources that can be recreated.
 }
 #pragma  mark - PrivateMethod
+- (void)timeOutAction{//超时处理
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"登录超时" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alertView show];
+}
 - (void)noattentionSuccessNotice{
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(noAttetionAct:) name:@"noattentionsuccess" object:nil];
 }
@@ -60,7 +67,10 @@ static NSString *reuserId = @"attentionListId";
         [dataSource removeAllObjects];
     }
     [[MyAPI sharedAPI] myTeacherWithResult:^(BOOL success, NSString *msg, NSMutableArray *arrays) {
-        
+        //登录超时处理
+        if ([msg isEqualToString:@"登录超时"]) {
+            [self timeOutAction];
+        }
         if (success) {
             dataSource = arrays;
             [self.tableView reloadData];
@@ -108,5 +118,13 @@ static NSString *reuserId = @"attentionListId";
 
 - (IBAction)backBtn:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex == 1) {//确定，返回登录
+        [LoginHelper loginTimeoutAction];
+    }
+    
 }
 @end

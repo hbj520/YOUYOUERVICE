@@ -19,7 +19,7 @@
 #import <MJRefresh.h>
 static NSString *reuseHeaderId = @"headerId";
 static NSString *reuseContentId = @"contentId";
-@interface AllActivityViewController ()<UITableViewDataSource,UITableViewDelegate,SDCycleScrollViewDelegate>
+@interface AllActivityViewController ()<UITableViewDataSource,UITableViewDelegate,SDCycleScrollViewDelegate,UIAlertViewDelegate>
 {
     SDCycleScrollView *_headerView;
     NSInteger _page;
@@ -36,8 +36,9 @@ static NSString *reuseContentId = @"contentId";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //下载数据
+    _page = 1;
     [self loadBannersData];
-    [self loadDataWithPage:0];
+    [self loadDataWithPage:_page];
     [self configTableView];
     
     //添加刷新
@@ -62,7 +63,16 @@ static NSString *reuseContentId = @"contentId";
 - (void)addRefresh{
     __weak AllActivityViewController *weakself = self;
     self.allActivityTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakself loadBannersData];
         [weakself loadDataWithPage:0];
+        _page = 1;
+        if (dataSource) {
+            [dataSource removeAllObjects];
+        }
+    }];
+    self.allActivityTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        _page++;
+        [weakself loadDataWithPage:_page];
     }];
 }
 - (void)configTableView{
@@ -98,7 +108,10 @@ static NSString *reuseContentId = @"contentId";
     return nil;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 10;
+    if (section == 0) {
+        return 10;
+    }
+    return 0;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
@@ -135,6 +148,10 @@ static NSString *reuseContentId = @"contentId";
 }
 
 #pragma mark - PrivateMethod
+- (void)timeOutAction{//超时处理
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"登录超时" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alertView show];
+}
 - (void)configPageViews{
     NSMutableArray *imagArray = [NSMutableArray array];
     for (HomepageBannerModel *model in bannerDataSource) {
@@ -161,8 +178,15 @@ static NSString *reuseContentId = @"contentId";
     [self showHudInView:self.view hint:@"加载中..."];
     NSString *pageString = [NSString stringWithFormat:@"%ld",page];
     [[MyAPI sharedAPI] loadAllActivityWithPage:pageString result:^(BOOL success, NSString *msg, NSMutableArray *arrays) {
+        //登录超时处理
+        if ([msg isEqualToString:@"登录超时"]) {
+            [self timeOutAction];
+        }
         if (success) {
-            dataSource = arrays;
+            if (!dataSource) {
+                dataSource = [NSMutableArray array];
+            }
+            [dataSource addObjectsFromArray:arrays];
             [self configPageViews];
             [self.allActivityTableView reloadData];
             [self hideHud];
@@ -171,10 +195,14 @@ static NSString *reuseContentId = @"contentId";
             [self hideHud];
         }
         [self.allActivityTableView.mj_header endRefreshing];
+        [self.allActivityTableView.mj_footer endRefreshing];
+        [self hideHud];
     } errorBlock:^(NSError *enginerError) {
         [self showHint:@"加载出错!!"];
         [self hideHud];
         [self.allActivityTableView.mj_header endRefreshing];
+        [self.allActivityTableView.mj_footer endRefreshing];
+
     }];
 }
 #pragma mark - XLSwipeContainerItemDelegate
@@ -192,5 +220,13 @@ static NSString *reuseContentId = @"contentId";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     ActivityDetailViewController *detailVC = (ActivityDetailViewController *)segue.destinationViewController;
     detailVC.activityId = (NSString *)sender;
+}
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex == 1) {//确定，返回登录
+        [LoginHelper loginTimeoutAction];
+    }
+    
 }
 @end

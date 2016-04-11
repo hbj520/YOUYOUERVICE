@@ -33,6 +33,12 @@
     self.teachIconImageView.layer.masksToBounds = YES;
     [self.starView configWithStarLevel:model.techStars.integerValue/2];
     self.teachNameLabel.text = model.techName;
+    self.attentionBtn.selected = model.istechAttention;
+    if (model.istechAttention) {
+        [self.attentionBtn setImage:[UIImage imageNamed:@"teacherlist_noattention"] forState:UIControlStateNormal];
+    }else{
+        [self.attentionBtn setImage:[UIImage imageNamed:@"teacherlist_attention"] forState:UIControlStateNormal];
+    }
     
 }
 - (IBAction)attentionBtn:(UIButton *)sender {

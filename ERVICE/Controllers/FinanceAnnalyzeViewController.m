@@ -23,7 +23,8 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 @interface FinanceAnnalyzeViewController ()<
                          UITableViewDataSource,
-                         UITableViewDelegate>
+                         UITableViewDelegate,
+                         UIAlertViewDelegate>
 {
     NSMutableArray *dataSource;
     SDCycleScrollView *_headerView;

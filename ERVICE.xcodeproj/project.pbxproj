@@ -149,6 +149,7 @@
 		AB3CA09B1CB6339A0004C659 /* CustomerServiceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3CA09A1CB6339A0004C659 /* CustomerServiceModel.m */; };
 		AB3E315A1CB7579E00E58AC7 /* LabelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3E31591CB7579E00E58AC7 /* LabelHelper.m */; };
 		AB3E315D1CB7896800E58AC7 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3E315C1CB7896800E58AC7 /* NSDate+Utilities.m */; };
+		AB3E31601CB7B35C00E58AC7 /* LoginHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3E315F1CB7B35C00E58AC7 /* LoginHelper.m */; };
 		AB5597191CB4BF34004A5C1B /* FamousListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5597181CB4BF34004A5C1B /* FamousListViewController.m */; };
 		AB55971D1CB4C8EA004A5C1B /* TeacherListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB55971B1CB4C8EA004A5C1B /* TeacherListCollectionViewCell.m */; };
 		AB55971E1CB4C8EA004A5C1B /* TeacherListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB55971C1CB4C8EA004A5C1B /* TeacherListCollectionViewCell.xib */; };
@@ -424,6 +425,8 @@
 		AB3E31591CB7579E00E58AC7 /* LabelHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelHelper.m; sourceTree = "<group>"; };
 		AB3E315B1CB7896800E58AC7 /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
 		AB3E315C1CB7896800E58AC7 /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
+		AB3E315E1CB7B35C00E58AC7 /* LoginHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginHelper.h; sourceTree = "<group>"; };
+		AB3E315F1CB7B35C00E58AC7 /* LoginHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginHelper.m; sourceTree = "<group>"; };
 		AB5597171CB4BF34004A5C1B /* FamousListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FamousListViewController.h; sourceTree = "<group>"; };
 		AB5597181CB4BF34004A5C1B /* FamousListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FamousListViewController.m; sourceTree = "<group>"; };
 		AB55971A1CB4C8EA004A5C1B /* TeacherListCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeacherListCollectionViewCell.h; sourceTree = "<group>"; };
@@ -514,6 +517,8 @@
 				18F1CFD71CACECF600939D89 /* Config.m */,
 				AB3E31581CB7579E00E58AC7 /* LabelHelper.h */,
 				AB3E31591CB7579E00E58AC7 /* LabelHelper.m */,
+				AB3E315E1CB7B35C00E58AC7 /* LoginHelper.h */,
+				AB3E315F1CB7B35C00E58AC7 /* LoginHelper.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1354,6 +1359,7 @@
 				186884311C9A492B00C040D9 /* AttentionTableViewCell.m in Sources */,
 				18F1CFD21CACB94100939D89 /* MoveBtnScrollView.m in Sources */,
 				186B5FF31CA902E10064853B /* HomepageExchangeModel.m in Sources */,
+				AB3E31601CB7B35C00E58AC7 /* LoginHelper.m in Sources */,
 				18E5D46D1CA1822F00D99A86 /* MyActivityViewController.m in Sources */,
 				18F1CFD51CACDE4A00939D89 /* TeacherArticleDetailViewController.m in Sources */,
 				18ED7B251CA28D9A00454F58 /* ActivityWebViewTableViewCell.m in Sources */,

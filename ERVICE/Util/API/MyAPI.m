@@ -115,6 +115,9 @@
                                  };
     [self.manager POST:@"nos_shouye" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
          NSString *status = responseObject[@"status"];
+        if ([status isEqualToString:@"-1"]) {//超时处理
+          result(NO,@"登录超时",nil);
+        }
             if ([status isEqualToString:@"1"]) {
                 NSDictionary *data = responseObject[@"data"];
                 NSArray *bannerArray = data[@"banner"];
@@ -139,6 +142,11 @@
                                 @"token":KToken
                                 };
     [self.manager POST:@"nos_topteacher" parameters:paramters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *status = responseObject[@"status"];
+        if ([status isEqualToString:@"-1"]) {//超时处理
+            result(NO,@"登录超时",nil);
+        }
+        
         if ([responseObject[@"status"] isEqualToString:@"1"]) {
             NSArray *data = responseObject[@"data"];
             NSMutableArray *modelArray = [[FamousTechListModel alloc] buildData:data];
@@ -158,6 +166,11 @@
                                  ,@"token":KToken
                                  };
     [self.manager POST:@"nos_starteacher" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *status = responseObject[@"status"];
+        if ([status isEqualToString:@"-1"]) {//超时处理
+            result(NO,@"登录超时",nil);
+        }
+
         if ([responseObject[@"status"] isEqualToString:@"1"]) {
             NSArray *data = responseObject[@"data"];
             NSMutableArray *modelArray = [[FamousTechListModel alloc] buildData:data];
@@ -180,7 +193,11 @@
                                  @"token":KToken
                                  };
     [self.manager POST:@"nos_getserver" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        
         NSString *status = responseObject[@"status"];
+        if ([status isEqualToString:@"-1"]) {//超时处理
+            result(NO,@"登录超时",nil);
+        }
         NSString *info = responseObject[@"info"];
         if ([status isEqualToString:@"1"]) {
             NSArray *data = responseObject[@"data"];
@@ -206,6 +223,9 @@
                                 };
     [self.manager POST:@"nos_teachers" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSString *status = responseObject[@"status"];
+        if ([status isEqualToString:@"-1"]) {//超时处理
+            result(NO,@"登录超时",nil);
+        }
         if ([status isEqualToString:@"1"]) {
             NSArray *data = responseObject[@"data"];
            NSMutableArray *lecArray = [[LecturerModel alloc] buildWithData:data];
@@ -230,6 +250,9 @@
         
         
         NSString *status = responseObject[@"status"];
+        if ([status isEqualToString:@"-1"]) {//超时处理
+            result(NO,@"登录超时");
+        }
         NSString *info = responseObject[@"info"];
         if ([status isEqualToString:@"1"]) {
             result(YES,info);
@@ -252,6 +275,9 @@
                                  };
     [self.manager POST:@"delAttention" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSString *status = responseObject[@"status"];
+        if ([status isEqualToString:@"-1"]) {//超时处理
+            result(NO,@"登录超时");
+        }
         NSString *info = responseObject[@"info"];
         if ([status isEqualToString:@"1"]) {
             result(YES,info);
@@ -277,6 +303,11 @@
                                  @"token":KToken
                                  };
     [self.manager POST:@"nos_teachers_info" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        
+        NSString *status = responseObject[@"status"];
+        if ([status isEqualToString:@"-1"]) {//超时处理
+            result(NO,@"登录超时",nil);
+        }
         if ([responseObject[@"status"] isEqualToString:@"1"]) {
             NSDictionary *dic = responseObject[@"data"];
             NSArray *category = dic[@"cat"];
@@ -309,6 +340,9 @@
                                  };
     [self.manager POST:@"nos_fenxi" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSString *status = responseObject[@"status"];
+        if ([status isEqualToString:@"-1"]) {//超时处理
+            result(NO,@"登录超时",nil);
+        }
         if ([status isEqualToString:@"1"]) {
             NSDictionary *data = responseObject[@"data"];
             NSArray *banner = data[@"banner"];
@@ -341,13 +375,18 @@
                                  };
 
     [self.manager POST:@"notice_banner" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-                if ([responseObject[@"status"] isEqualToString:@"1"]) {
+        NSString *status = responseObject[@"status"];
+        if ([status isEqualToString:@"-1"]) {//超时处理
+            result(NO,@"登录超时",nil);
+        }
+        
+        if ([responseObject[@"status"] isEqualToString:@"1"]) {
                     NSArray *data = responseObject[@"data"];
                     NSMutableArray *dataBanner = [[HomepageBannerModel alloc] buildData:data];
                     result(YES,@"下载完成",dataBanner);
-                }else{
+        }else{
                     result(NO,@"下载失败",nil);
-                }
+              }
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         errorResult(error);
     }];
@@ -359,6 +398,11 @@
                                  @"token":KToken
                                  };
     [self.manager POST:@"exchange" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *status = responseObject[@"status"];
+        if ([status isEqualToString:@"-1"]) {//超时处理
+            result(NO,@"登录超时",nil);
+        }
+        
         if ([responseObject[@"status"] isEqualToString:@"1"]) {
             NSDictionary *data = responseObject[@"data"];
             NSArray *cat = data[@"cat"];
@@ -383,6 +427,11 @@
                                  @"token":KToken
                                  };
     [self.manager POST:@"nos_notice" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        
+        NSString *status = responseObject[@"status"];
+        if ([status isEqualToString:@"-1"]) {//超时处理
+            result(NO,@"登录超时",nil);
+        }
         if ([responseObject[@"status"] isEqualToString:@"1"]) {
             NSDictionary *data = responseObject[@"data"];
             NSArray *list = data[@"list"];
@@ -403,7 +452,10 @@
                                  @"token":KToken
                                  };
     [self.manager POST:@"activity_banner" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-        
+        NSString *status = responseObject[@"status"];
+        if ([status isEqualToString:@"-1"]) {//超时处理
+            result(NO,@"登录超时",nil);
+        }
         if ([responseObject[@"status"] isEqualToString:@"1"]) {
             NSArray *data = responseObject[@"data"];
             NSMutableArray *dataBanner = [[HomepageBannerModel alloc] buildData:data];
@@ -423,13 +475,19 @@
                                  @"page":page,
                                  @"token":KToken
                                  };
-    [self.manager GET:@"nos_activity" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    [self.manager POST:@"nos_activity" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         
         
         NSString *status = responseObject[@"status"];
+        if ([status isEqualToString:@"-1"]) {//超时处理
+            result(NO,@"登录超时",nil);
+        }
         if ([status isEqualToString:@"1"]) {
             NSArray *data = responseObject[@"data"];
-            NSMutableArray *activityData = [[ActivityModel alloc] buildWithData:data];
+            NSMutableArray *activityData;
+            if (data.count > 0) {
+                activityData  = [[ActivityModel alloc] buildWithData:data];
+            }
             result(YES,@"下载完成",activityData);
         }else{
             result(NO,@"下载失败",nil);
@@ -450,6 +508,9 @@
                                  };
     [self.manager GET:@"my_activity" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSString *status = responseObject[@"status"];
+        if ([status isEqualToString:@"-1"]) {//超时处理
+            result(NO,@"登录超时",nil);
+        }
         if ([status isEqualToString:@"1"]) {
             NSArray *data = responseObject[@"data"];
             NSMutableArray *activityData = [[ActivityModel alloc] buildWithData:data];
@@ -471,6 +532,10 @@
                                  @"token":KToken
                                  };
     [self.manager POST:@"nos_activity_info" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *status = responseObject[@"status"];
+        if ([status isEqualToString:@"-1"]) {//超时处理
+            result(NO,@"登录超时",nil);
+        }
         if ([responseObject[@"status"] isEqualToString:@"1"]) {
             NSDictionary *data = responseObject[@"data"];
             ActivityDetailModel *actModel = [[ActivityDetailModel alloc] buildWithData:data];
@@ -493,6 +558,9 @@
                                  };
     [self.manager POST:@"enroll_activity" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSString *status = responseObject[@"status"];
+        if ([status isEqualToString:@"-1"]) {//超时处理
+            result(NO,@"登录超时");
+        }
         NSString *info = responseObject[@"info"];
         if ([status isEqualToString:@"1"]) {
             result(YES,info);
@@ -510,7 +578,10 @@
                                  };
     [self.manager POST:@"user_teacher_info" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         
-          NSString *status = responseObject[@"status"];
+        NSString *status = responseObject[@"status"];
+        if ([status isEqualToString:@"-1"]) {//超时处理
+            result(NO,@"登录超时",nil);
+        }
         if ([status isEqualToString:@"1"]) {
             NSDictionary *data = responseObject[@"data"];
             NSArray *list = data[@"list"];

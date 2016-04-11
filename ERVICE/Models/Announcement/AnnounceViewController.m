@@ -25,13 +25,14 @@ static NSString *announceHeaderReuseId = @"announceHeaderReuseId";
 static NSString *announceScrollReuseId = @"announceScrollReuseId";
 static NSString *announceTitleReuseId = @"announceTitleReuseId";
 static NSString *announceContentId = @"announceContentId";
-@interface AnnounceViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>
+@interface AnnounceViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,UIAlertViewDelegate>
 {
     SDCycleScrollView *_headerView;
     NSMutableArray *bannerDataSource;//滚动视图数据源
     NSMutableArray *exchangeDataSource;// 交易所数据源
     NSMutableArray *articleDataSource;// 文章数据
-    
+    NSInteger _page;//页数
+    NSInteger nowExchangeIndex;//现在选中的交易所索引
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -43,6 +44,7 @@ static NSString *announceContentId = @"announceContentId";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //下载数据
+    _page = 1;
     [self loadData];
     [self setupTableView];
     [self setNavTitle];
@@ -56,10 +58,23 @@ static NSString *announceContentId = @"announceContentId";
     // Dispose of any resources that can be recreated.
 }
 #pragma mark - PrivateMethod
+- (void)timeOutAction{//超时处理
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"登录超时" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alertView show];
+}
 - (void)addRefresh{
     __weak  AnnounceViewController *weakself = self;
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _page = 1;
+        if (articleDataSource) {
+            [articleDataSource removeAllObjects];
+        }
         [weakself loadData];
+    }];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        _page++;
+        AnnounceExchangeModel *model = exchangeDataSource[nowExchangeIndex];
+        [weakself loadListDataWithPage:_page withExchangeId:model.exchangeId];
     }];
 }
 - (NSMutableArray *)configlImagesAndTitlesWitAnnalyArray:(NSArray *)array{
@@ -88,6 +103,10 @@ static NSString *announceContentId = @"announceContentId";
 - (void)loadData{
     // 下载滚动视图
    [[MyAPI sharedAPI] AnnouncementBannerWithResult:^(BOOL success, NSString *msg, NSMutableArray *arrays) {
+       //登录超时处理
+       if ([msg isEqualToString:@"登录超时"]) {
+           [self timeOutAction];
+       }
        if (success) {
            bannerDataSource = arrays;
            [self configPageViews];
@@ -107,7 +126,7 @@ static NSString *announceContentId = @"announceContentId";
         if (success) {
             exchangeDataSource = arrays;
             AnnounceExchangeModel *model = arrays[0];
-            [self loadListDataWithPage: 0 withExchangeId:model.exchangeId];
+            [self loadListDataWithPage:0 withExchangeId:model.exchangeId];
             [self.tableView reloadData];
 
         }else{
@@ -120,15 +139,24 @@ static NSString *announceContentId = @"announceContentId";
 }
 //下载文章列表
 - (void)loadListDataWithPage:(NSInteger)page withExchangeId:(NSString *)exid{
+    [self showHudInView:self.view hint:@"加载中..."];
     NSString *pagestring = [NSString stringWithFormat:@"%ld",page];
    [[MyAPI sharedAPI] AnnounceListWithParamters:exid page:pagestring result:^(BOOL success, NSString *msg, NSMutableArray *arrays) {
        if (success) {
-           articleDataSource = arrays;
+           if (!articleDataSource) {
+               articleDataSource = [NSMutableArray array];
+           }
+           [articleDataSource addObjectsFromArray:arrays];
            [self.tableView reloadData];
 
        }
+       [self.tableView.mj_footer endRefreshing];
+       [self.tableView.mj_header endRefreshing];
+       [self hideHud];
    } errorResult:^(NSError *enginerError) {
-       
+       [self.tableView.mj_footer endRefreshing];
+       [self.tableView.mj_header endRefreshing];
+       [self hideHud];
    }];
 }
 - (void)setupTableView{
@@ -234,6 +262,13 @@ static NSString *announceContentId = @"announceContentId";
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex == 1) {//确定，返回登录
+        [LoginHelper loginTimeoutAction];
+    }
+    
+}
 
 @end

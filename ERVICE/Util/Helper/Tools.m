@@ -10,8 +10,6 @@
 #import "SecurityUtil.h"
 @implementation Tools
 
-
-
 + (void)hideKeyBoard{
     UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
     if (!keyWindow) {

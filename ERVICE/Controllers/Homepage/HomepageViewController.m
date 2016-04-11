@@ -30,7 +30,8 @@
 @interface HomepageViewController ()<UITableViewDataSource,
                                      UITableViewDelegate,
                                      SDCycleScrollViewDelegate,
-                                     HomepageTabelViewCellDelegate>
+                                     HomepageTabelViewCellDelegate,
+                                     UIAlertViewDelegate>
 {
     SDCycleScrollView *_headerView;
     NSMutableArray *bannerData;//滚动视图数据
@@ -63,6 +64,10 @@
     // Dispose of any resources that can be recreated.
 }
 #pragma mark - privateMethod
+- (void)timeOutAction{//超时处理
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"登录超时" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alertView show];
+}
 - (void)addRefresh{
     __weak  HomepageViewController *weakself = self;
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -72,8 +77,11 @@
 - (void)loadData{
     [self showHudInView:self.view hint:@"加载中..."];
     [[MyAPI sharedAPI] getHomepageDataWithResult:^(BOOL success, NSString *msg, NSMutableArray *arrays) {
+        //登录超时处理
+        if ([msg isEqualToString:@"登录超时"]) {
+            [self timeOutAction];
+        }
         if (success) {
-            
             bannerData = arrays[0];
             exchangeData = arrays[1];
             _collectionLines = [Tools simulateLinesWithArray:exchangeData.count
@@ -249,6 +257,13 @@ withList:3];
         
     }
 }
-
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex == 1) {//确定，返回登录
+        [LoginHelper loginTimeoutAction];
+    }
+    
+}
 
 @end

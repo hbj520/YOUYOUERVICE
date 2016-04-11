@@ -20,7 +20,7 @@
 static NSString *detailHeaderId = @"detailHeaderReuseId";
 static NSString *detailSmailHeaderId = @"detialSmaillHeaderId";
 static NSString *detailWebViewId = @"detailWebViewId";
-@interface ActivityDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface ActivityDetailViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 {
     UIButton *apartBtn;
 }
@@ -109,9 +109,17 @@ static NSString *detailWebViewId = @"detailWebViewId";
     [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark - PrivateMethod
+- (void)timeOutAction{//超时处理
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"登录超时" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alertView show];
+}
 - (void)loadData{
     [self showHudInView:self.view hint:@"加载数据中..."];
     [[MyAPI sharedAPI] loadActivityDetailWithActivityId:self.activityId result:^(BOOL success, NSString *msg, id object) {
+        //登录超时处理
+        if ([msg isEqualToString:@"登录超时"]) {
+            [self timeOutAction];
+        }
         if (success) {
             self.activityDataSourece = (ActivityDetailModel *)object;
             [self setupTableView];
@@ -147,6 +155,10 @@ static NSString *detailWebViewId = @"detailWebViewId";
     [self showHudInView:self.view hint:@"报名参加..."];
     [[MyAPI sharedAPI] apartActivityWithActivityId:self.activityId result:^(BOOL sucess, NSString *msg) {
         if (sucess) {
+            //登录超时处理
+            if ([msg isEqualToString:@"登录超时"]) {
+                [self timeOutAction];
+            }
             //报名成功
             [apartBtn setBackgroundColor:[UIColor lightGrayColor]];
             apartBtn.enabled = NO;
@@ -166,4 +178,12 @@ static NSString *detailWebViewId = @"detailWebViewId";
 //    ActivityApplyViewController *applyVC = (ActivityApplyViewController *)segue.destinationViewController;
 //    applyVC.activityId = (NSString *)sender;
 //}
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex == 1) {//确定，返回登录
+        [LoginHelper loginTimeoutAction];
+    }
+    
+}
 @end

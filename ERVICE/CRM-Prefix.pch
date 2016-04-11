@@ -29,6 +29,7 @@
     #import "UIViewController+HUD.h"
     #import "Marco.h"
     #import "Config.h"
+    #import "LoginHelper.h"
    //  #import "UtilsMacro.h"
    // #import "UIImage+Compress.h"
    // #import "DBManager.h"

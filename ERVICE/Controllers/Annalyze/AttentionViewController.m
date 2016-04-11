@@ -11,7 +11,7 @@
 #import "TeacherAnlyzeViewController.h"
 #import "LecturerModel.h"
 static NSString *reuseId = @"annalyzeId";
-@interface AttentionViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface AttentionViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSource;//数据源
 - (IBAction)backBtn:(UIBarButtonItem *)sender;
@@ -106,9 +106,17 @@ static NSString *reuseId = @"annalyzeId";
     [self performSegueWithIdentifier:@"teacherSegue" sender:lecModel];
 }
 #pragma mark - PrivateMethod
+- (void)timeOutAction{//超时处理
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"登录超时" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alertView show];
+}
 - (void)loadData{
     [self showHudInView:self.view hint:@"加载中..."];
     [[MyAPI sharedAPI] getLecturerListWithExId:self.exid result:^(BOOL success, NSString *msg, NSMutableArray *arrays) {
+        //登录超时处理
+        if ([msg isEqualToString:@"登录超时"]) {
+            [self timeOutAction];
+        }
         if (success) {
             self.dataSource = arrays;
             [self.tableView reloadData];
@@ -138,5 +146,13 @@ static NSString *reuseId = @"annalyzeId";
 
 - (IBAction)backBtn:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex == 1) {//确定，返回登录
+        [LoginHelper loginTimeoutAction];
+    }
+    
 }
 @end

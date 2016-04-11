@@ -34,7 +34,7 @@
     for (NSDictionary *dic in data) {
         NSString *techName = dic[@"username"];
         NSString *techDes = dic[@"description"];
-        NSString *techId = dic[@"tid"];
+        NSString *techId = dic[@"userid"];
         NSString *techStars = dic[@"star"];
         NSString *techExName = dic[@"ex_name"];
         //NSNumber *fansNum = dic[@"num"];

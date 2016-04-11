@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef void (^TapAttentionBlock)(id);
 @class FamousTechListModel;
 @interface FamousListTableViewCell : UITableViewCell
+@property (nonatomic,copy) TapAttentionBlock tapBlock;
 - (void)configWithData:(FamousTechListModel *)model;
 @end

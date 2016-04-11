@@ -15,7 +15,7 @@
 #import <MJRefresh.h>
 static NSString *reuseHeaderId = @"myActivityId";
 static NSString *reuseContentId = @"myActivityContenId";
-@interface MyActivityViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface MyActivityViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 {
     NSMutableArray *dataSource;
 }
@@ -122,10 +122,18 @@ static NSString *reuseContentId = @"myActivityContenId";
      return [UIColor colorWithHexString:@"FF5000"];
 }
 #pragma mark -PrivateMethod
+- (void)timeOutAction{//超时处理
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"登录超时" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alertView show];
+}
 - (void)loadDataWithPage:(NSInteger )page{
     [self showHudInView:self.view hint:@"加载中..."];
     NSString *pageString = [NSString stringWithFormat:@"%ld",page];
     [[MyAPI sharedAPI] loadMyActivityWithPage:pageString result:^(BOOL success, NSString *msg, NSMutableArray *arrays) {
+        //登录超时处理
+        if ([msg isEqualToString:@"登录超时"]) {
+            [self timeOutAction];
+        }
         if (success) {
             dataSource = arrays;
             [self showHint:@"加载完成!!"];
@@ -141,5 +149,13 @@ static NSString *reuseContentId = @"myActivityContenId";
         [self hideHud];
         [self.myActivityTableView.mj_header endRefreshing];
     }];
+}
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex == 1) {//确定，返回登录
+        [LoginHelper loginTimeoutAction];
+    }
+    
 }
 @end

@@ -9,6 +9,8 @@
 #import "TeacherAnlyzeViewController.h"
 #import "TeacherArticleDetailViewController.h"
 
+#import <MJRefresh/MJRefresh.h>
+
 #import "TeacherAnnalyzeTableViewCell.h"
 #import "AnnalyzeTitleTableViewCell.h"
 #import "AnnalyzeTableViewCell.h"
@@ -21,9 +23,13 @@
 
 @interface TeacherAnlyzeViewController ()<
                                 UITableViewDataSource,
-                                UITabBarDelegate>
+                                UITabBarDelegate,
+                                UIAlertViewDelegate>
 {
     TeacherAnnalyzeModel *annalyzeModel;//数据源
+    NSMutableArray *articleDataSource;//老师文章数据源
+    NSInteger _page;
+    NSString *categoryId;//分类id
 }
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backBtn;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -36,10 +42,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.hidesBackButton = YES;
-    self.navigationItem.title = self.teacherName; 
+    self.navigationItem.title = self.teacherName;
+    _page = 1;
     [self ConfigTableView];
+    categoryId = @"";
     //下载数据
-    [self loadDataWithTeacherId:self.teacherId page:@"0" articleId:@""];
+    [self loadDataWithTeacherId:self.teacherId page:_page articleId:categoryId];
+    
+    //添加刷新和下拉加载更多
+    [self addRefresh];
+    
     // Do any additional setup after loading the view.
 }
 
@@ -48,6 +60,24 @@
     // Dispose of any resources that can be recreated.
 }
 #pragma mark - PrivateMethod
+- (void)timeOutAction{//超时处理
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"登录超时" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alertView show];
+}
+- (void)addRefresh{
+    __weak  TeacherAnlyzeViewController *weakself = self;
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        if (articleDataSource.count > 0) {
+            [articleDataSource removeAllObjects];
+        }
+        _page = 1;
+        [weakself loadDataWithTeacherId:self.teacherId page:_page articleId:categoryId];
+    }];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        _page++;
+        [weakself loadDataWithTeacherId:self.teacherId page:_page articleId:categoryId];
+    }];
+}
 - (NSMutableArray *)configlImagesAndTitlesWitAnnalyModel:(TeacherAnnalyzeModel *)model{
     NSMutableArray *data = [NSMutableArray array];
     NSMutableArray *imageArray = [NSMutableArray array];
@@ -61,17 +91,31 @@
     return data;
     
 }
-- (void)loadDataWithTeacherId:(NSString *)teacherId page:(NSString *)page articleId:(NSString *)articleId{
-//    if (annalyzeModel) {
-//        annalyzeModel = nil;
-//    }
-    [[MyAPI sharedAPI] LecturerDetailWithTeacherId:teacherId articleId:articleId page:page result:^(BOOL success, NSString *msg, id object) {
+- (void)loadDataWithTeacherId:(NSString *)teacherId page:(NSInteger)page articleId:(NSString *)articleId{
+    [self showHudInView:self.view hint:@"加载中..."];
+    NSString *nowPage = [NSString stringWithFormat:@"%ld",page];
+    [[MyAPI sharedAPI] LecturerDetailWithTeacherId:teacherId articleId:articleId page:nowPage result:^(BOOL success, NSString *msg, id object) {
+        
+        //登录超时处理
+        if ([msg isEqualToString:@"登录超时"]) {
+            [self timeOutAction];
+        }
+
         if (success) {
             annalyzeModel = (TeacherAnnalyzeModel *)object;
+            if (!articleDataSource) {
+                articleDataSource = [NSMutableArray array];
+            }
+            [articleDataSource addObjectsFromArray:annalyzeModel.articleArray];
             [self.tableView reloadData];
         }
+        [self.tableView.mj_footer endRefreshing];
+        [self.tableView.mj_header endRefreshing];
+        [self hideHud];
     } errorResult:^(NSError *enginerError) {
-        
+        [self.tableView.mj_footer endRefreshing];
+        [self.tableView.mj_header endRefreshing];
+        [self hideHud];
     }];
 }
 - (void)ConfigTableView{
@@ -103,7 +147,9 @@
         cell.mScrollView.showsHorizontalScrollIndicator = NO;
         cell.mScrollView.showsVerticalScrollIndicator = NO;
         cell.clickItemBlock = ^(NSInteger index){
-            [annalyzeModel.categoryArray objectAtIndex:index];
+         TeacherCatigoryModel *catemodel = [annalyzeModel.categoryArray objectAtIndex:index];
+            _page = 1;
+            [self loadDataWithTeacherId:self.teacherId page:_page articleId:catemodel.categoryId];
             NSLog(@"点击头部%ld按钮",index);
         };
         return cell;
@@ -156,5 +202,13 @@
 
 - (IBAction)backBtn:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex == 1) {//确定，返回登录
+        [LoginHelper loginTimeoutAction];
+    }
+    
 }
 @end

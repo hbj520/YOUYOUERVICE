@@ -31,6 +31,9 @@
                             <constraint firstAttribute="height" constant="28" id="ieA-hG-vFO"/>
                         </constraints>
                         <state key="normal" image="teacherlist_attention"/>
+                        <connections>
+                            <action selector="attentionBtn:" destination="zf8-qf-f06" eventType="touchUpInside" id="HH4-LC-IOS"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="于老师" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWF-sJ-xkg">
                         <rect key="frame" x="83" y="19" width="89" height="25"/>

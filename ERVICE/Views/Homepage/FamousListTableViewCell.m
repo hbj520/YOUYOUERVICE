@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *techNameLabel;
 @property (weak, nonatomic) IBOutlet starView *starView;
 @property (weak, nonatomic) IBOutlet UIButton *attentionBtn;
+- (IBAction)attentionBtn:(UIButton *)sender;
 
 @end
 @implementation FamousListTableViewCell
@@ -40,5 +41,10 @@
     [self.starView configWithStarLevel:model.techStars.integerValue/2];
     
     
+}
+- (IBAction)attentionBtn:(UIButton *)sender {
+    if (self.tapBlock) {
+        self.tapBlock(sender);
+    }
 }
 @end

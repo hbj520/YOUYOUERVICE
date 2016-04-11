@@ -10,10 +10,13 @@
 
 #import "CustomerServiceTableViewCell.h"
 
+#import <MJRefresh/MJRefresh.h>
+
 static NSString *cellReuseId = @"cellReuseId";
-@interface CustomerServiceViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface CustomerServiceViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 {
     NSMutableArray *dataSource;// 数据源
+    NSInteger _page;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction)backBtn:(UIBarButtonItem *)sender;
@@ -25,11 +28,15 @@ static NSString *cellReuseId = @"cellReuseId";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _page = 1;
     //下载数据
-    [self loadDataWithPage:0];
+    [self loadDataWithPage:1];
     
     //registerTableviewcell
     [self registerTableViewcell];
+    
+    //添加刷新和下拉加载更多
+    [self addRefresh];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,6 +54,24 @@ static NSString *cellReuseId = @"cellReuseId";
 }
 */
 #pragma mark - PrivateMethod
+- (void)timeOutAction{//超时处理
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"登录超时" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alertView show];
+}
+- (void)addRefresh{
+    __weak  CustomerServiceViewController *weakself = self;
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        if (dataSource.count > 0) {
+            [dataSource removeAllObjects];
+        }
+        _page = 1;
+        [weakself loadDataWithPage:1];
+    }];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        ++_page;
+        [weakself loadDataWithPage:_page];
+    }];
+}
 - (void)registerTableViewcell{
     [self.tableView registerClass:[CustomerServiceTableViewCell class] forCellReuseIdentifier:cellReuseId];
     self.tableView.delegate = self;
@@ -54,14 +79,27 @@ static NSString *cellReuseId = @"cellReuseId";
     
 }
 - (void)loadDataWithPage:(NSInteger)page{
+    [self showHudInView:self.view hint:@"加载中..."];
     NSString *nowPage = [NSString stringWithFormat:@"%ld",page];
     [[MyAPI sharedAPI] customerServiceListWithPage:nowPage result:^(BOOL success, NSString *msg, NSMutableArray *arrays) {
+        //登录超时处理
+        if ([msg isEqualToString:@"登录超时"]) {
+            [self timeOutAction];
+        }
         if (success) {
-            dataSource = arrays;
+            if (!dataSource) {
+                dataSource = [NSMutableArray array];
+            }
+            [dataSource addObjectsFromArray:arrays];
             [self.tableView reloadData];
         }
+        [self hideHud];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
     } errorResult:^(NSError *enginerError) {
-        
+        [self hideHud];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
     }];
 }
 
@@ -83,5 +121,13 @@ static NSString *cellReuseId = @"cellReuseId";
 }
 - (IBAction)backBtn:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex == 1) {//确定，返回登录
+        [LoginHelper loginTimeoutAction];
+    }
+    
 }
 @end
