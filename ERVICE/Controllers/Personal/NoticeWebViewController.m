@@ -1,29 +1,28 @@
 //
-//  TeacherArticleDetailViewController.m
+//  NoticeWebViewController.m
 //  ERVICE
 //
-//  Created by apple on 3/31/16.
-//  Copyright © 2016 hbjApple. All rights reserved.
+//  Created by youyou on 16/4/12.
+//  Copyright © 2016年 hbjApple. All rights reserved.
 //
 
-#import "TeacherArticleDetailViewController.h"
+#import "NoticeWebViewController.h"
 
-@interface TeacherArticleDetailViewController ()
-@property (weak, nonatomic) IBOutlet UIWebView *teacherArticleWebView;
+@interface NoticeWebViewController ()
 - (IBAction)backBtn:(UIBarButtonItem *)sender;
 
-
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 @end
 
-@implementation TeacherArticleDetailViewController
+@implementation NoticeWebViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.hidesBackButton = YES;
+    [self.navigationItem hidesBackButton];
     // Do any additional setup after loading the view.
-    NSString *urlString = [NSString stringWithFormat:@"http://60.173.235.34:9999/svnupdate/app/nos_teacher_articleinfo/%@",self.articleId];
+    NSString *urlString = [NSString stringWithFormat:@"http://60.173.235.34:9999/svnupdate/app/nos_sysnotice_info/%@/%@",self.noticeId,KToken];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-    [self.teacherArticleWebView loadRequest:request];
+    [self.webView loadRequest:request];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -13,9 +13,11 @@
 @property (nonatomic,strong) NSString *phone;
 @property (nonatomic,strong) NSString *uid;
 @property (nonatomic,strong) NSString *token;
+@property (nonatomic,strong) NSString *iconUrl;
 - (id)initWithParams:(NSString *)userName
                phone:(NSString *)phone
               userId:(NSString *)uid
-               token:(NSString *)token;
+               token:(NSString *)token
+             iconUrl:(NSString *)iconUrl;
 - (UserInfoModel *)buildWithDatas:(NSDictionary *)datas;
 @end

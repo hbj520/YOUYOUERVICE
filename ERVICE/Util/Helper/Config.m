@@ -33,7 +33,11 @@ static Config *instance = nil;
     return nil;
 }
 //保存用户userid 用户name 用户phone token
-- (void)saveUserid:(NSString *)userid userName:(NSString *)username userPhoneNum:(NSString *)PhoneNum token:(NSString *)token{
+- (void)saveUserid:(NSString *)userid
+          userName:(NSString *)username
+      userPhoneNum:(NSString *)PhoneNum
+             token:(NSString *)token
+              icon:(NSString *)icon{
     
     
     NSUserDefaults *settings = [NSUserDefaults standardUserDefaults];
@@ -49,7 +53,16 @@ static Config *instance = nil;
     [settings removeObjectForKey:@"token"];
     [settings setObject:token forKey:@"token"];
     
+    [settings removeObjectForKey:@"icon"];
+    [settings setObject:icon forKey:@"icon"];
+    
     [settings synchronize];
+}
+- (void)saveIcon:(NSString *)icon{
+    NSUserDefaults *setttings = [NSUserDefaults standardUserDefaults];
+    [setttings removeObjectForKey:@"icon"];
+    [setttings setObject:icon forKey:@"icon"];
+    [setttings synchronize];
 }
 //获取本地保存的用户userid 用户name 用户phone token
 - (NSString *)getUserid{
@@ -67,6 +80,10 @@ static Config *instance = nil;
 - (NSString *)getToken{
     NSUserDefaults *settings = [NSUserDefaults standardUserDefaults];
     return [settings stringForKey:@"token"];
+}
+- (NSString *)getUserIcon{
+    NSUserDefaults *settings = [NSUserDefaults standardUserDefaults];
+    return [settings stringForKey:@"icon"];
 }
 //退出登录
 - (void)logOut{

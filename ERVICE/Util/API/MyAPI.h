@@ -26,7 +26,15 @@ typedef void (^ErrorBlock) (NSError *enginerError);
                password:(NSString *)password
                  result:(StateBlock)result
             errorResult:(ErrorBlock)errorResult;
+#pragma mark - 上传图片
+- (void)uploadImage:(NSData *)imageData
+             result:(StateBlock)result
+        errorResult:(ErrorBlock)errorResult;
 
+- (void)postFileAndImage:(NSString *)filePathStr
+                    type:(NSString *)type
+                    name:(NSString *)name
+                  result:(void (^)(BOOL success, NSString * msg,id object))result;
 #pragma mark - 退出登录
 - (void)LoginOutWithResult:(StateBlock)result
                errorResult:(ErrorBlock)errorResult;
@@ -109,4 +117,9 @@ typedef void (^ErrorBlock) (NSError *enginerError);
 #pragma mark - 我的老师
 - (void)myTeacherWithResult:(ArrayBlock)result
                 errorResult:(ErrorBlock)errorResult;
+
+#pragma mark - 消息列表
+- (void)noticeListWithPage:(NSString *)page
+                    result:(ArrayBlock)result
+               errorResult:(ErrorBlock)errorResult;
 @end

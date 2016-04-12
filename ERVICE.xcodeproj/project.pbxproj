@@ -141,6 +141,13 @@
 		18F1CFDE1CAD06DE00939D89 /* FinanceItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1CFDD1CAD06DE00939D89 /* FinanceItemModel.m */; };
 		18F1CFE11CAD0A0800939D89 /* FinanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F1CFE01CAD0A0800939D89 /* FinanceModel.m */; };
 		5557FEB67523DEDF90D0187C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC48EF8878E2FBC29EBE3835 /* libPods.a */; };
+		AB2BFBD11CBC9D0C002FD318 /* UIImage+Compress.m in Sources */ = {isa = PBXBuildFile; fileRef = AB2BFBD01CBC9D0C002FD318 /* UIImage+Compress.m */; };
+		AB2BFBD41CBCC33F002FD318 /* NoticeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB2BFBD31CBCC33F002FD318 /* NoticeListViewController.m */; };
+		AB2BFBD71CBCC50F002FD318 /* NoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AB2BFBD61CBCC50F002FD318 /* NoticeModel.m */; };
+		AB2BFBDB1CBCC947002FD318 /* NoticeListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB2BFBD91CBCC947002FD318 /* NoticeListTableViewCell.m */; };
+		AB2BFBDC1CBCC947002FD318 /* NoticeListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB2BFBDA1CBCC947002FD318 /* NoticeListTableViewCell.xib */; };
+		AB2BFBDF1CBCD375002FD318 /* NoticeWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB2BFBDE1CBCD375002FD318 /* NoticeWebViewController.m */; };
+		AB2BFBE21CBCE1FA002FD318 /* UserInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB2BFBE11CBCE1FA002FD318 /* UserInfoTableViewController.m */; };
 		AB3CA08F1CB604860004C659 /* FamousListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3CA08D1CB604860004C659 /* FamousListTableViewCell.m */; };
 		AB3CA0901CB604860004C659 /* FamousListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB3CA08E1CB604860004C659 /* FamousListTableViewCell.xib */; };
 		AB3CA0941CB62D2C0004C659 /* CustomerServiceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3CA0921CB62D2C0004C659 /* CustomerServiceTableViewCell.m */; };
@@ -412,6 +419,19 @@
 		18F1CFDF1CAD0A0800939D89 /* FinanceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinanceModel.h; sourceTree = "<group>"; };
 		18F1CFE01CAD0A0800939D89 /* FinanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinanceModel.m; sourceTree = "<group>"; };
 		20556FAF41FF49EE1A9F29CB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		AB2BFBCF1CBC9D0C002FD318 /* UIImage+Compress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Compress.h"; sourceTree = "<group>"; };
+		AB2BFBD01CBC9D0C002FD318 /* UIImage+Compress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Compress.m"; sourceTree = "<group>"; };
+		AB2BFBD21CBCC33F002FD318 /* NoticeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeListViewController.h; sourceTree = "<group>"; };
+		AB2BFBD31CBCC33F002FD318 /* NoticeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeListViewController.m; sourceTree = "<group>"; };
+		AB2BFBD51CBCC50F002FD318 /* NoticeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeModel.h; sourceTree = "<group>"; };
+		AB2BFBD61CBCC50F002FD318 /* NoticeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeModel.m; sourceTree = "<group>"; };
+		AB2BFBD81CBCC947002FD318 /* NoticeListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeListTableViewCell.h; sourceTree = "<group>"; };
+		AB2BFBD91CBCC947002FD318 /* NoticeListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeListTableViewCell.m; sourceTree = "<group>"; };
+		AB2BFBDA1CBCC947002FD318 /* NoticeListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoticeListTableViewCell.xib; sourceTree = "<group>"; };
+		AB2BFBDD1CBCD375002FD318 /* NoticeWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeWebViewController.h; sourceTree = "<group>"; };
+		AB2BFBDE1CBCD375002FD318 /* NoticeWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeWebViewController.m; sourceTree = "<group>"; };
+		AB2BFBE01CBCE1FA002FD318 /* UserInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoTableViewController.h; sourceTree = "<group>"; };
+		AB2BFBE11CBCE1FA002FD318 /* UserInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoTableViewController.m; sourceTree = "<group>"; };
 		AB3CA08C1CB604860004C659 /* FamousListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FamousListTableViewCell.h; sourceTree = "<group>"; };
 		AB3CA08D1CB604860004C659 /* FamousListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FamousListTableViewCell.m; sourceTree = "<group>"; };
 		AB3CA08E1CB604860004C659 /* FamousListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FamousListTableViewCell.xib; sourceTree = "<group>"; };
@@ -714,6 +734,12 @@
 				18B18DC61CAE796A00501D3C /* AttentionTeacherTableViewController.m */,
 				C4D013891CB367EB00A08903 /* AttentionTeacherListViewController.h */,
 				C4D0138A1CB367EB00A08903 /* AttentionTeacherListViewController.m */,
+				AB2BFBD21CBCC33F002FD318 /* NoticeListViewController.h */,
+				AB2BFBD31CBCC33F002FD318 /* NoticeListViewController.m */,
+				AB2BFBDD1CBCD375002FD318 /* NoticeWebViewController.h */,
+				AB2BFBDE1CBCD375002FD318 /* NoticeWebViewController.m */,
+				AB2BFBE01CBCE1FA002FD318 /* UserInfoTableViewController.h */,
+				AB2BFBE11CBCE1FA002FD318 /* UserInfoTableViewController.m */,
 			);
 			path = Personal;
 			sourceTree = "<group>";
@@ -785,6 +811,8 @@
 				18B9DDD71CA8C42B00ACBE94 /* UserInfoModel.m */,
 				C4D013861CB3529900A08903 /* MyTeacherModel.h */,
 				C4D013871CB3529900A08903 /* MyTeacherModel.m */,
+				AB2BFBD51CBCC50F002FD318 /* NoticeModel.h */,
+				AB2BFBD61CBCC50F002FD318 /* NoticeModel.m */,
 			);
 			path = Personal;
 			sourceTree = "<group>";
@@ -902,6 +930,9 @@
 				C4D0138C1CB3693900A08903 /* AttentionListTableViewCell.h */,
 				C4D0138D1CB3693900A08903 /* AttentionListTableViewCell.m */,
 				C4D0138E1CB3693900A08903 /* AttentionListTableViewCell.xib */,
+				AB2BFBD81CBCC947002FD318 /* NoticeListTableViewCell.h */,
+				AB2BFBD91CBCC947002FD318 /* NoticeListTableViewCell.m */,
+				AB2BFBDA1CBCC947002FD318 /* NoticeListTableViewCell.xib */,
 			);
 			path = Personal;
 			sourceTree = "<group>";
@@ -909,6 +940,8 @@
 		18B9DDD91CA8DBE000ACBE94 /* category */ = {
 			isa = PBXGroup;
 			children = (
+				AB2BFBCF1CBC9D0C002FD318 /* UIImage+Compress.h */,
+				AB2BFBD01CBC9D0C002FD318 /* UIImage+Compress.m */,
 				18B9DDDA1CA8DC1000ACBE94 /* UIViewController+HUD.h */,
 				18B9DDDB1CA8DC1000ACBE94 /* UIViewController+HUD.m */,
 			);
@@ -1239,6 +1272,7 @@
 				1890BE961CA0D716003435C2 /* ActivityHeaderTableViewCell.xib in Resources */,
 				18AFC7AB1C968F56001E582F /* Annalyze.storyboard in Resources */,
 				18AFC7A71C968F0A001E582F /* Homepage.storyboard in Resources */,
+				AB2BFBDC1CBCC947002FD318 /* NoticeListTableViewCell.xib in Resources */,
 				18E164671C96867D0013E21B /* LaunchScreen.storyboard in Resources */,
 				18EDA7101C9F90EC002A2697 /* AnnalyzeTitleTableViewCell.xib in Resources */,
 				AB55971E1CB4C8EA004A5C1B /* TeacherListCollectionViewCell.xib in Resources */,
@@ -1374,10 +1408,12 @@
 				AB55971D1CB4C8EA004A5C1B /* TeacherListCollectionViewCell.m in Sources */,
 				18F01B831CA95EF600CEE170 /* starView.m in Sources */,
 				18AFC7B51C969838001E582F /* HomeTabbarViewController.m in Sources */,
+				AB2BFBDB1CBCC947002FD318 /* NoticeListTableViewCell.m in Sources */,
 				18E6463F1CA37A2900FD30B9 /* AnnounceViewController.m in Sources */,
 				18BE1CEA1CAD311700187031 /* AnnounceExchangeModel.m in Sources */,
 				18F1CFD81CACECF600939D89 /* Config.m in Sources */,
 				18B9DDD81CA8C42B00ACBE94 /* UserInfoModel.m in Sources */,
+				AB2BFBD71CBCC50F002FD318 /* NoticeModel.m in Sources */,
 				186884391C9AA44100C040D9 /* TeacherAnnalyzeTableViewCell.m in Sources */,
 				AB5597191CB4BF34004A5C1B /* FamousListViewController.m in Sources */,
 				18E471C61CA525D10061B0E3 /* NSData+Base64.m in Sources */,
@@ -1396,6 +1432,7 @@
 				18E13AE61CABAE65007ACE91 /* TeacherCatigoryModel.m in Sources */,
 				18EDA7081C9F81CF002A2697 /* TeacherAnlyzeViewController.m in Sources */,
 				18EDA70B1C9F8435002A2697 /* TeacherItemModel.m in Sources */,
+				AB2BFBDF1CBCD375002FD318 /* NoticeWebViewController.m in Sources */,
 				1874330F1C9864880057282B /* ThreeCollectionViewCell.m in Sources */,
 				187AD4571C97E1C400AF57C9 /* TAPageControl.m in Sources */,
 				18E471BD1CA524B10061B0E3 /* GTMBase64.m in Sources */,
@@ -1404,6 +1441,7 @@
 				18B9DDDC1CA8DC1000ACBE94 /* UIViewController+HUD.m in Sources */,
 				AB3CA09B1CB6339A0004C659 /* CustomerServiceModel.m in Sources */,
 				18E5D45F1CA17D9200D99A86 /* XLSwipeButtonBarView.m in Sources */,
+				AB2BFBD11CBC9D0C002FD318 /* UIImage+Compress.m in Sources */,
 				1890BE9F1CA11D04003435C2 /* MyActivityHeaderTableViewCell.m in Sources */,
 				1890BE9A1CA0E202003435C2 /* ActivityContentTableViewCell.m in Sources */,
 				18E5D4601CA17D9200D99A86 /* XLSwipeButtonBarViewCell.m in Sources */,
@@ -1433,11 +1471,13 @@
 				18E6ABF41CA2D93E000CBC67 /* ApplyActivityBtnTableViewCell.m in Sources */,
 				187AD4551C97E1C400AF57C9 /* TAAnimatedDotView.m in Sources */,
 				187AD4561C97E1C400AF57C9 /* TADotView.m in Sources */,
+				AB2BFBD41CBCC33F002FD318 /* NoticeListViewController.m in Sources */,
 				18E5D45E1CA17D9200D99A86 /* XLSwipeBarView.m in Sources */,
 				186B5FF01CA8FC140064853B /* HomepageBannerModel.m in Sources */,
 				18E6ABFC1CA2E203000CBC67 /* ApplyNameTableViewCell.m in Sources */,
 				18E646421CA38A2500FD30B9 /* AnnounceTitleView.m in Sources */,
 				18E6463B1CA3787400FD30B9 /* AnnounceContentTableViewCell.m in Sources */,
+				AB2BFBE21CBCE1FA002FD318 /* UserInfoTableViewController.m in Sources */,
 				AB5597241CB4DEF7004A5C1B /* HorizontalTableViewCell.m in Sources */,
 				18E471C11CA524B10061B0E3 /* StringEncryption.m in Sources */,
 				18E471C71CA525D10061B0E3 /* NSString+URLEncoding.m in Sources */,
@@ -1611,7 +1651,7 @@
 					/Users/apple/Desktop/WORK/youyouWork/ERVICE/ERVICE/Vendor/lib,
 				);
 				INFOPLIST_FILE = ERVICE/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1654,7 +1694,7 @@
 					/Users/apple/Desktop/WORK/youyouWork/ERVICE/ERVICE/Vendor/lib,
 				);
 				INFOPLIST_FILE = ERVICE/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

@@ -8,7 +8,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import <AFNetworking/AFURLResponseSerialization.h>
 #import "MyAPI.h"
-#define BaseUrl @"http://36.7.110.253:9999/svnupdate/app/"
+#define BaseUrl @"http://60.173.235.34:9999/svnupdate/app/"
 //tools
 #import "Config.h"
 
@@ -30,6 +30,7 @@
 #import "TeacherAnnalyzeModel.h"
 #import "TeacherItemModel.h"
 #import "MyTeacherModel.h"
+#import "NoticeModel.h"
 
 @interface MyAPI()
 @property NSString *mBaseUrl;
@@ -76,7 +77,8 @@
             NSDictionary *data = responseObject[@"data"];
             UserInfoModel *userinfo = [[UserInfoModel alloc] buildWithDatas:data];
             //保存个人信息至本地
-            [[Config Instance] saveUserid:userinfo.uid userName:userinfo.username userPhoneNum:userinfo.phone token:userinfo.token];
+            [[Config Instance] saveUserid:userinfo.uid userName:userinfo.username userPhoneNum:userinfo.phone token:userinfo.token icon:userinfo.iconUrl
+             ];
             result(YES,information);
             
         }else{
@@ -88,7 +90,60 @@
         errorResult(error);
     }];
 }
-
+//上传头像
+- (void)uploadImage:(NSData *)imageData
+             result:(StateBlock)result
+        errorResult:(ErrorBlock)errorResult{
+    NSDictionary *parameter = @{
+                                @"token":KToken,
+                                @"image":imageData
+                                };
+    [self.manager POST:@"nos_userimage" parameters:parameter success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *status = responseObject[@"status"];
+        if ([status isEqualToString:@"-1"]) {//超时处理
+            result(NO,@"登录超时");
+        }
+        if ([status isEqualToString:@"1"]) {
+            NSDictionary *data = responseObject[@"data"];
+            NSString *imageUrl = data[@"imgthumb"];
+            result(YES,imageUrl);
+        }
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        errorResult(error);
+    }];
+    
+}
+//上传图片
+- (void)postFileAndImage:(NSString *)filePathStr
+                    type:(NSString *)type
+                    name:(NSString *)name
+                  result:(void (^)(BOOL success, NSString * msg,id object))result{
+    NSDictionary *parameter = @{
+                                @"token":KToken,
+                                    };
+    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"nos_userimage" parameters:parameter constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileURL:[NSURL fileURLWithPath:filePathStr] name:@"fname" fileName:name mimeType:@"image/jpeg" error:nil];
+    } error:nil];
+    
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSProgress *progress = nil;
+    
+    AFJSONResponseSerializer * s= [AFJSONResponseSerializer serializer];
+    s.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json", @"text/plain",@"application/x-www-form-urlencoded",nil];
+    manager.responseSerializer = s;
+    
+    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        
+        
+        if (error) {
+            result(NO,@"fail",responseObject);
+        } else {
+            result(YES,@"sucess",responseObject);
+        }
+    }];
+    
+    [uploadTask resume];
+}
 #pragma mark - 退出登录
 - (void)LoginOutWithResult:(StateBlock)result
                errorResult:(ErrorBlock)errorResult{
@@ -593,5 +648,32 @@
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         errorResult(error);
     }];
+}
+#pragma mark - 消息列表
+- (void)noticeListWithPage:(NSString *)page
+                    result:(ArrayBlock)result
+               errorResult:(ErrorBlock)errorResult{
+    NSDictionary *parameters = @{
+                                 @"token":KToken,
+                                 @"page":page
+                                 };
+    [self.manager POST:@"nos_sysnotice" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *status = responseObject[@"status"];
+        NSString *info = responseObject[@"info"];
+        if ([status isEqualToString:@"-1"]) {//超时处理
+            result(NO,@"登录超时",nil);
+        }
+        if ([status isEqualToString:@"1"]) {
+            NSDictionary *data = responseObject[@"data"];
+            NSArray *list = data[@"list"];
+            NSMutableArray *modelsArray = [[NoticeModel alloc] buidWithData:list];
+            result(YES,info,modelsArray);
+        }
+        
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        errorResult(error);
+        
+    }];
+    
 }
 @end
