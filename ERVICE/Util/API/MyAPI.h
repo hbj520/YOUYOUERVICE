@@ -122,4 +122,15 @@ typedef void (^ErrorBlock) (NSError *enginerError);
 - (void)noticeListWithPage:(NSString *)page
                     result:(ArrayBlock)result
                errorResult:(ErrorBlock)errorResult;
+#pragma mark - 显示用户信息
+- (void)userInfoWithResult:(ModelBlock)result
+               errorResult:(ErrorBlock)errorResult;
+#pragma mark - 修改用户信息
+- (void)editUserInfoWithUserName:(NSString *)username
+                           email:(NSString *)email
+                           qqNum:(NSString *)qqNum
+                            name:(NSString *)name
+                             sex:(NSString *)sex
+                      withResult:(StateBlock)result
+                     errorResult:(ErrorBlock)errorResult;
 @end

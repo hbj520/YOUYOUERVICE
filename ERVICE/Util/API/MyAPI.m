@@ -31,6 +31,7 @@
 #import "TeacherItemModel.h"
 #import "MyTeacherModel.h"
 #import "NoticeModel.h"
+#import "UserInfo.h"
 
 @interface MyAPI()
 @property NSString *mBaseUrl;
@@ -668,11 +669,68 @@
             NSArray *list = data[@"list"];
             NSMutableArray *modelsArray = [[NoticeModel alloc] buidWithData:list];
             result(YES,info,modelsArray);
+        }else{
+            result(NO,info,nil);
         }
         
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         errorResult(error);
         
+    }];
+    
+}
+#pragma mark - 显示用户信息
+- (void)userInfoWithResult:(ModelBlock)result
+               errorResult:(ErrorBlock)errorResult{
+    NSDictionary *parameters = @{
+                                 @"token":KToken
+                                 };
+    [self.manager POST:@"nos_userinfo_view" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *status = responseObject[@"status"];
+        NSString *info = responseObject[@"info"];
+        if ([status isEqualToString:@"-1"]) {//超时处理
+            result(NO,@"登录超时",nil);
+        }
+        if ([status isEqualToString:@"1"]) {
+            NSDictionary *data = responseObject[@"data"];
+            UserInfo *model = [[UserInfo alloc] buidWithData:data];
+            result(YES,info,model);
+        }
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        errorResult(error);
+    }];
+}
+#pragma mark - 修改用户信息
+- (void)editUserInfoWithUserName:(NSString *)username
+                           email:(NSString *)email
+                           qqNum:(NSString *)qqNum
+                            name:(NSString *)name
+                             sex:(NSString *)sex
+                      withResult:(StateBlock)result
+                     errorResult:(ErrorBlock)errorResult{
+    NSDictionary *parameters = @{
+                                 @"token":KToken,
+                                 @"username":username,
+                                 @"email":email,
+                                 @"qq":qqNum,
+                                 @"name":name,
+                                 @"sex":sex
+                                 };
+    [self.manager POST:@"nos_userinfo_modi" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        
+        NSString *status = responseObject[@"status"];
+        NSString *info = responseObject[@"info"];
+        if ([status isEqualToString:@"-1"]) {//超时处理
+            result(NO,@"登录超时");
+        }
+        if ([status isEqualToString:@"1"]) {
+            result(YES,info);
+        }else{
+            result(NO,info);
+        }
+        
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        errorResult(error);
     }];
     
 }

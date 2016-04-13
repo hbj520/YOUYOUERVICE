@@ -148,6 +148,7 @@
 		AB2BFBDC1CBCC947002FD318 /* NoticeListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB2BFBDA1CBCC947002FD318 /* NoticeListTableViewCell.xib */; };
 		AB2BFBDF1CBCD375002FD318 /* NoticeWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB2BFBDE1CBCD375002FD318 /* NoticeWebViewController.m */; };
 		AB2BFBE21CBCE1FA002FD318 /* UserInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB2BFBE11CBCE1FA002FD318 /* UserInfoTableViewController.m */; };
+		AB2BFBE51CBCFE1B002FD318 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = AB2BFBE41CBCFE1B002FD318 /* UserInfo.m */; };
 		AB3CA08F1CB604860004C659 /* FamousListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3CA08D1CB604860004C659 /* FamousListTableViewCell.m */; };
 		AB3CA0901CB604860004C659 /* FamousListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB3CA08E1CB604860004C659 /* FamousListTableViewCell.xib */; };
 		AB3CA0941CB62D2C0004C659 /* CustomerServiceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3CA0921CB62D2C0004C659 /* CustomerServiceTableViewCell.m */; };
@@ -432,6 +433,8 @@
 		AB2BFBDE1CBCD375002FD318 /* NoticeWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeWebViewController.m; sourceTree = "<group>"; };
 		AB2BFBE01CBCE1FA002FD318 /* UserInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoTableViewController.h; sourceTree = "<group>"; };
 		AB2BFBE11CBCE1FA002FD318 /* UserInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoTableViewController.m; sourceTree = "<group>"; };
+		AB2BFBE31CBCFE1B002FD318 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
+		AB2BFBE41CBCFE1B002FD318 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 		AB3CA08C1CB604860004C659 /* FamousListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FamousListTableViewCell.h; sourceTree = "<group>"; };
 		AB3CA08D1CB604860004C659 /* FamousListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FamousListTableViewCell.m; sourceTree = "<group>"; };
 		AB3CA08E1CB604860004C659 /* FamousListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FamousListTableViewCell.xib; sourceTree = "<group>"; };
@@ -813,6 +816,8 @@
 				C4D013871CB3529900A08903 /* MyTeacherModel.m */,
 				AB2BFBD51CBCC50F002FD318 /* NoticeModel.h */,
 				AB2BFBD61CBCC50F002FD318 /* NoticeModel.m */,
+				AB2BFBE31CBCFE1B002FD318 /* UserInfo.h */,
+				AB2BFBE41CBCFE1B002FD318 /* UserInfo.m */,
 			);
 			path = Personal;
 			sourceTree = "<group>";
@@ -1385,6 +1390,7 @@
 				18E471CB1CA540770061B0E3 /* LoginViewController.m in Sources */,
 				1868842A1C99624A00C040D9 /* FinanceAnnalyzeModel.m in Sources */,
 				18C2F5321C9C0513004D8967 /* MoveScrollView.m in Sources */,
+				AB2BFBE51CBCFE1B002FD318 /* UserInfo.m in Sources */,
 				18E471BE1CA524B10061B0E3 /* NSData+AES.m in Sources */,
 				18E471BF1CA524B10061B0E3 /* NSString+MD5.m in Sources */,
 				AB5597211CB4CF5A004A5C1B /* FamousTechListModel.m in Sources */,

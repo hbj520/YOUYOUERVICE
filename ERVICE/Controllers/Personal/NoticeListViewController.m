@@ -136,6 +136,7 @@ static NSString *reuserId = @"NoticeListTableViewCellId";
     }
     
 }
+#pragma mark -Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     NoticeWebViewController *noticeVC = (NoticeWebViewController *)segue.destinationViewController;
     NSString *noticeId = (NSString *)sender;
