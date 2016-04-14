@@ -39,6 +39,7 @@ static NSString *reuseId2 = @"reuseId2";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.hidesBackButton = YES;
+    self.tableView.showsVerticalScrollIndicator = NO;
     _page = 1;
     //下载数据前几名
     [self loadData];
@@ -167,11 +168,14 @@ static NSString *reuseId2 = @"reuseId2";
         [weakself loadData];
         [weakself loadDataWithPage:1];
     }];
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+    MJRefreshAutoNormalFooter *footerRefreh = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         _page++;
         NSLog(@"%ld",_page);
         [weakself loadDataWithPage:_page];
     }];
+    footerRefreh.automaticallyRefresh = NO;
+    self.tableView.mj_footer = footerRefreh;
+    
 }
 - (void)loadData{
     //下载排名前几名老师
@@ -274,6 +278,12 @@ static NSString *reuseId2 = @"reuseId2";
     [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark - UIAlertViewDelegate
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    [Tools hideKeyBoard];
+
+}
+//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+//}
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     if (buttonIndex == 1) {//确定，返回登录

@@ -158,11 +158,19 @@
 		AB3E315A1CB7579E00E58AC7 /* LabelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3E31591CB7579E00E58AC7 /* LabelHelper.m */; };
 		AB3E315D1CB7896800E58AC7 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3E315C1CB7896800E58AC7 /* NSDate+Utilities.m */; };
 		AB3E31601CB7B35C00E58AC7 /* LoginHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3E315F1CB7B35C00E58AC7 /* LoginHelper.m */; };
+		AB4170BB1CBF6A510035969C /* OpenShare+QQ.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4170AF1CBF6A510035969C /* OpenShare+QQ.m */; };
+		AB4170BC1CBF6A510035969C /* OpenShare+Renren.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4170B11CBF6A510035969C /* OpenShare+Renren.m */; };
+		AB4170BD1CBF6A510035969C /* OpenShare+Weibo.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4170B31CBF6A510035969C /* OpenShare+Weibo.m */; };
+		AB4170BE1CBF6A510035969C /* OpenShare+Weixin.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4170B51CBF6A510035969C /* OpenShare+Weixin.m */; };
+		AB4170BF1CBF6A510035969C /* OpenShare+Alipay.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4170B71CBF6A510035969C /* OpenShare+Alipay.m */; };
+		AB4170C01CBF6A510035969C /* OpenShare.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4170B91CBF6A510035969C /* OpenShare.m */; };
 		AB5597191CB4BF34004A5C1B /* FamousListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5597181CB4BF34004A5C1B /* FamousListViewController.m */; };
 		AB55971D1CB4C8EA004A5C1B /* TeacherListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB55971B1CB4C8EA004A5C1B /* TeacherListCollectionViewCell.m */; };
 		AB55971E1CB4C8EA004A5C1B /* TeacherListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB55971C1CB4C8EA004A5C1B /* TeacherListCollectionViewCell.xib */; };
 		AB5597211CB4CF5A004A5C1B /* FamousTechListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5597201CB4CF5A004A5C1B /* FamousTechListModel.m */; };
 		AB5597241CB4DEF7004A5C1B /* HorizontalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5597231CB4DEF7004A5C1B /* HorizontalTableViewCell.m */; };
+		AB7323C91CBF6AF6001429A5 /* XMShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7323C81CBF6AF6001429A5 /* XMShareView.m */; };
+		AB7323CC1CBF6B1D001429A5 /* VerticalUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7323CB1CBF6B1D001429A5 /* VerticalUIButton.m */; };
 		ABB155871CBB84F7000AF953 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB155861CBB84F7000AF953 /* GuideViewController.m */; };
 		C4D013881CB3529900A08903 /* MyTeacherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D013871CB3529900A08903 /* MyTeacherModel.m */; };
 		C4D0138B1CB367EB00A08903 /* AttentionTeacherListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D0138A1CB367EB00A08903 /* AttentionTeacherListViewController.m */; };
@@ -451,6 +459,19 @@
 		AB3E315C1CB7896800E58AC7 /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
 		AB3E315E1CB7B35C00E58AC7 /* LoginHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginHelper.h; sourceTree = "<group>"; };
 		AB3E315F1CB7B35C00E58AC7 /* LoginHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginHelper.m; sourceTree = "<group>"; };
+		AB4170AE1CBF6A510035969C /* OpenShare+QQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OpenShare+QQ.h"; sourceTree = "<group>"; };
+		AB4170AF1CBF6A510035969C /* OpenShare+QQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OpenShare+QQ.m"; sourceTree = "<group>"; };
+		AB4170B01CBF6A510035969C /* OpenShare+Renren.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OpenShare+Renren.h"; sourceTree = "<group>"; };
+		AB4170B11CBF6A510035969C /* OpenShare+Renren.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OpenShare+Renren.m"; sourceTree = "<group>"; };
+		AB4170B21CBF6A510035969C /* OpenShare+Weibo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OpenShare+Weibo.h"; sourceTree = "<group>"; };
+		AB4170B31CBF6A510035969C /* OpenShare+Weibo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OpenShare+Weibo.m"; sourceTree = "<group>"; };
+		AB4170B41CBF6A510035969C /* OpenShare+Weixin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OpenShare+Weixin.h"; sourceTree = "<group>"; };
+		AB4170B51CBF6A510035969C /* OpenShare+Weixin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OpenShare+Weixin.m"; sourceTree = "<group>"; };
+		AB4170B61CBF6A510035969C /* OpenShare+Alipay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OpenShare+Alipay.h"; sourceTree = "<group>"; };
+		AB4170B71CBF6A510035969C /* OpenShare+Alipay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OpenShare+Alipay.m"; sourceTree = "<group>"; };
+		AB4170B81CBF6A510035969C /* OpenShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenShare.h; sourceTree = "<group>"; };
+		AB4170B91CBF6A510035969C /* OpenShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenShare.m; sourceTree = "<group>"; };
+		AB4170BA1CBF6A510035969C /* OpenShareHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenShareHeader.h; sourceTree = "<group>"; };
 		AB5597171CB4BF34004A5C1B /* FamousListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FamousListViewController.h; sourceTree = "<group>"; };
 		AB5597181CB4BF34004A5C1B /* FamousListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FamousListViewController.m; sourceTree = "<group>"; };
 		AB55971A1CB4C8EA004A5C1B /* TeacherListCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeacherListCollectionViewCell.h; sourceTree = "<group>"; };
@@ -460,6 +481,11 @@
 		AB5597201CB4CF5A004A5C1B /* FamousTechListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FamousTechListModel.m; sourceTree = "<group>"; };
 		AB5597221CB4DEF7004A5C1B /* HorizontalTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizontalTableViewCell.h; sourceTree = "<group>"; };
 		AB5597231CB4DEF7004A5C1B /* HorizontalTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalTableViewCell.m; sourceTree = "<group>"; };
+		AB7323C71CBF6AF6001429A5 /* XMShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMShareView.h; sourceTree = "<group>"; };
+		AB7323C81CBF6AF6001429A5 /* XMShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMShareView.m; sourceTree = "<group>"; };
+		AB7323CA1CBF6B1D001429A5 /* VerticalUIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticalUIButton.h; sourceTree = "<group>"; };
+		AB7323CB1CBF6B1D001429A5 /* VerticalUIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticalUIButton.m; sourceTree = "<group>"; };
+		AB7323CD1CBF6B32001429A5 /* CommonMarco.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonMarco.h; sourceTree = "<group>"; };
 		ABB155851CBB84F7000AF953 /* GuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideViewController.h; sourceTree = "<group>"; };
 		ABB155861CBB84F7000AF953 /* GuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideViewController.m; sourceTree = "<group>"; };
 		BC48EF8878E2FBC29EBE3835 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -522,6 +548,7 @@
 		187AD43C1C97A01C00AF57C9 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				AB416F671CBF26260035969C /* Share */,
 				18F1CFCF1CACB8B300939D89 /* ScrollviewButtons */,
 				18F01B801CA95E7100CEE170 /* Others */,
 				18E6464E1CA3BD8100FD30B9 /* JPush */,
@@ -1165,6 +1192,31 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AB416F671CBF26260035969C /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				AB7323CD1CBF6B32001429A5 /* CommonMarco.h */,
+				AB7323CA1CBF6B1D001429A5 /* VerticalUIButton.h */,
+				AB7323CB1CBF6B1D001429A5 /* VerticalUIButton.m */,
+				AB4170AE1CBF6A510035969C /* OpenShare+QQ.h */,
+				AB4170AF1CBF6A510035969C /* OpenShare+QQ.m */,
+				AB4170B01CBF6A510035969C /* OpenShare+Renren.h */,
+				AB4170B11CBF6A510035969C /* OpenShare+Renren.m */,
+				AB4170B21CBF6A510035969C /* OpenShare+Weibo.h */,
+				AB4170B31CBF6A510035969C /* OpenShare+Weibo.m */,
+				AB4170B41CBF6A510035969C /* OpenShare+Weixin.h */,
+				AB4170B51CBF6A510035969C /* OpenShare+Weixin.m */,
+				AB4170B61CBF6A510035969C /* OpenShare+Alipay.h */,
+				AB4170B71CBF6A510035969C /* OpenShare+Alipay.m */,
+				AB4170B81CBF6A510035969C /* OpenShare.h */,
+				AB4170B91CBF6A510035969C /* OpenShare.m */,
+				AB4170BA1CBF6A510035969C /* OpenShareHeader.h */,
+				AB7323C71CBF6AF6001429A5 /* XMShareView.h */,
+				AB7323C81CBF6AF6001429A5 /* XMShareView.m */,
+			);
+			name = Share;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1401,6 +1453,7 @@
 				18D983111CAE1BE900163532 /* AnnouncementDetaiViewController.m in Sources */,
 				1890BE951CA0D716003435C2 /* ActivityHeaderTableViewCell.m in Sources */,
 				187AD4531C97E1C400AF57C9 /* NSData+SDDataCache.m in Sources */,
+				AB4170C01CBF6A510035969C /* OpenShare.m in Sources */,
 				186884311C9A492B00C040D9 /* AttentionTableViewCell.m in Sources */,
 				18F1CFD21CACB94100939D89 /* MoveBtnScrollView.m in Sources */,
 				186B5FF31CA902E10064853B /* HomepageExchangeModel.m in Sources */,
@@ -1437,6 +1490,7 @@
 				18ED7B1C1CA289EC00454F58 /* ActivityDetailViewController.m in Sources */,
 				18E13AE61CABAE65007ACE91 /* TeacherCatigoryModel.m in Sources */,
 				18EDA7081C9F81CF002A2697 /* TeacherAnlyzeViewController.m in Sources */,
+				AB7323C91CBF6AF6001429A5 /* XMShareView.m in Sources */,
 				18EDA70B1C9F8435002A2697 /* TeacherItemModel.m in Sources */,
 				AB2BFBDF1CBCD375002FD318 /* NoticeWebViewController.m in Sources */,
 				1874330F1C9864880057282B /* ThreeCollectionViewCell.m in Sources */,
@@ -1451,7 +1505,10 @@
 				1890BE9F1CA11D04003435C2 /* MyActivityHeaderTableViewCell.m in Sources */,
 				1890BE9A1CA0E202003435C2 /* ActivityContentTableViewCell.m in Sources */,
 				18E5D4601CA17D9200D99A86 /* XLSwipeButtonBarViewCell.m in Sources */,
+				AB4170BB1CBF6A510035969C /* OpenShare+QQ.m in Sources */,
 				18E5D4631CA17D9200D99A86 /* XLSegmentedSwipeContainerController.m in Sources */,
+				AB4170BC1CBF6A510035969C /* OpenShare+Renren.m in Sources */,
+				AB4170BF1CBF6A510035969C /* OpenShare+Alipay.m in Sources */,
 				18E5D4671CA17FAC00D99A86 /* ActivityContanierViewController.m in Sources */,
 				AB3E315A1CB7579E00E58AC7 /* LabelHelper.m in Sources */,
 				AB3CA08F1CB604860004C659 /* FamousListTableViewCell.m in Sources */,
@@ -1459,6 +1516,7 @@
 				ABB155871CBB84F7000AF953 /* GuideViewController.m in Sources */,
 				18F1CFE11CAD0A0800939D89 /* FinanceModel.m in Sources */,
 				18EDA71B1C9FDE52002A2697 /* SelectImageView.m in Sources */,
+				AB4170BE1CBF6A510035969C /* OpenShare+Weixin.m in Sources */,
 				18EDA7141C9F95D6002A2697 /* AnnalyzeTableViewCell.m in Sources */,
 				C4D0138B1CB367EB00A08903 /* AttentionTeacherListViewController.m in Sources */,
 				18E1645C1C96867C0013E21B /* AppDelegate.m in Sources */,
@@ -1479,11 +1537,13 @@
 				187AD4561C97E1C400AF57C9 /* TADotView.m in Sources */,
 				AB2BFBD41CBCC33F002FD318 /* NoticeListViewController.m in Sources */,
 				18E5D45E1CA17D9200D99A86 /* XLSwipeBarView.m in Sources */,
+				AB7323CC1CBF6B1D001429A5 /* VerticalUIButton.m in Sources */,
 				186B5FF01CA8FC140064853B /* HomepageBannerModel.m in Sources */,
 				18E6ABFC1CA2E203000CBC67 /* ApplyNameTableViewCell.m in Sources */,
 				18E646421CA38A2500FD30B9 /* AnnounceTitleView.m in Sources */,
 				18E6463B1CA3787400FD30B9 /* AnnounceContentTableViewCell.m in Sources */,
 				AB2BFBE21CBCE1FA002FD318 /* UserInfoTableViewController.m in Sources */,
+				AB4170BD1CBF6A510035969C /* OpenShare+Weibo.m in Sources */,
 				AB5597241CB4DEF7004A5C1B /* HorizontalTableViewCell.m in Sources */,
 				18E471C11CA524B10061B0E3 /* StringEncryption.m in Sources */,
 				18E471C71CA525D10061B0E3 /* NSString+URLEncoding.m in Sources */,

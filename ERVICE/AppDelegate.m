@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "JPUSHService.h"
-
+#import "OpenShareHeader.h"
 #import "Config.h"
 @interface AppDelegate ()
 
@@ -18,6 +18,13 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    //第一步：注册key
+    [OpenShare connectQQWithAppId:@"1103194207"];
+    [OpenShare connectWeiboWithAppKey:@"402180334"];
+    [OpenShare connectWeixinWithAppId:@"wxd930ea5d5a258f4f"];
+    [OpenShare connectRenrenWithAppId:@"228525" AndAppKey:@"1dd8cba4215d4d4ab96a49d3058c1d7f"];
+    [OpenShare connectAlipay];//支付宝参数都是服务器端生成的，这里不需要key.
     // Override point for customization after application launch.
     self.annalyzeStorybord = [UIStoryboard storyboardWithName:@"Annalyze" bundle:nil];
     if ([[Config Instance] getToken]) {//已经登录状态
@@ -46,6 +53,7 @@
     
     [JPUSHService setupWithOption:launchOptions appKey:appKey
                           channel:channel apsForProduction:isProduction];
+    
     return YES;
 }
 - (void)applicationDidEnterBackground:(UIApplication *)application{
@@ -64,7 +72,14 @@
     [application setApplicationIconBadgeNumber:0];
     [application cancelAllLocalNotifications];
 }
-
+-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    //第二步：添加回调
+    if ([OpenShare handleOpenURL:url]) {
+        return YES;
+    }
+    //这里可以写上其他OpenShare不支持的客户端的回调，比如支付宝等。
+    return YES;
+}
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
@@ -85,6 +100,7 @@
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
     [JPUSHService showLocalNotificationAtFront:notification identifierKey:nil];
 }
+
 #pragma mark - PrivateMethod
 - (void)initJpush{
     NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];

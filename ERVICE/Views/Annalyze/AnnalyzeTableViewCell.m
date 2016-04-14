@@ -27,10 +27,11 @@
     // Configure the view for the selected state
 }
 - (void)configWithdata:(TeacherItemModel *)data{
-    [self.headerImageview sd_setImageWithURL:[NSURL URLWithString:data.image] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        UIImage *img = [Tools imageCompressForSize:image targetSize:CGSizeMake(111, 78)];
-        self.imageView.image = img;
-    }];
+//    [self.headerImageview sd_setImageWithURL:[NSURL URLWithString:data.image] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//        UIImage *img = [Tools imageCompressForSize:image targetSize:CGSizeMake(111, 78)];
+//        self.imageView.image = img;
+//    }];
+    [self.headerImageview sd_setImageWithURL:[NSURL URLWithString:data.image] placeholderImage:[UIImage imageNamed:@"annalyzeimage"]];
     self.titleLabel.text = data.title;
     self.contentLabel.text = data.content;
 }

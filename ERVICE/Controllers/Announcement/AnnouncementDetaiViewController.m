@@ -7,10 +7,13 @@
 //
 
 #import "AnnouncementDetaiViewController.h"
+#import "XMShareView.h"
 
 @interface AnnouncementDetaiViewController ()
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (nonatomic, strong) XMShareView *shareView;
 - (IBAction)back:(UIBarButtonItem *)sender;
+- (IBAction)shareBtn:(UIBarButtonItem *)sender;
 
 @end
 
@@ -20,7 +23,7 @@
     [super viewDidLoad];
     self.navigationItem.hidesBackButton = YES;
     // Do any additional setup after loading the view.
-    NSString *urlString = [NSString stringWithFormat:@"http://36.7.110.253:9999/svnupdate/app/nos_notice_info/%@/%@",self.articleId,KToken];
+    NSString *urlString = [NSString stringWithFormat:@"http://60.173.235.34:9999/svnupdate/app/nos_notice_info/%@/%@",self.articleId,KToken];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [self.webView loadRequest:request];
 }
@@ -43,5 +46,33 @@
 - (IBAction)back:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:YES];
 
+}
+
+- (IBAction)shareBtn:(UIBarButtonItem *)sender {
+    if(!self.shareView){
+        
+        self.shareView = [[XMShareView alloc] initWithFrame:self.view.bounds];
+        self.shareView.shareTitle = [NSString stringWithFormat:@"http://60.173.235.34:9999/svnupdate/app/nos_notice_info/%@",self.articleId];
+        self.shareView.alpha = 0.0;
+        
+        //self.shareView.shareTitle = NSLocalizedString(@"分享标题", nil);
+        
+        //self.shareView.shareText = NSLocalizedString(@"分享内容", nil);
+        
+        //self.shareView.shareUrl = @"http://amonxu.com";
+        
+        [self.view addSubview:self.shareView];
+        
+        [UIView animateWithDuration:1 animations:^{
+            self.shareView.alpha = 1.0;
+        }];
+        
+        
+    }else{
+        [UIView animateWithDuration:1 animations:^{
+            self.shareView.alpha = 1.0;
+        }];
+        
+    }
 }
 @end

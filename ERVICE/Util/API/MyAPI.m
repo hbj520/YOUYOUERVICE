@@ -352,12 +352,14 @@
                              result:(ModelBlock)result
                         errorResult:(ErrorBlock)errorResult{
     
+    
     NSDictionary *parameters = @{
                                  @"teacher_id":teacherId,
                                  @"ctgy":articleId,
                                  @"page":page,
                                  @"token":KToken
                                  };
+    
     [self.manager POST:@"nos_teachers_info" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         
         NSString *status = responseObject[@"status"];
@@ -385,7 +387,6 @@
         errorResult(error);
         
     }];
-    
     
 }
 
