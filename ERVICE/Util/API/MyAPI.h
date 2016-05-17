@@ -38,6 +38,11 @@ typedef void (^ErrorBlock) (NSError *enginerError);
 #pragma mark - 退出登录
 - (void)LoginOutWithResult:(StateBlock)result
                errorResult:(ErrorBlock)errorResult;
+#pragma mark - 修改密码
+- (void)reSetPasswordWithOldPassword:(NSString *)oldPassword
+                         newPassword:(NSString *)newPassword
+                              Result:(StateBlock)result
+                    errorResult:(ErrorBlock)errorResult;
 
 #pragma mark -首页
 #pragma mark - 获取首页信息
@@ -55,6 +60,10 @@ typedef void (^ErrorBlock) (NSError *enginerError);
 - (void)customerServiceListWithPage:(NSString *)page
                              result:(ArrayBlock)result
                         errorResult:(ErrorBlock)errorResult;
+#pragma mark - 专家会诊
+- (void)SpecailListWithPage:(NSString *)page
+                     result:(ArrayBlock)result
+                errorResult:(ErrorBlock)errorResult;
 
 
 #pragma mark - 分析
@@ -133,4 +142,8 @@ typedef void (^ErrorBlock) (NSError *enginerError);
                              sex:(NSString *)sex
                       withResult:(StateBlock)result
                      errorResult:(ErrorBlock)errorResult;
+#pragma mark - 根据userid获取头像和昵称
+- (void)userInfoWithUserId:(NSString *)userid
+                    result:(ModelBlock)result
+               errorResult:(ErrorBlock)errorResult;
 @end

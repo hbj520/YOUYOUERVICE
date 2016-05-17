@@ -10,6 +10,10 @@
 #import "JPUSHService.h"
 #import "OpenShareHeader.h"
 #import "Config.h"
+
+//huanxin
+#import "TTGlobalUICommon.h"
+#import "EMSDK.h"
 @interface AppDelegate ()
 
 @end
@@ -19,7 +23,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    //第一步：注册key
+    //环信
+    //appkey:注册appkey
+    //apncertname：推送证书名
+    NSString *apncertname = @"eServiceProduction";
+    EMOptions *options = [EMOptions optionsWithAppkey:@"9607#vjiags"];
+    options.apnsCertName =apncertname;
+    [[EMClient sharedClient] initializeSDKWithOptions:options];
+    
+    //EaseUI对应方法
+    [[EaseSDKHelper shareHelper] easemobApplication:application didFinishLaunchingWithOptions:launchOptions appkey:@"9607#vjiags" apnsCertName:apncertname otherConfig:@{kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES]}];
+    
+    //分享第一步：注册key
     [OpenShare connectQQWithAppId:@"1103194207"];
     [OpenShare connectWeiboWithAppKey:@"402180334"];
     [OpenShare connectWeixinWithAppId:@"wxd930ea5d5a258f4f"];
@@ -28,11 +43,13 @@
     // Override point for customization after application launch.
     self.annalyzeStorybord = [UIStoryboard storyboardWithName:@"Annalyze" bundle:nil];
     if ([[Config Instance] getToken]) {//已经登录状态
-       // [self changeToMain];
-        [Tools chooseRootController];
+        //环信登录
+        [self huanxinLogin];
+        [self changeToMain];
     }else{//未登录状态
         self.mStorybord = [UIStoryboard storyboardWithName:@"Personal" bundle:nil];
         self.window.rootViewController = [self.mStorybord instantiateViewControllerWithIdentifier:@"LoginStorybordId"];
+        //[Tools chooseRootController];
     }
 
     //Jpush
@@ -56,8 +73,11 @@
     
     return YES;
 }
+//app进入后台
 - (void)applicationDidEnterBackground:(UIApplication *)application{
      [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    //环信
+    [[EMClient sharedClient] applicationDidEnterBackground:application];
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -65,12 +85,16 @@
 }
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
     [JPUSHService registerDeviceToken:deviceToken];
-}
+    [[EMClient sharedClient] bindDeviceToken:deviceToken];
 
+}
+//app将要从后台返回
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     [application setApplicationIconBadgeNumber:0];
     [application cancelAllLocalNotifications];
+    
+    [[EMClient sharedClient] applicationWillEnterForeground:application];
 }
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
     //第二步：添加回调
@@ -101,6 +125,10 @@
     [JPUSHService showLocalNotificationAtFront:notification identifierKey:nil];
 }
 
+//注册divicetoken失败
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
+    NSLog(@"devicetoken register fail");
+}
 #pragma mark - PrivateMethod
 - (void)initJpush{
     NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
@@ -148,5 +176,47 @@
 - (void)changeToMain{
     self.mStorybord = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     self.window.rootViewController = [self.mStorybord instantiateViewControllerWithIdentifier:@"HomeTabBarVC"];
+}
+- (void)huanxinLogin{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        EMError *error = [[EMClient sharedClient] loginWithUsername:KUserId password:KUserPassword];
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (!error) {
+                //设置是否自动登录
+                [[EMClient sharedClient].options setIsAutoLogin:YES];
+                //获取数据库中数据
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    [[EMClient sharedClient] dataMigrationTo3];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+
+                        //发送自动登陆状态通知
+                        [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
+                        
+
+                    });
+                });
+            } else {
+                switch (error.code)
+                {
+                    case EMErrorNetworkUnavailable:
+                        TTAlertNoTitle(NSLocalizedString(@"error.connectNetworkFail", @"No network connection!"));
+                        break;
+                    case EMErrorServerNotReachable:
+                        TTAlertNoTitle(NSLocalizedString(@"error.connectServerFail", @"Connect to the server failed!"));
+                        break;
+                    case EMErrorUserAuthenticationFailed:
+                        TTAlertNoTitle(error.errorDescription);
+                        break;
+                    case EMErrorServerTimeout:
+                        TTAlertNoTitle(NSLocalizedString(@"error.connectServerTimeout", @"Connect to the server timed out!"));
+                        break;
+                    default:
+                        TTAlertNoTitle(NSLocalizedString(@"login.fail", @"Login failure"));
+                        break;
+                }
+            }
+        });
+    });
 }
 @end

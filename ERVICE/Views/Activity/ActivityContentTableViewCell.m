@@ -32,7 +32,7 @@
     // Configure the view for the selected state
 }
 - (void)configWithData:(ActivityModel *)model{
-    [self.image sd_setImageWithURL:[NSURL URLWithString:model.image] placeholderImage:[UIImage imageNamed:@"default"]];
+    [self.image sd_setImageWithURL:[NSURL URLWithString:model.image] placeholderImage:[UIImage imageNamed:@"annalyzeimage"]];
     self.titleLabel.text = model.title;
     self.contentLabel.text = model.content;
     UILabel *attentionLabel = [[LabelHelper alloc] buildAttentionLabelWithNumString:model.num regularString:@" 人参加"];

@@ -134,7 +134,7 @@
     }else if (section == 1){
         return 1;
     }else if(section == 2){
-     return   annalyzeModel.articleArray.count;
+     return   articleDataSource.count;
     }
     return 1;
 }
@@ -148,6 +148,8 @@
         cell.mScrollView.showsVerticalScrollIndicator = NO;
         cell.clickItemBlock = ^(NSInteger index){
          TeacherCatigoryModel *catemodel = [annalyzeModel.categoryArray objectAtIndex:index];
+            [annalyzeModel.articleArray removeAllObjects];
+            [articleDataSource removeAllObjects];
             _page = 1;
             [self loadDataWithTeacherId:self.teacherId page:_page articleId:catemodel.categoryId];
             NSLog(@"点击头部%ld按钮",index);
@@ -160,7 +162,7 @@
         return titleCell;
     }else if (indexPath.section == 2){
         AnnalyzeTableViewCell *contentCell = [[[NSBundle mainBundle] loadNibNamed:@"AnnalyzeTableViewCell" owner:self options:nil] lastObject];
-        TeacherItemModel *itemModel = [annalyzeModel.articleArray objectAtIndex:indexPath.row];
+        TeacherItemModel *itemModel = [articleDataSource objectAtIndex:indexPath.row];
         [contentCell configWithdata:itemModel];
         return contentCell;
     }

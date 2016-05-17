@@ -32,6 +32,7 @@
 #import "MyTeacherModel.h"
 #import "NoticeModel.h"
 #import "UserInfo.h"
+#import "HuanXinUserInfo.h"
 
 @interface MyAPI()
 @property NSString *mBaseUrl;
@@ -78,7 +79,11 @@
             NSDictionary *data = responseObject[@"data"];
             UserInfoModel *userinfo = [[UserInfoModel alloc] buildWithDatas:data];
             //保存个人信息至本地
-            [[Config Instance] saveUserid:userinfo.uid userName:userinfo.username userPhoneNum:userinfo.phone token:userinfo.token icon:userinfo.iconUrl
+            [[Config Instance] saveUserid:userinfo.uid
+                                 userName:userinfo.username
+                             userPhoneNum:userinfo.phone
+                                    token:userinfo.token
+                                     icon:userinfo.iconUrl
              ];
             result(YES,information);
             
@@ -153,6 +158,10 @@
                                  };
     [self.manager POST:@"userexit" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSString *info = responseObject[@"info"];
+        NSString *status = responseObject[@"status"];
+        if ([status isEqualToString:@"-1"]) {//超时处理
+            result(NO,@"登录超时");
+        }
         if ([responseObject[@"status"] isEqualToString:@"1"]) {
             result(YES,info);
         }else{
@@ -162,6 +171,30 @@
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         errorResult(error);
     }];
+}
+#pragma mark - 修改密码
+- (void)reSetPasswordWithOldPassword:(NSString *)oldPassword
+                         newPassword:(NSString *)newPassword
+                              Result:(StateBlock)result
+                         errorResult:(ErrorBlock)errorResult{
+    NSDictionary *parameters = @{
+                                 @"token":KToken,
+                                 @"oldpassword":oldPassword,
+                                 @"newpassword":newPassword
+                                 };
+    [self.manager POST:@"nos_Modifypassword" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *status = responseObject[@"status"];
+        
+        if ([status isEqualToString:@"1"]){
+            result(YES,@"修改成功!!");
+        }else{
+            result(YES,@"修改失败!!");
+        }
+
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        errorResult(error);
+    }];
+    
 }
 #pragma mark - 获取首页信息
 - (void)getHomepageDataWithResult:(ArrayBlock)result
@@ -267,7 +300,32 @@
         errorResult(error);
     }];
 }
-
+#pragma mark - 专家会诊
+- (void)SpecailListWithPage:(NSString *)page
+                     result:(ArrayBlock)result
+                errorResult:(ErrorBlock)errorResult{
+    NSDictionary *parameters = @{
+                                 @"page":page,
+                                 @"token":KToken
+                                 };
+    [self.manager POST:@"nos_allteacher_info" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *status = responseObject[@"status"];
+        if ([status isEqualToString:@"-1"]) {//超时处理
+            result(NO,@"登录超时",nil);
+        }
+        NSString *info = responseObject[@"info"];
+        if ([status isEqualToString:@"1"]) {
+            NSArray *data = responseObject[@"data"];
+           // NSArray *list = data[@"list"];
+            NSMutableArray *techArray = [[MyTeacherModel alloc] buildWithData:data];
+            result(YES,@"下载成功",techArray);
+        }else{
+            result(NO,info,nil);
+        }
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        errorResult(error);
+    }];
+}
 #pragma mark - 交易所下讲师列表
 //exid --交易所id
 - (void)getLecturerListWithExId:(NSString *)exid
@@ -563,7 +621,7 @@
                                  @"page":page,
                                  @"token":KToken
                                  };
-    [self.manager GET:@"my_activity" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    [self.manager POST:@"my_activity" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSString *status = responseObject[@"status"];
         if ([status isEqualToString:@"-1"]) {//超时处理
             result(NO,@"登录超时",nil);
@@ -734,5 +792,28 @@
         errorResult(error);
     }];
     
+}
+#pragma mark - 根据userid获取头像和昵称
+- (void)userInfoWithUserId:(NSString *)userid
+                    result:(ModelBlock)result
+               errorResult:(ErrorBlock)errorResult{
+    NSDictionary *parameters = @{
+                                 @"token":KToken,
+                                 @"userid":userid
+                                 };
+    [self.manager POST:@"nos_chatinfo" parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *status = responseObject[@"status"];
+        NSString *info = responseObject[@"info"];
+        if ([status isEqualToString:@"1"]) {
+            NSDictionary *data = responseObject[@"data"];
+            HuanXinUserInfo *model = [[HuanXinUserInfo alloc] buildWithData:data];
+            result(YES,info,model);
+        }else{
+            result(NO,info,nil);
+        }
+        
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        errorResult(error);
+    }];
 }
 @end

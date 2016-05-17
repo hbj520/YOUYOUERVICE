@@ -19,14 +19,14 @@
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="financeanlyze_clock" translatesAutoresizingMaskIntoConstraints="NO" id="jx4-q1-8xZ">
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="financeanlyze_clock" translatesAutoresizingMaskIntoConstraints="NO" id="jx4-q1-8xZ">
                         <rect key="frame" x="314" y="8" width="15" height="15"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="15" id="1vj-Ec-teP"/>
                             <constraint firstAttribute="height" constant="15" id="73m-xq-7Su"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XdC-UC-dow">
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XdC-UC-dow">
                         <rect key="frame" x="335" y="8" width="40" height="15"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="XN9-7J-DgP"/>

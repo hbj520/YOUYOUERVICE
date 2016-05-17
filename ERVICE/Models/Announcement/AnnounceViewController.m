@@ -8,6 +8,7 @@
 
 #import "AnnounceViewController.h"
 #import "AnnouncementDetaiViewController.h"
+#import "BannerWebViewController.h"
 
 #import "ActivityHeaderTableViewCell.h"
 #import "TeacherAnnalyzeTableViewCell.h"
@@ -175,6 +176,14 @@ static NSString *announceContentId = @"announceContentId";
     self.navigationItem.title = navTitle;
     
 }
+#pragma mark -SDCycleScrollViewDelegate
+//点击头部滚动视图
+-(void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
+    HomepageBannerModel *model = [bannerDataSource objectAtIndex:index];
+    if (model.link.length > 0) {//有链接
+        [self performSegueWithIdentifier:@"bannerSegue" sender:model.link];
+    }
+}
 #pragma mark - UITableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 3;
@@ -269,8 +278,14 @@ static NSString *announceContentId = @"announceContentId";
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    AnnouncementDetaiViewController *announceDetailVC = (AnnouncementDetaiViewController *)segue.destinationViewController;
-    announceDetailVC.articleId = (NSString *)sender;
+    if ([segue.identifier isEqualToString:@"bannerSegue"]){
+        BannerWebViewController *bannerWebVC = segue.destinationViewController;
+        bannerWebVC.bannerUrl = sender;
+    }else if ([segue.identifier isEqualToString:@"AnnounceArticleSegue"]){
+        AnnouncementDetaiViewController *announceDetailVC = (AnnouncementDetaiViewController *)segue.destinationViewController;
+        announceDetailVC.articleId = (NSString *)sender;
+    }
+
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }

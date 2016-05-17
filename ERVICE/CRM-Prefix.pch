@@ -33,8 +33,10 @@
    //  #import "UtilsMacro.h"
    // #import "UIImage+Compress.h"
    // #import "DBManager.h"
-
+   #import "EMSDK.h"
+   #import "EaseUI.h"
     #define MR_SHORTHAND
+#define NSEaseLocalizedString(key, comment) [[NSBundle bundleWithURL:[[NSBundle mainBundle] URLForResource:@"EaseUIResource" withExtension:@"bundle"]] localizedStringForKey:(key) value:@"" table:nil]
    // #import "CoreData+MagicalRecord.h"
 
   //  #import "UIViewController+DismissKeyboard.h"

@@ -52,11 +52,80 @@
                         <outlet property="tableView" destination="Mz7-yK-Yjx" id="1go-bk-7Lz"/>
                         <segue destination="lrB-xO-n0N" kind="push" identifier="FamousListSegue" id="zi4-Vu-fZD"/>
                         <segue destination="6zS-Wq-V0y" kind="push" identifier="CustomerServiceSegue" id="CDn-A7-LG7"/>
+                        <segue destination="ugt-oQ-lMR" kind="push" identifier="chatlistSegue" id="QOe-kv-RRv"/>
+                        <segue destination="deR-7r-TVn" kind="push" identifier="bannerSegue" id="EHg-dD-w1K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rfs-9x-FSt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-486" y="176"/>
+        </scene>
+        <!--Banner Web View Controller-->
+        <scene sceneID="LEg-jr-51E">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="deR-7r-TVn" customClass="BannerWebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TpT-2a-mae"/>
+                        <viewControllerLayoutGuide type="bottom" id="Cgv-g8-UXu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Laa-fk-8ZZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TN2-CB-iXk">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="TN2-CB-iXk" firstAttribute="top" secondItem="Laa-fk-8ZZ" secondAttribute="top" id="2BN-uz-AwX"/>
+                            <constraint firstItem="TN2-CB-iXk" firstAttribute="leading" secondItem="Laa-fk-8ZZ" secondAttribute="leading" id="STx-xM-6V1"/>
+                            <constraint firstAttribute="trailing" secondItem="TN2-CB-iXk" secondAttribute="trailing" id="cMc-zF-cfG"/>
+                            <constraint firstItem="Cgv-g8-UXu" firstAttribute="top" secondItem="TN2-CB-iXk" secondAttribute="bottom" id="dkZ-50-d7k"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="RyD-am-99I">
+                        <barButtonItem key="leftBarButtonItem" image="back" id="AKl-sl-PkR">
+                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backBtn:" destination="deR-7r-TVn" id="se3-rC-Aj5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="webView" destination="TN2-CB-iXk" id="aXl-F0-cdu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ja9-cK-twd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-486" y="967"/>
+        </scene>
+        <!--Chat List View Controller-->
+        <scene sceneID="7eN-wq-z1o">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="ugt-oQ-lMR" customClass="ChatListViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RDn-i5-oue"/>
+                        <viewControllerLayoutGuide type="bottom" id="yn2-Za-xLk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Uz1-pw-MTP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="5O7-qN-de0">
+                        <barButtonItem key="leftBarButtonItem" image="back" id="Opd-ud-Yxt">
+                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backBtn:" destination="ugt-oQ-lMR" id="pDv-JN-LjF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JgE-3J-gMk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="13" y="903"/>
         </scene>
         <!--Customer Service View Controller-->
         <scene sceneID="h0D-LD-Bi0">
@@ -97,7 +166,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3aR-sI-Sv3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-24" y="459"/>
+            <point key="canvasLocation" x="13" y="176"/>
         </scene>
         <!--Famous List View Controller-->
         <scene sceneID="5VM-75-uO2">
@@ -143,7 +212,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vsa-uX-eKU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-114" y="-205"/>
+            <point key="canvasLocation" x="-63" y="-474"/>
         </scene>
     </scenes>
     <resources>

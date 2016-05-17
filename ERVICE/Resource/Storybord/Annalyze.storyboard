@@ -19,7 +19,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z8o-Lm-vCk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-564" y="171"/>
+            <point key="canvasLocation" x="-1304" y="447"/>
         </scene>
         <!--Finance Annalyze View Controller-->
         <scene sceneID="5h0-56-BmE">
@@ -52,11 +52,12 @@
                     <connections>
                         <outlet property="tableView" destination="Dc7-Ui-c3g" id="Fw7-FW-YCe"/>
                         <segue destination="gRJ-db-pLf" kind="push" identifier="attentionSegue" id="vAA-PF-LFJ"/>
+                        <segue destination="kPe-NN-wBs" kind="push" identifier="annalyBannerSegue" id="Gry-6g-ERw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D24-bf-ypB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-192" y="171"/>
+            <point key="canvasLocation" x="-628" y="416"/>
         </scene>
         <!--华夏银都-->
         <scene sceneID="aEc-G1-UJR">
@@ -193,6 +194,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iFw-iB-vKc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="996" y="171"/>
+        </scene>
+        <!--Banner Web View Controller-->
+        <scene sceneID="hXZ-E4-stk">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="kPe-NN-wBs" customClass="BannerWebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="itb-l8-DAB"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qr5-j8-oxH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kj4-g0-cKR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FF9-Ym-brf">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Qr5-j8-oxH" firstAttribute="top" secondItem="FF9-Ym-brf" secondAttribute="bottom" id="9SV-uR-hsf"/>
+                            <constraint firstItem="FF9-Ym-brf" firstAttribute="leading" secondItem="kj4-g0-cKR" secondAttribute="leading" id="Oty-aR-3Ne"/>
+                            <constraint firstAttribute="trailing" secondItem="FF9-Ym-brf" secondAttribute="trailing" id="Uz9-f5-KWl"/>
+                            <constraint firstItem="FF9-Ym-brf" firstAttribute="top" secondItem="kj4-g0-cKR" secondAttribute="top" id="nz4-sz-SfF"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="0lF-DJ-yy2">
+                        <barButtonItem key="leftBarButtonItem" image="back" id="rnm-PP-Q9u">
+                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backBtn:" destination="kPe-NN-wBs" id="4Ik-16-MuU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="webView" destination="FF9-Ym-brf" id="n7x-up-bTd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y9c-9A-MVp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="184" y="866"/>
         </scene>
     </scenes>
     <resources>

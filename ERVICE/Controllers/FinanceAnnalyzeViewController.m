@@ -8,6 +8,7 @@
 
 #import "FinanceAnnalyzeViewController.h"
 #import "AttentionViewController.h"
+#import "BannerWebViewController.h"
 
 #import "FinanceAnnalyzeTableViewCell.h"
 #import "Marco.h"
@@ -126,10 +127,16 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    FinanceItemModel *model = (FinanceItemModel *)sender;
-    AttentionViewController *attentionVC = (AttentionViewController *)segue.destinationViewController;
-    attentionVC.exid = model.exid;
-    attentionVC.exName = model.exname;
+    if ([segue.identifier isEqualToString:@"annalyBannerSegue"]){
+        BannerWebViewController *bannerWebVC = segue.destinationViewController;
+        bannerWebVC.bannerUrl = sender;
+    }else if ([segue.identifier isEqualToString:@"attentionSegue"]){
+        FinanceItemModel *model = (FinanceItemModel *)sender;
+        AttentionViewController *attentionVC = (AttentionViewController *)segue.destinationViewController;
+        attentionVC.exid = model.exid;
+        attentionVC.exName = model.exname;
+    }
+
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
@@ -137,6 +144,7 @@
 #pragma mark -SDCycleScrollViewDelegate
 //点击头部滚动视图
 -(void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
-    
+    HomepageBannerModel *model = [financeDataSource.banners objectAtIndex:index];
+    [self performSegueWithIdentifier:@"annalyBannerSegue" sender:model.link];
 }
 @end

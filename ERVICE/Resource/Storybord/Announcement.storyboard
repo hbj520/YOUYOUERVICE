@@ -50,6 +50,7 @@
                     <connections>
                         <outlet property="tableView" destination="euW-Nu-psk" id="q97-eQ-1EX"/>
                         <segue destination="lfj-qM-LVy" kind="push" identifier="AnnounceArticleSegue" id="Oen-Eq-QDA"/>
+                        <segue destination="3hz-v1-unW" kind="push" identifier="bannerSegue" id="bKK-b1-ml2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jg3-GX-wu4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -101,7 +102,48 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cDG-QN-G6n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="238" y="79"/>
+            <point key="canvasLocation" x="264" y="-159"/>
+        </scene>
+        <!--Banner Web View Controller-->
+        <scene sceneID="z8X-mg-JKb">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="3hz-v1-unW" customClass="BannerWebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cfo-Ce-BdP"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qtq-mc-4s9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LoC-rh-ASb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4fR-t5-gwk">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="4fR-t5-gwk" secondAttribute="trailing" id="JY7-6w-lez"/>
+                            <constraint firstItem="4fR-t5-gwk" firstAttribute="leading" secondItem="LoC-rh-ASb" secondAttribute="leading" id="bCQ-DA-9bx"/>
+                            <constraint firstItem="Qtq-mc-4s9" firstAttribute="top" secondItem="4fR-t5-gwk" secondAttribute="bottom" id="hjl-N4-EGz"/>
+                            <constraint firstItem="4fR-t5-gwk" firstAttribute="top" secondItem="LoC-rh-ASb" secondAttribute="top" id="uts-P5-UIL"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ENj-Hr-eRp">
+                        <barButtonItem key="leftBarButtonItem" image="back" id="XEq-eM-ZY2">
+                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backBtn:" destination="3hz-v1-unW" id="0oz-Qh-H5h"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="webView" destination="4fR-t5-gwk" id="pUP-9h-6ce"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C3D-Gw-RkH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="348" y="642"/>
         </scene>
     </scenes>
     <resources>

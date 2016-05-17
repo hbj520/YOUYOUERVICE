@@ -18,14 +18,17 @@
       userPhoneNum:(NSString *)PhoneNum
              token:(NSString *)token
               icon:(NSString *)icon;
+//保存密码
+- (void)saveUserPassword:(NSString *)password;
 //保存头像url
 - (void)saveIcon:(NSString *)icon;
-//获取本地保存的用户userid 用户name 用户phone token
+//获取本地保存的用户userid 用户name 用户phone token,密码
 - (NSString *)getUserid;
 - (NSString *)getUserName;
 - (NSString *)getUserPhoneNum;
 - (NSString *)getToken;
-- (NSString *)getUserIcon;   
+- (NSString *)getUserIcon;
+- (NSString *)getPassword;
 //退出登录
 - (void)logOut;
 

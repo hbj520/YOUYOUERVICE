@@ -8,7 +8,10 @@
 
 #import "AttentionTeacherListViewController.h"
 #import "AttentionTeacherTableViewController.h"
+#import "ChatViewController.h"
 
+
+#import <MJRefresh/MJRefresh.h>
 #import "MyTeacherModel.h"
 
 #import "AttentionListTableViewCell.h"
@@ -20,6 +23,7 @@ UITableViewDataSource,
 UIAlertViewDelegate>
 {
     NSMutableArray *dataSource;
+    NSInteger _page;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction)backBtn:(UIBarButtonItem *)sender;
@@ -32,9 +36,14 @@ UIAlertViewDelegate>
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.hidesBackButton = YES;
-    //下载数据
-    [self loadData];
-    
+    if (self.isSpecail) {
+        [self addRefresh];
+        _page = 1;
+        [self loadDataWithPage:_page];
+    }else{
+        //下载数据
+        [self loadData];
+    }
     //注册tableviewcell
     [self registerTableViewCell];
     //注册通知
@@ -47,6 +56,24 @@ UIAlertViewDelegate>
     // Dispose of any resources that can be recreated.
 }
 #pragma  mark - PrivateMethod
+- (void)addRefresh{
+    __weak  AttentionTeacherListViewController *weakself = self;
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        if (dataSource.count > 0) {
+            [dataSource removeAllObjects];
+        }
+        _page = 1;
+        [weakself loadDataWithPage:1];
+    }];
+    MJRefreshAutoNormalFooter *footerRefreh = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        _page++;
+        NSLog(@"%ld",_page);
+        [weakself loadDataWithPage:_page];
+    }];
+    footerRefreh.automaticallyRefresh = NO;
+    self.tableView.mj_footer = footerRefreh;
+    
+}
 - (void)timeOutAction{//超时处理
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"登录超时" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     [alertView show];
@@ -61,6 +88,37 @@ UIAlertViewDelegate>
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[AttentionListTableViewCell class] forCellReuseIdentifier:reuserId];
+}
+- (void)loadDataWithPage:(NSInteger)page{
+    [self showHudInView:self.view hint:@"加载..."];
+    NSString *nowPage = [NSString stringWithFormat:@"%ld",page];
+    [[MyAPI sharedAPI] SpecailListWithPage:nowPage result:^(BOOL success, NSString *msg, NSMutableArray *arrays) {
+        //登录超时处理
+        if ([msg isEqualToString:@"登录超时"]) {
+            [self timeOutAction];
+        }
+        if (success) {
+            if (!dataSource) {
+                dataSource = [NSMutableArray array];
+            }
+            [dataSource addObjectsFromArray:arrays];
+            [self.tableView reloadData];
+            [self.tableView.mj_footer endRefreshing];
+            [self.tableView.mj_header endRefreshing];
+            [self hideHud];
+        }else{
+            [self.tableView.mj_footer endRefreshing];
+            [self.tableView.mj_header endRefreshing];
+            [self showHint:@"下载失败"];
+            [self hideHud];
+        }
+    } errorResult:^(NSError *enginerError) {
+        [self.tableView.mj_footer endRefreshing];
+        [self.tableView.mj_header endRefreshing];
+        [self showHint:@"下载出错"];
+        [self hideHud];
+    }];
+    
 }
 - (void)loadData{
     if (dataSource.count > 0) {
@@ -101,7 +159,12 @@ UIAlertViewDelegate>
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.selected = NO;
      MyTeacherModel *model = [dataSource objectAtIndex:indexPath.row];
-    [self performSegueWithIdentifier:@"AttentionTeacherSegue" sender:model];
+    if (self.isSpecail) {
+        ChatViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:model.techId conversationType:EMConversationTypeChat];
+        [self.navigationController pushViewController:chatController animated:YES];
+    }else{
+        [self performSegueWithIdentifier:@"AttentionTeacherSegue" sender:model];
+    }
 }
 
 #pragma mark - Navigation

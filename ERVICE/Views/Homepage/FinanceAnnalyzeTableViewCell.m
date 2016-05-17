@@ -35,7 +35,7 @@
 }
 - (void)configWithData:(FinanceItemModel *)data{
     [self.exchangeImage sd_setImageWithURL:[NSURL URLWithString:data.image] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        UIImage *img =   [Tools imageCompressForSize:image targetSize:CGSizeMake(60, 60)];
+        UIImage *img = [Tools imageCompressForSize:image targetSize:CGSizeMake(60, 60)];
         self.exchangeImage.image = img;
     }];
 

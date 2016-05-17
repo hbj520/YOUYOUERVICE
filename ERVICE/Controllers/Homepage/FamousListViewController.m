@@ -27,6 +27,8 @@ static NSString *reuseId2 = @"reuseId2";
     NSMutableArray *topThreeDataSource;
     NSMutableArray *topListDataSource;
     NSInteger _page;
+    //判断是否在加载
+    BOOL isLoding;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction)backBtn:(UIBarButtonItem *)sender;
@@ -76,7 +78,11 @@ static NSString *reuseId2 = @"reuseId2";
         horCell.modelsArray = topThreeDataSource;
         return horCell;
     }else if (indexPath.section == 1){
+
         FamousListTableViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"FamousListTableViewCell" owner:self options:nil] lastObject];
+        if (topListDataSource.count == 0) {
+            return cell;
+        }
         FamousTechListModel *model = [topListDataSource objectAtIndex:indexPath.row];
         [cell configWithData:model];
         __weak FamousListViewController *weakself = self;
@@ -171,6 +177,7 @@ static NSString *reuseId2 = @"reuseId2";
     MJRefreshAutoNormalFooter *footerRefreh = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         _page++;
         NSLog(@"%ld",_page);
+        isLoding = YES;
         [weakself loadDataWithPage:_page];
     }];
     footerRefreh.automaticallyRefresh = NO;

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface AttentionTeacherListViewController : UIViewController
-
+//是否为专家会诊
+@property (nonatomic,assign) BOOL isSpecail;
 @end

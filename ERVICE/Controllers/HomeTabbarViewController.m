@@ -8,7 +8,8 @@
 
 #import "HomeTabbarViewController.h"
 #import "HexColor.h"
-@interface HomeTabbarViewController ()
+//#import "NSObject+EaseMob.h"
+@interface HomeTabbarViewController ()<EMChatManagerDelegate>
 {
     NSArray *titleArrays;
     NSMutableArray *menusVCs;//tabbars的控制器们
@@ -81,15 +82,41 @@
         [menusVCs addObject:vc];
         
     }
-    
+     [self registerNotifications];
     self.viewControllers = menusVCs;
 }
-
+-(void)registerNotifications{
+    [self unregisterNotifications];
+    [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
+    //[[ sharedInstance].chatManager addDelegate:self delegateQueue:nil];
+}
+-(void)unregisterNotifications{
+   // [[EaseMob sharedInstance].chatManager removeDelegate:self];
+    [[EMClient sharedClient].chatManager removeDelegate:self];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+#pragma mark - private
+- (void)setUpUnreadMessageCount{
+    NSArray *conversations = [[EMClient sharedClient].chatManager getAllConversations];
+    NSInteger unreadCount = 0;
+    for (EMConversation *conversation in conversations) {
+        unreadCount += conversation.unreadMessagesCount;
+    }
+    
+//    if (_chatListVC) {
+//        if (unreadCount) {
+//            _chatListVC.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld",(long)unreadCount];
+//        }else{
+//            _chatListVC.tabBarItem.badgeValue = nil;
+//        }
+//    }
+    
+    UIApplication *application = [UIApplication sharedApplication];
+    [application setApplicationIconBadgeNumber:unreadCount];
+}
 /*
 #pragma mark - Navigation
 

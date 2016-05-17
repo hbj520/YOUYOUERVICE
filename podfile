@@ -11,3 +11,4 @@ pod 'TTTAttributedLabel', '~> 1.13.4'
 pod 'JDStatusBarNotification'
 pod 'FMDB'
 pod 'TPKeyboardAvoiding', '~> 1.2.10'
+

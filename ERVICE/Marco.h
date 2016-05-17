@@ -26,6 +26,9 @@
 #define RectHeight(f)                       f.size.height
 
 #define KToken [[Config Instance] getToken]
+#define KUserId [[Config Instance] getUserid]
+#define KUserPassword [[Config Instance] getPassword]
+
 
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 

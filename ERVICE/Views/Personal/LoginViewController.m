@@ -9,9 +9,10 @@
 #import "LoginViewController.h"
 #import "Tools.h"
 #import "Marco.h"
+#import "TTGlobalUICommon.h"
 
 #import "AppDelegate.h"
-@interface LoginViewController ()
+@interface LoginViewController ()<EMClientDelegate>
 - (IBAction)exitBtn:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UITextField *numberInput;
 @property (weak, nonatomic) IBOutlet UITextField *passwordInput;
@@ -59,10 +60,58 @@
     }
 }
 - (void)LoginSuccess{
-//    ApplicationDelegate.mStorybord = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    
-//    ApplicationDelegate.window.rootViewController = [ApplicationDelegate.mStorybord instantiateViewControllerWithIdentifier:@"HomeTabBarVC"];
     [Tools chooseRootController];
+    //环信登录
+    BOOL isAutoLogin = [EMClient sharedClient].options.isAutoLogin;
+    EMError *error;
+    if (!isAutoLogin) {
+        error = [[EMClient sharedClient] loginWithUsername:KUserId password:KUserPassword];
+    }
+    if (!error) {//登录成功
+        [[EMClient sharedClient].options setIsAutoLogin:YES];
+        //发送自动登陆状态通知
+        [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
+    }else{
+        switch (error.code){
+                //                    case EMErrorNotFound:
+                //                        TTAlertNoTitle(error.errorDescription);
+                //                        break;
+            case EMErrorNetworkUnavailable:
+                TTAlertNoTitle(NSLocalizedString(@"error.connectNetworkFail", @"No network connection!"));
+                break;
+            case EMErrorServerNotReachable:
+                TTAlertNoTitle(NSLocalizedString(@"error.connectServerFail", @"Connect to the server failed!"));
+                break;
+            case EMErrorUserAuthenticationFailed:
+                TTAlertNoTitle(error.errorDescription);
+                break;
+            case EMErrorServerTimeout:
+                TTAlertNoTitle(NSLocalizedString(@"error.connectServerTimeout", @"Connect to the server timed out!"));
+                break;
+            default:
+                TTAlertNoTitle(NSLocalizedString(@"login.fail", @"Login failure"));
+                break;
+        };
+    }
+    //添加回调监听代理
+    [[EMClient sharedClient] addDelegate:self delegateQueue:nil];
+
+}
+- (void)didAutoLoginWithError:(EMError *)aError{
+    
+    
+}
+- (void)didConnectionStateChanged:(EMConnectionState)aConnectionState{
+    
+    
+}
+- (void)didLoginFromOtherDevice{
+    
+    
+}
+- (void)didRemovedFromServer{
+  
+    
 }
 - (IBAction)exitBtn:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:NO];
@@ -81,6 +130,8 @@
                                 result:^(BOOL sucess, NSString *msg) {
         if (sucess) {
             [self showHint:@"登录成功！"];
+            //保存密码
+            [[Config Instance] saveUserPassword:securityString];
             [self LoginSuccess];
         }else{
             [self showHint:msg];

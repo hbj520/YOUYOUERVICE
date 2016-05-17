@@ -7,6 +7,7 @@
 //
 
 #import "AllActivityViewController.h"
+#import "BannerWebViewController.h"
 
 #import "Hexcolor.h"
 #import "ActivityHeaderTableViewCell.h"
@@ -150,7 +151,10 @@ static NSString *reuseContentId = @"contentId";
 #pragma mark -SDCycleScrollViewDelegate
 //点击头部滚动视图
 -(void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
-    
+    HomepageBannerModel *model = [bannerDataSource objectAtIndex:index];
+    if (model.link.length > 0) {//有链接
+        [self performSegueWithIdentifier:@"bannerSegue" sender:model.link];
+    }
 }
 
 #pragma mark - PrivateMethod
@@ -222,8 +226,13 @@ static NSString *reuseContentId = @"contentId";
 }
 #pragma mark - prepareMethod
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    ActivityDetailViewController *detailVC = (ActivityDetailViewController *)segue.destinationViewController;
-    detailVC.activityId = (NSString *)sender;
+    if ([segue.identifier isEqualToString:@"bannerSegue"]){
+        BannerWebViewController *bannerWebVC = segue.destinationViewController;
+        bannerWebVC.bannerUrl = sender;
+    }else if ([segue.identifier isEqualToString:@"AllactivityDetailSegue"]){
+        ActivityDetailViewController *detailVC = (ActivityDetailViewController *)segue.destinationViewController;
+        detailVC.activityId = (NSString *)sender;
+    }
 }
 #pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{

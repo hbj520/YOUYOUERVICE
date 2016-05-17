@@ -80,12 +80,12 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
     UIImage *image = info[UIImagePickerControllerOriginalImage];
     //压缩图片尺寸
-    UIImage *scaleImage = [image scaleToSize:CGSizeMake(57, 57)];
-    [self fixOrientation:scaleImage];
+//    UIImage *scaleImage = [image scaleToSize:CGSizeMake(57, 57)];
+//    [self fixOrientation:scaleImage];
     [self showHudInView:self.view hint:@"上传图片..."];
 //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 //        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);  //创建一个信号
-        NSData * data = UIImageJPEGRepresentation(scaleImage, 0.8);
+        NSData * data = UIImageJPEGRepresentation(image, 0.1);
         [[MyAPI sharedAPI] uploadImage:data result:^(BOOL sucess, NSString *msg) {
             //登录超时处理
             if ([msg isEqualToString:@"登录超时"]) {
@@ -101,34 +101,7 @@
             [self hideHud];
             
         }];
-//        NSString *str =[NSString stringWithFormat:@"%d",(int)[[NSDate date] timeIntervalSince1970]];
-//        str = [str stringByAppendingString:@".png"];
-//        [data writeToFile:[Tools documentPath:str] atomically:YES];
-//        [[MyAPI sharedAPI] postFileAndImage:[Tools documentPath:str]
-//                                       type:@"1"
-//                                       name:str
-//                                     result:^(BOOL success, NSString *msg, id object) {
-//                                         if (success) {
-//                                             [self hideHud];
-//                                             
-//                                             
-//                                             
-////                                             _headImageUrl = object[@"url"];
-////                                             [[Config Instance] saveavatarURL:_headImageUrl];
-//                                             dispatch_async(dispatch_get_main_queue(), ^{
-////                                                 self.headerImageView.image = image;
-//                                             });
-//                                             dispatch_semaphore_signal(semaphore);     //发送一个信号
-//                                         }else{
-//                                             NSLog(@"%@",@"上传失败");
-//                                         }
-//                                     }];
-//        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER); //等待信号 //下载结束后继续
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self hideHud];
-//        });
-//       // [self uploadHeadImage];
-//    });
+
     
 }
 #pragma mark - Table view data source
@@ -158,6 +131,8 @@
             self.tabBarController.selectedIndex = 2;
         }else if (indexPath.row == 3){ //点击我的消息
             [self performSegueWithIdentifier:@"NoticeListSegue" sender:nil];
+        }else if (indexPath.row == 4){ //修改密码
+            [self performSegueWithIdentifier:@"ResetpasswordSegue" sender:nil];
         }
     }
     //点击设置
@@ -166,59 +141,7 @@
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)loginBtn:(UIButton *)sender {
     [self performSegueWithIdentifier:@"LoginSegue" sender:nil];

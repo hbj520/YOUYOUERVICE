@@ -10,8 +10,9 @@
 #import "Hexcolor.h"
 #import "MyActivityHeaderTableViewCell.h"
 #import "ActivityContentTableViewCell.h"
+#import "ActivityDetailViewController.h"
 #import "MoveScrollView.h"
-
+#import "ActivityModel.h"
 #import <MJRefresh.h>
 static NSString *reuseHeaderId = @"myActivityId";
 static NSString *reuseContentId = @"myActivityContenId";
@@ -28,7 +29,7 @@ static NSString *reuseContentId = @"myActivityContenId";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //下载数据
-    [self loadDataWithPage:0];
+    [self loadDataWithPage:1];
     [self configTableView];
     
     //添加刷新
@@ -40,20 +41,22 @@ static NSString *reuseContentId = @"myActivityContenId";
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    ActivityDetailViewController *detailVC = (ActivityDetailViewController *)segue.destinationViewController;
+    detailVC.activityId = (NSString *)sender;
 }
-*/
+
 #pragma mark - PrivateMethod
 - (void)addRefresh{
     __weak MyActivityViewController *weakself = self;
     self.myActivityTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [weakself loadDataWithPage:0];
+        [weakself loadDataWithPage:1];
     }];
 }
 - (void)configTableView{
@@ -69,7 +72,7 @@ static NSString *reuseContentId = @"myActivityContenId";
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
-        return 1;
+        return 0;
     }else{
         return dataSource.count;
     }
@@ -90,6 +93,8 @@ static NSString *reuseContentId = @"myActivityContenId";
         return cell;
     }else if (indexPath.section == 1){
         ActivityContentTableViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"ActivityContentTableViewCell" owner:self options:nil] lastObject];
+        ActivityModel *model = [dataSource objectAtIndex:indexPath.row];
+        [cell configWithData:model];
         return cell;
     }
     return nil;
@@ -108,7 +113,8 @@ static NSString *reuseContentId = @"myActivityContenId";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.selected = NO;
-    [self performSegueWithIdentifier:@"MyactivityDetailSegue" sender:nil];
+    ActivityModel *model = [dataSource objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:@"AllactivityDetailSegue" sender:model.activityId];
 }
 #pragma mark - XLSwipeContainerItemDelegate
 

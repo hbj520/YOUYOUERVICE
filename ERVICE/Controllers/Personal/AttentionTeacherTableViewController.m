@@ -9,6 +9,7 @@
 #import "AttentionTeacherTableViewController.h"
 #import "starView.h"
 #import "MyTeacherModel.h"
+#import "ChatViewController.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
 @interface AttentionTeacherTableViewController ()
@@ -25,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *publilshArticleLabel;
 - (IBAction)attentionBtn:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UIButton *attentionBtn;
+@property (weak, nonatomic) IBOutlet UIButton *chatBtn;
+- (IBAction)chatBtn:(UIButton *)sender;
 
 @end
 
@@ -50,7 +53,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 3;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -175,5 +178,13 @@
     } errorResult:^(NSError *enginerError) {
         [self showHint:@"取消关注出错！！"];
     }];
+}
+//点击进入聊天界面
+- (IBAction)chatBtn:(UIButton *)sender {
+ //   回话id
+    
+   // [self performSegueWithIdentifier:@"chatviewSegue" sender:nil];
+   ChatViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:self.myTech.techId conversationType:EMConversationTypeChat];
+   [self.navigationController pushViewController:chatController animated:YES];
 }
 @end

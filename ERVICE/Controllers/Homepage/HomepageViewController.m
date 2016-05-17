@@ -10,6 +10,7 @@
 #import "AttentionTeacherListViewController.h"
 #import "FamousListViewController.h"
 #import "CustomerServiceViewController.h"
+#import "BannerWebViewController.h"
 
 #import "SDCycleScrollView.h"
 #import "HomepageHeaderTableViewCell.h"
@@ -25,7 +26,9 @@
 
 #import "HomepageBannerModel.h"
 #import "HomepageExchangeModel.h"
-
+#import "BBBadgeBarButtonItem.h"
+#import "TeacherAnlyzeViewController.h"
+#import "FamousTechListModel.h"
 #import "AttentionViewController.h"
 @interface HomepageViewController ()<UITableViewDataSource,
                                      UITableViewDelegate,
@@ -37,6 +40,11 @@
     NSMutableArray *bannerData;//滚动视图数据
     NSMutableArray *exchangeData;//交易所数据
     NSInteger _collectionLines;
+    BBBadgeBarButtonItem *_chatBtn;
+    UIView *footView;
+    NSMutableArray * _ThreeArray;
+   // NSMutableArray * _arrayTech;
+    
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -49,11 +57,13 @@
     // Do any additional setup after loading the view.
     //下载数据
     [self loadData];
+    [self loadThreeData];
     //设置navtitle
     [self setNavTitle];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
+    //[self createTeacherThree];
+     self.tableView.tableFooterView = footView;
     //添加刷新
     [self addRefresh];
 
@@ -72,7 +82,27 @@
     __weak  HomepageViewController *weakself = self;
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakself loadData];
+        [weakself loadThreeData];
     }];
+}
+
+- (void)loadThreeData{
+    //下载排名前几名老师
+    
+    [[MyAPI sharedAPI] famousTopThreeWithResult:^(BOOL success, NSString *msg, NSMutableArray *arrays) {
+        if (success) {
+            _ThreeArray = arrays;
+            [self createTeacherThree];
+            
+        }else{
+            NSLog(@"load failed");
+        }
+      
+    } errorResult:^(NSError *enginerError) {
+        
+        NSLog(@"error result");
+    }];
+    
 }
 - (void)loadData{
     [self showHudInView:self.view hint:@"加载中..."];
@@ -101,6 +131,17 @@ withList:3];
         [self.tableView.mj_header endRefreshing];
 
     }];
+    
+//    [[MyAPI sharedAPI] famousTopThreeWithResult:^(BOOL success, NSString *msg, NSMutableArray *arrays) {
+//        if (success) {
+//            _ThreeArray = arrays;
+//            
+//        }
+//        
+//    } errorResult:^(NSError *enginerError) {
+//        
+//    }];
+
 }
 - (void)configPageViews{
     NSMutableArray *imagArray = [NSMutableArray array];
@@ -125,7 +166,25 @@ withList:3];
     NSDictionary *attributeDict = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:16.0],NSFontAttributeName,[UIColor darkGrayColor],NSForegroundColorAttributeName, nil];
     self.navigationController.navigationBar.titleTextAttributes = attributeDict;
     self.navigationItem.title = navTitle;
+    [self addChatBtn];
+}
+- (void)addChatBtn{
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 0, 25, 25);
+    [btn setImage:[UIImage imageNamed:@"chat_icon"] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(chatAct:) forControlEvents:UIControlEventTouchUpInside];
+    _chatBtn = [[BBBadgeBarButtonItem alloc] initWithCustomUIButton:btn];
+    _chatBtn.badgeFont = [UIFont systemFontOfSize:10.0f];
+    _chatBtn.badgeOriginX = 15.5;
+    _chatBtn.badgeOriginY = -2.5;
+    _chatBtn.badgePadding = 2;
+    _chatBtn.badgeValue = @"0";
     
+    NSMutableArray *arryBtn = [NSMutableArray arrayWithObjects:_chatBtn, nil];
+    self.navigationItem.leftBarButtonItems = arryBtn;
+}
+- (void)chatAct:(id)sender{
+    [self performSegueWithIdentifier:@"chatlistSegue" sender:nil];
 }
 //点击我的专属
 - (void)clickMyExculsive{
@@ -139,7 +198,10 @@ withList:3];
 }
 //点击专家会诊
 - (void)clickSpecail{
-    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Personal" bundle:nil];
+    AttentionTeacherListViewController *teacherListVC = (AttentionTeacherListViewController *)[storyboard instantiateViewControllerWithIdentifier:@"attentionTeachListId"];
+    teacherListVC.isSpecail = YES;
+    [self.navigationController pushViewController:teacherListVC animated:YES];
 }
 //点击名人榜单
 - (void)clickFamous{
@@ -233,7 +295,10 @@ withList:3];
 #pragma mark -SDCycleScrollViewDelegate
 //点击头部滚动视图
 -(void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
-    
+    HomepageBannerModel *model = [bannerData objectAtIndex:index];
+    if (model.link.length > 0) {//有链接
+        [self performSegueWithIdentifier:@"bannerSegue" sender:model.link];
+    }
 }
 #pragma mark - TapCollectionCellDelegate
 - (void)TapCollectionViewCellDelegate:(HomepageAnalyzeModel *)analyzeModel tapIndexPath:(NSIndexPath *)indexPath{
@@ -255,6 +320,9 @@ withList:3];
     if ([segue.identifier isEqualToString:@"financeSegue"]) {
         FinanceAnnalyzeViewController *financeVC = (FinanceAnnalyzeViewController *)segue.destinationViewController;
         
+    }else if ([segue.identifier isEqualToString:@"bannerSegue"]){
+        BannerWebViewController *bannerWebVC = segue.destinationViewController;
+        bannerWebVC.bannerUrl = sender;
     }
 }
 #pragma mark - UIAlertViewDelegate
@@ -264,6 +332,127 @@ withList:3];
         [LoginHelper loginTimeoutAction];
     }
     
+}
+#pragma mark -- CreateTeacherThree
+/**
+ 先实现功能
+ *  推荐讲师前三名
+ */
+- (void)createTeacherThree
+{
+    
+
+    footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 250)];
+    footView.backgroundColor = [UIColor colorWithRed:242 green:243 blue:244 alpha:1];
+    UIImageView * topView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 55, 16)];
+    topView.image = [UIImage imageNamed:@"a1_27"];
+   // FamousTechListModel * model = [[FamousTechListModel alloc] init];
+   // NSMutableArray * array1 = [model buildData:_ThreeArray];
+    [footView addSubview:topView];
+    for(int i =0;i<_ThreeArray.count;i++){
+        FamousTechListModel * model = [_ThreeArray objectAtIndex:i];
+        //[_arrayTech addObject:model];
+        CGFloat orginH = (i+1)*8+ i*61 + 38;
+        UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake(0, orginH, self.view.frame.size.width, 61)];
+        btn.tag = 10 + i;
+        btn.backgroundColor = [UIColor whiteColor];
+        [btn addTarget:self action:@selector(pushDetailview:) forControlEvents:UIControlEventTouchUpInside];
+        UIImageView * img = [[UIImageView alloc] initWithFrame:CGRectMake(20, 10, 40, 40)];
+        img.backgroundColor = [UIColor blueColor];
+        NSURL * urlimg = [NSURL URLWithString:model.techImage];
+        [img.layer setMasksToBounds:YES];
+        img.layer.cornerRadius = 20;
+        [img sd_setImageWithURL:urlimg];
+        UILabel * title = [[UILabel alloc] initWithFrame:CGRectMake(80, 10, 70, 25)];
+        title.textColor = [UIColor blackColor];
+        title.font =[UIFont systemFontOfSize:17];
+        title.text = model.techName;
+
+        UILabel * detail = [[UILabel alloc] initWithFrame:CGRectMake(80, 40, 200, 20)];
+        detail.textColor = [UIColor blackColor];
+        detail.font = [UIFont systemFontOfSize:12];
+        detail.text = model.techDes;
+//        if(i==0){
+//            model = array1[0];
+//           // NSArray * data = _ThreeArray[0];
+//            //[model buildData:data];
+//            NSString * imgPath = model.techImage;
+//            
+//            NSURL * urlimg = [NSURL URLWithString:model.techImage];
+//            [img.layer setMasksToBounds:YES];
+//            img.layer.cornerRadius = 20;
+//            [img sd_setImageWithURL:urlimg];
+//            title.text = model.techName;
+//            detail.text = model.techDes;
+//        }else if (i==1){
+//           // model = _ThreeArray[1];
+//           model = array1[1];
+//            
+//            //[model buildData:data];
+//            // NSString * imgPath = model.techImage;
+//            NSURL * urlimg = [NSURL URLWithString:model.techImage];
+//            [img.layer setMasksToBounds:YES];
+//            img.layer.cornerRadius = 20;
+//            [img sd_setImageWithURL:urlimg];
+//            title.text = model.techName;
+//            detail.text = model.techDes;
+//        }else if (i==2){
+//            //model = _ThreeArray[2];
+//           // NSArray * data = _ThreeArray[2];
+//            //[model buildData:data];
+//            model = array1[2];
+//            NSString * imgPath = model.techImage;
+//           
+//            NSURL * urlimg = [NSURL URLWithString:imgPath];
+//            [img.layer setMasksToBounds:YES];
+//            img.layer.cornerRadius = 20;
+//            [img sd_setImageWithURL:urlimg];
+//            title.text = model.techName;
+//            detail.text = model.techDes;
+//        }
+        [btn addSubview:img];
+        [btn addSubview:title];
+        [btn addSubview:detail];
+        [footView addSubview:btn];
+    }
+    self.tableView.tableFooterView = footView;
+}
+
+- (void)pushDetailview:(UIButton*)sender
+{
+     NSInteger i = sender.tag - 10;
+//    FamousTechListModel * model = [[FamousTechListModel alloc] init];
+//     NSMutableArray * array1 = [model buildData:_ThreeArray];
+   
+    FamousTechListModel * model  = [_ThreeArray objectAtIndex:i];
+   // model = _ThreeArray[i];
+    UIStoryboard *storybord = [UIStoryboard storyboardWithName:@"Annalyze" bundle:nil];
+ TeacherAnlyzeViewController *teacherDetailVC = (TeacherAnlyzeViewController *)[storybord instantiateViewControllerWithIdentifier:@"TeacherDetailStorybordId"];
+    NSString * str1 = model.techId;
+    NSString * str2 = model.techName;
+    teacherDetailVC.teacherId = str1;
+ teacherDetailVC.teacherName =  str2;
+     [self.navigationController pushViewController:teacherDetailVC animated:YES];
+//    if (sender.tag == 10) {
+//        UIStoryboard *storybord = [UIStoryboard storyboardWithName:@"Annalyze" bundle:nil];
+//        TeacherAnlyzeViewController *teacherDetailVC = (TeacherAnlyzeViewController *)[storybord instantiateViewControllerWithIdentifier:@"TeacherDetailStorybordId"];
+//        teacherDetailVC.teacherId = @"89";
+//        teacherDetailVC.teacherName = @"李放放";
+//        [self.navigationController pushViewController:teacherDetailVC animated:YES];
+//    }else if (sender.tag == 11){
+//        UIStoryboard *storybord = [UIStoryboard storyboardWithName:@"Annalyze" bundle:nil];
+//        TeacherAnlyzeViewController *teacherDetailVC = (TeacherAnlyzeViewController *)[storybord instantiateViewControllerWithIdentifier:@"TeacherDetailStorybordId"];
+//        teacherDetailVC.teacherId = @"178";
+//        teacherDetailVC.teacherName = @"张教授";
+//        [self.navigationController pushViewController:teacherDetailVC animated:YES];
+//    }else if (sender.tag == 12){
+//        UIStoryboard *storybord = [UIStoryboard storyboardWithName:@"Annalyze" bundle:nil];
+//        TeacherAnlyzeViewController *teacherDetailVC = (TeacherAnlyzeViewController *)[storybord instantiateViewControllerWithIdentifier:@"TeacherDetailStorybordId"];
+//        teacherDetailVC.teacherId = @"182";
+//        teacherDetailVC.teacherName = @"孙晓晓李";
+//        [self.navigationController pushViewController:teacherDetailVC animated:YES];
+//        
+//    }
 }
 
 @end

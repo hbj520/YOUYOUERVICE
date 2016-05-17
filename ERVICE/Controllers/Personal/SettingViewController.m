@@ -9,7 +9,7 @@
 #import "SettingViewController.h"
 #import "AppDelegate.h"
 
-@interface SettingViewController ()
+@interface SettingViewController ()<UIAlertViewDelegate>
 - (IBAction)backBtn:(UIBarButtonItem *)sender;
 
 @end
@@ -35,7 +35,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -45,18 +45,33 @@
     
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 2) {
+    if (indexPath.section == 1) {
         [[MyAPI sharedAPI] LoginOutWithResult:^(BOOL sucess, NSString *msg) {
+            //登录超时处理
+            if ([msg isEqualToString:@"登录超时"]) {
+                [self timeOutAction];
+            }
             if (sucess) {
                 //退出成功处理
                 [self loginOutConfig];
+               EMError *error = [[EMClient sharedClient] logout:YES];
+                if (!error) {
+                    NSLog(@"退出环信成功!!");
+                }else{
+                //退出环信失败
+                }
             }
         } errorResult:^(NSError *enginerError) {
+            
             
         }];
     }
 }
 #pragma mark - PrivateMethod
+- (void)timeOutAction{//超时处理
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"登录超时" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alertView show];
+}
 - (void)loginOutConfig{
     [[Config Instance] logOut];
     ApplicationDelegate.mStorybord = [UIStoryboard storyboardWithName:@"Personal" bundle:nil];
@@ -118,5 +133,13 @@
 
 - (IBAction)backBtn:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex == 1) {//确定，返回登录
+        [LoginHelper loginTimeoutAction];
+    }
+    
 }
 @end

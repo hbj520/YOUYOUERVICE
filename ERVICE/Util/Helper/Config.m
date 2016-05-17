@@ -58,6 +58,13 @@ static Config *instance = nil;
     
     [settings synchronize];
 }
+//保存密码
+- (void)saveUserPassword:(NSString *)password{
+    NSUserDefaults *setttings = [NSUserDefaults standardUserDefaults];
+    [setttings removeObjectForKey:@"password"];
+    [setttings setObject:password forKey:@"password"];
+    [setttings synchronize];
+}
 - (void)saveIcon:(NSString *)icon{
     NSUserDefaults *setttings = [NSUserDefaults standardUserDefaults];
     [setttings removeObjectForKey:@"icon"];
@@ -84,6 +91,10 @@ static Config *instance = nil;
 - (NSString *)getUserIcon{
     NSUserDefaults *settings = [NSUserDefaults standardUserDefaults];
     return [settings stringForKey:@"icon"];
+}
+- (NSString *)getPassword{
+    NSUserDefaults *settings = [NSUserDefaults standardUserDefaults];
+    return [settings stringForKey:@"password"];
 }
 //退出登录
 - (void)logOut{
